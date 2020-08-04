@@ -21,10 +21,11 @@
       <span class="navbar-toggler-icon"></span>
       </button>
 
-  
+
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <div class="navbar-nav">
-          <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button>
+          <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
+          <a class="btn btn-success" href="login.html"><i class="fas fa-user-circle"></i> login</a>
         </div>
           <ul class="navbar-nav">
 
@@ -46,7 +47,7 @@
         <p>เว็บแอปพลิเคชันจัดการผลงานวิชาการคณาจารย์ ภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร</p>
       </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
       <form class="form-inline" action="searching.php" method="post">
           <select class="form-control" name="type">
               <option value="ทุกประเภท">ทุกประเภท/All</option>
@@ -64,7 +65,7 @@
           <input class="form-control" type="text" placeholder="Search.." name="search">
 
 
-          <button type="button" class="btn btn-success"> <i class="fas fa-search"></i> ค้นหา</button>
+          <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> ค้นหา</button>
       </form>
     </div>
 
