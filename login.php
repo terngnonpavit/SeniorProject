@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>CPSU</title>
+    <title>login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <div class="navbar-nav">
           <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
-          <a class="btn btn-success" href="login.php"><i class="fas fa-user-circle"></i> login</a>
+          <a class="btn btn-success" href="login.html"><i class="fas fa-user-circle"></i> login</a>
         </div>
           <ul class="navbar-nav">
 
@@ -47,28 +47,3 @@
         <p>เว็บแอปพลิเคชันจัดการผลงานวิชาการคณาจารย์ ภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร</p>
       </div>
     </div>
-    <div class="container">
-      <form class="form-inline" action="searching.php" method="post">
-          <select class="form-control" name="type">
-              <option value="ทุกประเภท">ทุกประเภท/All</option>
-              <option value="เอกสารประกอบการสอน">เอกสารประกอบการสอน</option>
-              <option value="เอกสารคำสอน">เอกสารคำสอน</option>
-              <option value="บทความทางวิชาการ">บทความทางวิชาการ/Articles</option>
-              <option value="ตำรา">ตำรา/Treatises</option>
-              <option value="หนังสือ">หนังสือ/Books</option>
-              <option value="งานวิจัย">งานวิจัย/Research</option>
-              <option value="วารสารทางวิชาการ">วารสารทางวิชาการ/Journals</option>
-              <option value="รายงานการประชุมวิชาการ">รายงานการประชุมวิชาการ/Conference Proceedings</option>
-          </select>
-
-
-          <input class="form-control" type="text" placeholder="Search.." name="search">
-
-
-          <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> ค้นหา</button>
-      </form>
-    </div>
-
-
-  </body>
-</html>
