@@ -21,7 +21,7 @@
       <span class="navbar-toggler-icon"></span>
       </button>
 
-  <!-- Navbar links -->
+  
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <div class="navbar-nav">
           <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button>
