@@ -25,7 +25,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <div class="navbar-nav">
           <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
-          <a class="btn btn-success" href="login.php"><i class="fas fa-user-circle"></i> login</a>
+          <a class="btn btn-success" href="login.html"><i class="fas fa-user-circle"></i> login</a>
         </div>
           <ul class="navbar-nav">
 
@@ -58,11 +58,11 @@
               <option value="หนังสือ">หนังสือ/Books</option>
               <option value="งานวิจัย">งานวิจัย/Research</option>
               <option value="วารสารทางวิชาการ">วารสารทางวิชาการ/Journals</option>
-              <option value="รายงานการประชุมวิชาการ">รายงานการประชุมวิชาการ/Conference Proceedings</option>
+              <option value="รายงานการประชุมวิชาการ">รายงานการประชุมวิชาการ/Proceedings</option>
           </select>
 
 
-          <input class="form-control" type="text" placeholder="Search.." name="search">
+          <input class="form-control" type="text" placeholder="Search" name="search">
 
 
           <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> ค้นหา</button>

@@ -27,23 +27,4 @@
           <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
           <a class="btn btn-success" href="login.html"><i class="fas fa-user-circle"></i> login</a>
         </div>
-          <ul class="navbar-nav">
-
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li> -->
-          </ul>
-      </div>
-    </nav>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1>CPSU Management of Lecture’s Academic publication</h1>
-        <p>เว็บแอปพลิเคชันจัดการผลงานวิชาการคณาจารย์ ภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร</p>
-      </div>
-    </div>
+        

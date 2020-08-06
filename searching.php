@@ -19,13 +19,13 @@ $type=$_POST['type'] ;
 $sql='';
 if  ($type=='ทุกประเภท')
 {
-  $sql = "select * from research where research_name like '%".$search."%' or researcher like '%".$search."%'";
+  $sql = "select * from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'";
 }
 else
 {
-  $sql = "select * from research where research_name like '%".$search."%' or researcher like '%".$search."%' and type='".$type."'";
+  $sql = "select * from proceedings where (titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%') and type='".$type."'";
 }
-//echo $sql;
+// echo $sql."<br />";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -33,17 +33,23 @@ if ($result->num_rows > 0) {
    $no = 0;
   while($row = $result->fetch_assoc())  {
 
-    $topic=$row['research_name'];
-    $content=$row['researcher'];
+    $titleTH=$row['titleTH'];
+    $titleEN=$row['titleEN'];
+    $author=$row['author'];
+    $type=$row['type'];
+    $date=$row['date'];
     $no++;
 
-    echo "$no  $topic<br />
-    $content <br />
+    echo "$no  $titleTH <br />
+    $titleEN <br />
+    $author <br />
+    $type <br />
+    $date <br />
     .................................................<br />
     ";
   }
 } else {
-  echo "0 results";
+  echo "no results";
 }
 $conn->close();
 ?>
