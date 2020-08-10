@@ -13,34 +13,7 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-      <!-- Brand -->
-      <a class="navbar-brand" href="#">CPSU</a>
-        <!-- Toggler/collapsibe Button -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-
-
-      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-        <div class="navbar-nav">
-          <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
-          <a class="btn btn-success" href="login.html"><i class="fas fa-user-circle"></i> login</a>
-        </div>
-          <ul class="navbar-nav">
-
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li> -->
-          </ul>
-      </div>
-    </nav>
+    <?php require('navbar.php');?>
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1>CPSU Management of Lecture’s Academic publication</h1>
@@ -54,11 +27,11 @@
               <option value="เอกสารประกอบการสอน">เอกสารประกอบการสอน</option>
               <option value="เอกสารคำสอน">เอกสารคำสอน</option>
               <option value="บทความทางวิชาการ">บทความทางวิชาการ/Articles</option>
-              <option value="ตำรา">ตำรา/Treatises</option>
+              <option value="ตำรา">ตำรา</option>
               <option value="หนังสือ">หนังสือ/Books</option>
               <option value="งานวิจัย">งานวิจัย/Research</option>
               <option value="วารสารทางวิชาการ">วารสารทางวิชาการ/Journals</option>
-              <option value="รายงานการประชุมวิชาการ">รายงานการประชุมวิชาการ/Proceedings</option>
+              <option value="เอกสารจากการประชุมวิชาการ">เอกสารจากการประชุมวิชาการ/Proceedings</option>
           </select>
 
 
