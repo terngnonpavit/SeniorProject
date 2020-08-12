@@ -10,7 +10,16 @@
   <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
     <div class="navbar-nav">
       <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
-      <a class="btn btn-success" href="login.php"><i class="fas fa-user-circle"></i> login</a>
+      <?php
+      if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
+        echo '<a class="btn btn-success" href="login.php"><i class="fas fa-user-circle"></i> login</a>';
+      }
+      else{
+        echo '<a class="btn btn-danger" href="logout.php"><i class="fas fa-user-circle"></i> logout</a>';
+      }
+      ?>
+
+      <!-- <a class="btn btn-success" href="login.php"><i class="fas fa-user-circle"></i> login</a> -->
     </div>
       <ul class="navbar-nav">
 
