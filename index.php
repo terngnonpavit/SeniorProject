@@ -25,15 +25,15 @@
     <div class="container">
       <form class="form-inline" action="searching.php" method="post">
           <select class="form-control" name="type">
-              <option value="ทุกประเภท">ทุกประเภท/All</option>
+              <option value="all">ทุกประเภท/All</option>
               <option value="เอกสารประกอบการสอน">เอกสารประกอบการสอน</option>
               <option value="เอกสารคำสอน">เอกสารคำสอน</option>
               <option value="บทความทางวิชาการ">บทความทางวิชาการ/Articles</option>
               <option value="ตำรา">ตำรา</option>
-              <option value="หนังสือ">หนังสือ/Books</option>
+              <option value="books">หนังสือ/Books</option>
               <option value="งานวิจัย">งานวิจัย/Research</option>
-              <option value="วารสารทางวิชาการ">วารสารทางวิชาการ/Journals</option>
-              <option value="เอกสารจากการประชุมวิชาการ">เอกสารจากการประชุมวิชาการ/Proceedings</option>
+              <option value="journals">วารสารทางวิชาการ/Journals</option>
+              <option value="proceedings">เอกสารจากการประชุมวิชาการ/Proceedings</option>
           </select>
 
 

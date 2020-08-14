@@ -17,15 +17,23 @@ $search=$_POST['search'] ;
 $type=$_POST['type'] ;
 //echo $type;
 $sql='';
-if  ($type=='ทุกประเภท')
+if  ($type=='all')
 {
-  $sql = "select * from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'";
+  $sql = "select titleTH , titleEN, author
+          from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+          UNION
+          select titleTH , titleEN, author
+          from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+          UNION
+          select titleTH , titleEN, author
+          from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+          ";
 }
 else
 {
-  $sql = "select * from proceedings where (titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%') and type='".$type."'";
+  $sql = "select * from ".$type." where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'";
 }
-// echo $sql."<br />";
+ echo $sql."<br />";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -36,15 +44,13 @@ if ($result->num_rows > 0) {
     $titleTH=$row['titleTH'];
     $titleEN=$row['titleEN'];
     $author=$row['author'];
-    $type=$row['type'];
-    $date=$row['date'];
+    // $type=$row['type'];
+    // $date=$row['date'];
     $no++;
 
     echo "$no  $titleTH <br />
     $titleEN <br />
     $author <br />
-    $type <br />
-    $date <br />
     .................................................<br />
     ";
   }
