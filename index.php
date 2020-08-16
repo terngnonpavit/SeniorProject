@@ -23,25 +23,95 @@
       </div>
     </div>
     <div class="container">
-      <form class="form-inline" action="searching.php" method="post">
-          <select class="form-control" name="type">
-              <option value="all">ทุกประเภท/All</option>
-              <option value="เอกสารประกอบการสอน">เอกสารประกอบการสอน</option>
-              <option value="เอกสารคำสอน">เอกสารคำสอน</option>
-              <option value="บทความทางวิชาการ">บทความทางวิชาการ/Articles</option>
-              <option value="ตำรา">ตำรา</option>
-              <option value="books">หนังสือ/Books</option>
-              <option value="งานวิจัย">งานวิจัย/Research</option>
-              <option value="journals">วารสารทางวิชาการ/Journals</option>
-              <option value="proceedings">เอกสารจากการประชุมวิชาการ/Proceedings</option>
-          </select>
 
+      <!-- include -->
+      <?php require('form.php');?>
+      <br/>
+      <?php
 
-          <input class="form-control" type="text" placeholder="Search" name="search">
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "test";
 
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-          <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> ค้นหา</button>
-      </form>
+        // Check connection
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+
+        if(isset($_GET['search']) && isset($_GET['type'])){
+          $search=$_GET['search'];
+          $type=$_GET['type'];
+          //echo $type;
+          $sql='';
+          if  ($type=='all')
+          {
+            $sql = "select titleTH , titleEN, author, date, type, id
+                    from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+                    UNION
+                    select titleTH , titleEN, author, date, type, id
+                    from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+                    UNION
+                    select titleTH , titleEN, author, date, type, id
+                    from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+                    ";
+          }
+          else
+          {
+            $sql = "select * from ".$type." where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'";
+          }
+           // echo $sql."<br />";
+
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            //output data of each row
+            $no = 0;
+            echo "<h4>Showing results for $search</h4>";
+
+            while($row = $result->fetch_assoc())  {
+
+              $titleTH=$row['titleTH'];
+              $titleEN=$row['titleEN'];
+              $author=$row['author'];
+              $date=$row['date'];
+              $type=$row['type'];
+              $id=$row['id'];
+              // $type=$row['type'];
+              // $date=$row['date'];
+              $no++;
+
+              // echo "$no  $titleTH <br />
+              // $titleEN <br />
+              // $author <br />
+              // .................................................<br />
+              // ";
+
+              echo "
+              <div class='card'>
+                <div class='card-header'>
+                  <a href='detail.php/?id=$id&type=$type'><h4> $no.  $titleTH </h4></a>
+                </div>
+                <div class='card-body'>
+                  $titleEN <br />
+                  $author <br />
+                  $date <br />
+                  <span class='badge badge-success'>$type</span>
+                </div>
+              </div>
+              <br />
+              ";
+            }
+          } else {
+            echo "We were unable to find results.";
+          }
+        }
+
+        $conn->close();
+      ?>
+
     </div>
 
 
