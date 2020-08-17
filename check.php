@@ -28,7 +28,7 @@ if($result->num_rows > 0){
   // Set session variables
   $_SESSION["username"] = $username;
   $_SESSION["login_status"] = True;
-  header('Location: admin.php');  
+  header('Location: admin/admin.php');  
 }
 else{
   echo 'login unsuccessful';

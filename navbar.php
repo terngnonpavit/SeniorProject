@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="index.php">CPSU</a>
+  <a class="navbar-brand" href="http://localhost/seniorproject/index.php">CPSU</a>
     <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
   <span class="navbar-toggler-icon"></span>
@@ -12,10 +12,10 @@
       <!-- <button type="button" class="btn btn-success"> <i class="fas fa-user-circle"></i> login</button> -->
       <?php
       if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
-        echo '<a class="btn btn-success" href="login.php"><i class="fas fa-user-circle"></i> login</a>';
+        echo '<a class="btn btn-success" href="http://localhost/seniorproject/login.php"><i class="fas fa-user-circle"></i> login</a>';
       }
       else{
-        echo '<a class="btn btn-danger" href="logout.php"><i class="fas fa-user-circle"></i> logout</a>';
+        echo '<a class="btn btn-danger" href="http://localhost/seniorproject/logout.php"><i class="fas fa-user-circle"></i> logout</a>';
       }
       ?>
 
