@@ -2,8 +2,7 @@
 // Start the session
 session_start();
 if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
-    header('Location: login.php');
-}
+    header('Location: http://localhost/seniorproject/login.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -75,14 +74,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         die("Connection failed: " . $conn->connect_error);
       }
 
-      if(isset($_POST['titleTH']) &&
-         isset($_POST['titleEN']) &&
-         isset($_POST['author']) &&
-         isset($_POST['article_title']) &&
-         isset($_POST['pages']) &&
-         isset($_POST['volume']) &&
-         isset($_POST['issue']) &&
-         isset($_POST['date']))
+      if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
+         isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
+         isset($_POST['author']) && $_POST['author'] != '' &&
+         isset($_POST['article_title']) && $_POST['article_title'] != '' &&
+         isset($_POST['pages']) && $_POST['pages'] != '' &&
+         isset($_POST['volume']) && $_POST['volume'] != '' &&
+         isset($_POST['issue']) && $_POST['issue'] != '' &&
+         isset($_POST['date']) && $_POST['date'] != '')
         {
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
@@ -98,7 +97,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                   VALUES ('$author', '$date', '$article_title', '$titleTH', '$volume', '$issue', '$pages', NULL, '$titleEN', '$type')";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            header('Location: admin.php');
+            header('Location: http://localhost/seniorproject/admin/admin.php');
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }

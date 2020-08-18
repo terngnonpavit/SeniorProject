@@ -12,6 +12,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+      <!-- file type -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
   <body>
@@ -72,7 +74,8 @@
                   <p><strong>city:</strong> $city </p>
                   <p><strong>page:</strong> $page </p>
                   <p><strong>publisher:</strong> $publisher </p>
-                  <p><strong>type:</strong> $type </p>
+                  <span class='badge badge-success'>Books</span>
+                  <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
                 </div>
               </div>
               <br/>
@@ -96,7 +99,8 @@
                   <p><strong>pages:</strong> $pages </p>
                   <p><strong>volume:</strong> $volume </p>
                   <p><strong>article_title:</strong> $article_title </p>
-                  <p><strong>type:</strong> $type </p>
+                  <span class='badge badge-info'>Journals</span>
+                  <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
                 </div>
               </div>
               <br/>
@@ -115,7 +119,8 @@
                   <p><strong>date:</strong> $date </p>
                   <p><strong>place:</strong> $place </p>
                   <p><strong>titleConference:</strong> $titleConference </p>
-                  <p><strong>type:</strong> $type </p>
+                  <span class='badge badge-primary'>Proceedings</span>
+                  <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
                 </div>
               </div>
               <br/>

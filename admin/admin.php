@@ -2,7 +2,7 @@
 // Start the session
 session_start();
 if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
-    header('Location: login.php');
+    header('Location: http://localhost/seniorproject/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+      <!-- file type -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <?php require('../navbar.php');?>
@@ -48,14 +49,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         <div id="journals" class="container tab-pane fade"><br>
           <h3>
             Journals
-            <a href="create_journals.php" class="btn btn-success">Create</a>
+            <a href="create_journals.php" class="btn btn-info">Create</a>
           </h3>
           <?php require('admin_journals.php');?>
         </div>
         <div id="proceedings" class="container tab-pane fade"><br>
           <h3>
             Proceedings
-            <a href="#" class="btn btn-success">Create</a>
+            <a href="create_proceedings.php" class="btn btn-primary">Create</a>
           </h3>
           <?php require('admin_proceedings.php');?>
         </div>

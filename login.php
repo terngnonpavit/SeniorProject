@@ -23,11 +23,11 @@
             <label for="Password">Password:</label>
             <input type="password" class="form-control" placeholder="Enter password" name="password">
           </div>
-          <div class="form-group form-check">
+          <!-- <div class="form-group form-check">
             <label class="form-check-label">
               <input class="form-check-input" type="checkbox"> Remember me
             </label>
-          </div>
+          </div> -->
             <button type="submit" class="btn btn-success">login</button>
       </form>
     </div>

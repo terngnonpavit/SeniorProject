@@ -31,32 +31,21 @@
       echo "
       <div class='card'>
         <div class='card-header'>
-          <a href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleTH </h4></a>
+          <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleTH </h4></a>
         </div>
         <div class='card-body'>
-          $titleEN <br />
-          $author <br />
-          $date <br />
-          <span class='badge badge-success'>$type</span>
+          <p><strong>title(EN):</strong> $titleEN </p>
+          <p><strong>author:</strong> $author </p>
+          <p><strong>date:</strong> $date </p>
+          <span class='badge badge-success'>Books</span>
+          <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+        </div>
+        <div class='card-footer'>
+          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=$type' class='btn btn-outline-danger'>Delete</a>
         </div>
       </div>
       <br />
       ";
-      // echo "
-      // <div class='card'>
-      //   <div class='card-body'>
-      //     <p><strong>title(TH):</strong> $titleTH </p>
-      //     <p><strong>title(EN):</strong> $titleEN </p>
-      //     <p><strong>author:</strong> $author </p>
-      //     <p><strong>date:</strong> $date </p>
-      //     <p><strong>city:</strong> $city </p>
-      //     <p><strong>page:</strong> $page </p>
-      //     <p><strong>publisher:</strong> $publisher </p>
-      //     <p><strong>type:</strong> $type </p>
-      //   </div>
-      // </div>
-      // <br/>
-      // ";
     }
   }
   else {

@@ -15,5 +15,5 @@
     <input class="form-control" type="text" placeholder="Search" name="search">
 
 
-    <button type="submit" class="btn btn-success"> <i class="fas fa-search"></i> ค้นหา</button>
+    <button type="submit" class="btn btn-dark"> <i class="fas fa-search"></i> ค้นหา</button>
 </form>
