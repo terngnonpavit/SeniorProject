@@ -21,12 +21,12 @@
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
       $author=$row['author'];
+      $publishedin=$row['publishedin'];
+      $volume=$row['volume'];
+      $page=$row['page'];
       $date=$row['date'];
       $type=$row['type'];
-      $issue=$row['issue'];
-      $pages=$row['pages'];
-      $volume=$row['volume'];
-      $article_title=$row['article_title'];
+
       $no++;
 
       echo "
@@ -67,7 +67,7 @@
     }
   }
   else {
-    echo "We were unable to find results.";
+    echo "No Results";
   }
   $conn->close();
 ?>

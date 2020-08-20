@@ -18,7 +18,7 @@
   </head>
   <body>
     <?php require('navbar.php');?>
-    <div class="jumbotron jumbotron-fluid">
+      <div class="jumbotron jumbotron-fluid text-white" style="background-image: url(http://localhost/seniorproject/images/coverimage5.jpg); background-size: cover; height: 50%">
       <div class="container">
         <h1>CPSU Management of Lecture’s Academic publication</h1>
         <p>เว็บแอปพลิเคชันจัดการผลงานวิชาการคณาจารย์ ภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร</p>
@@ -60,9 +60,9 @@
             $type=$row['type'];
 
             if($type=='books'){
-              $city=$row['city'];
-              $page=$row['page'];
-              $publisher=$row['publisher'];
+                $page=$row['page'];
+                $publisher=$row['publisher'];
+                $date=$row['date'];
 
               echo "
               <div class='card'>
@@ -70,10 +70,10 @@
                   <p><strong>title(TH):</strong> $titleTH </p>
                   <p><strong>title(EN):</strong> $titleEN </p>
                   <p><strong>author:</strong> $author </p>
-                  <p><strong>date:</strong> $date </p>
-                  <p><strong>city:</strong> $city </p>
                   <p><strong>page:</strong> $page </p>
                   <p><strong>publisher:</strong> $publisher </p>
+                  <p><strong>date:</strong> $date </p>
+
                   <span class='badge badge-success'>Books</span>
                   <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
                 </div>
@@ -83,10 +83,11 @@
 
             }
             else if($type=='journals'){
-              $issue=$row['issue'];
-              $pages=$row['pages'];
+              $publishedin=$row['publishedin'];
               $volume=$row['volume'];
-              $article_title=$row['article_title'];
+              $number=$row['number'];
+              $page=$row['page'];
+              $date=$row['date'];
 
               echo "
               <div class='card'>
@@ -94,11 +95,11 @@
                   <p><strong>title(TH):</strong> $titleTH </p>
                   <p><strong>title(EN):</strong> $titleEN </p>
                   <p><strong>author:</strong> $author </p>
-                  <p><strong>date:</strong> $date </p>
-                  <p><strong>issue:</strong> $issue </p>
-                  <p><strong>pages:</strong> $pages </p>
+                  <p><strong>published in:</strong> $publishedin </p>
                   <p><strong>volume:</strong> $volume </p>
-                  <p><strong>article_title:</strong> $article_title </p>
+                  <p><strong>number</strong> $number </p>
+                  <p><strong>page:</strong> $page </p>
+                  <p><strong>date:</strong> $date </p>
                   <span class='badge badge-info'>Journals</span>
                   <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
                 </div>
@@ -107,8 +108,9 @@
               ";
             }
             else if($type=='proceedings'){
-              $place=$row['place'];
               $titleConference=$row['titleConference'];
+              $date=$row['date'];
+              $place=$row['place'];
 
               echo "
               <div class='card'>
@@ -116,9 +118,10 @@
                   <p><strong>title(TH):</strong> $titleTH </p>
                   <p><strong>title(EN):</strong> $titleEN </p>
                   <p><strong>author:</strong> $author </p>
+                  <p><strong>titleConference:</strong> $titleConference </p>
                   <p><strong>date:</strong> $date </p>
                   <p><strong>place:</strong> $place </p>
-                  <p><strong>titleConference:</strong> $titleConference </p>
+
                   <span class='badge badge-primary'>Proceedings</span>
                   <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
                 </div>
@@ -130,5 +133,5 @@
           }
         }
         else {
-          echo "We were unable to find results.";
+          echo "No Results";
         }

@@ -37,10 +37,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="Enter author" name="author">
           </div>
           <div class="form-group">
-            <label for="place">place</label>
-            <input type="text" class="form-control" placeholder="Enter place" name="place">
-          </div>
-          <div class="form-group">
             <label for="titleConference">titleConference</label>
             <input type="text" class="form-control" placeholder="Enter titleConference" name="titleConference">
           </div>
@@ -48,6 +44,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="date">date</label>
             <input type="text" class="form-control" placeholder="Enter date" name="date">
           </div>
+          <div class="form-group">
+            <label for="place">place</label>
+            <input type="text" class="form-control" placeholder="Enter place" name="place">
+          </div>
+
           <button type="submit" class="btn btn-success">Done</button>
       </form>
     </div>
@@ -70,16 +71,16 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '' &&
-         isset($_POST['place']) && $_POST['place'] != '' &&
          isset($_POST['titleConference']) && $_POST['titleConference'] != '' &&
-         isset($_POST['date']) && $_POST['date'] != '')
+         isset($_POST['date']) && $_POST['date'] != '' &&
+         isset($_POST['place']) && $_POST['place'] != '')
         {
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
-          $place=$_POST['place'];
           $titleConference=$_POST['titleConference'];
           $date=$_POST['date'];
+          $place=$_POST['place'];
           $type="proceedings";
 
           $sql = "INSERT INTO `proceedings` (`titleEN`, `author`, `id`, `type`, `titleTH`, `date`, `place`, `titleConference`)

@@ -1,14 +1,14 @@
 <form class="form-inline" action="http://localhost/seniorproject/index.php" method="get">
     <select class="form-control" name="type">
-        <option value="all">ทุกประเภท/All</option>
-        <option value="เอกสารประกอบการสอน">เอกสารประกอบการสอน</option>
-        <option value="เอกสารคำสอน">เอกสารคำสอน</option>
-        <option value="บทความทางวิชาการ">บทความทางวิชาการ/Articles</option>
-        <option value="ตำรา">ตำรา</option>
-        <option value="books">หนังสือ/Books</option>
-        <option value="งานวิจัย">งานวิจัย/Research</option>
-        <option value="journals">วารสารทางวิชาการ/Journals</option>
-        <option value="proceedings">เอกสารจากการประชุมวิชาการ/Proceedings</option>
+        <option value="all">ทุกประเภท(All)</option>
+        <!-- <option value="เอกสารประกอบการสอน">เอกสารประกอบการสอน(Teaching Documents)</option> -->
+        <!-- <option value="เอกสารคำสอน">เอกสารคำสอน(Teaching Words)</option> -->
+        <!-- <option value="บทความทางวิชาการ">บทความทางวิชาการ(Articles)</option> -->
+        <!-- <option value="ตำรา">ตำรา</option> -->
+        <option value="books">หนังสือ(Books)</option>
+        <!-- <option value="งานวิจัย">งานวิจัย/Research</option> -->
+        <option value="journals">วารสารทางวิชาการ(Journals)</option>
+        <option value="proceedings">เอกสารจากการประชุมวิชาการ(Proceedings)</option>
     </select>
 
 

@@ -37,10 +37,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="Enter author" name="author">
           </div>
           <div class="form-group">
-            <label for="city">city</label>
-            <input type="text" class="form-control" placeholder="Enter city" name="city">
-          </div>
-          <div class="form-group">
             <label for="page">page</label>
             <input type="text" class="form-control" placeholder="Enter page" name="page">
           </div>
@@ -74,7 +70,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '' &&
-         isset($_POST['city']) && $_POST['city'] != '' &&
          isset($_POST['page']) && $_POST['page'] != '' &&
          isset($_POST['publisher']) && $_POST['publisher'] != '' &&
          isset($_POST['date']) && $_POST['date'] != '')
@@ -82,13 +77,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
-          $city=$_POST['city'];
           $page=$_POST['page'];
           $publisher=$_POST['publisher'];
           $date=$_POST['date'];
           $type="books";
 
-          $sql = "INSERT INTO `books` (`author`, `date`, `titleTH`, `city`, `publisher`, `id`, `page`, `titleEN`, `type`) VALUES ('$author', '$date', '$titleTH', '$city', '$publisher', NULL, '$page', '$titleEN', '$type')";
+          $sql = "INSERT INTO `books` (`author`, `date`, `titleTH`, `publisher`, `id`, `page`, `titleEN`, `type`) VALUES ('$author', '$date', '$titleTH', '$publisher', NULL, '$page', '$titleEN', '$type')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

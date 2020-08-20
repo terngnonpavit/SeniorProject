@@ -22,10 +22,10 @@
       $titleEN=$row['titleEN'];
       $author=$row['author'];
       $date=$row['date'];
-      $type=$row['type'];
-      $city=$row['city'];
       $page=$row['page'];
       $publisher=$row['publisher'];
+      $type=$row['type'];
+
       $no++;
 
       echo "
@@ -49,7 +49,7 @@
     }
   }
   else {
-    echo "We were unable to find results.";
+    echo "No Results";
   }
   $conn->close();
 ?>

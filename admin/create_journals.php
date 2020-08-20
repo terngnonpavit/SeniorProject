@@ -36,20 +36,20 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="Enter author" name="author">
           </div>
           <div class="form-group">
-            <label for="article_title">article_title</label>
-            <input type="text" class="form-control" placeholder="Enter article_title" name="article_title">
-          </div>
-          <div class="form-group">
-            <label for="pages">pages</label>
-            <input type="text" class="form-control" placeholder="Enter pages" name="pages">
+            <label for="publishedin">published in</label>
+            <input type="text" class="form-control" placeholder="Enter published in" name="publishedin">
           </div>
           <div class="form-group">
             <label for="volume">volume</label>
             <input type="text" class="form-control" placeholder="Enter volume" name="volume">
           </div>
           <div class="form-group">
-            <label for="issue">issue</label>
-            <input type="text" class="form-control" placeholder="Enter issue" name="issue">
+            <label for="number">number</label>
+            <input type="text" class="form-control" placeholder="Enter number" name="number">
+          </div>
+          <div class="form-group">
+            <label for="page">page</label>
+            <input type="text" class="form-control" placeholder="Enter page" name="page">
           </div>
           <div class="form-group">
             <label for="date">date</label>
@@ -77,24 +77,24 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '' &&
-         isset($_POST['article_title']) && $_POST['article_title'] != '' &&
-         isset($_POST['pages']) && $_POST['pages'] != '' &&
+         isset($_POST['publishedin']) && $_POST['publishedin'] != '' &&
          isset($_POST['volume']) && $_POST['volume'] != '' &&
-         isset($_POST['issue']) && $_POST['issue'] != '' &&
+         isset($_POST['number']) && $_POST['number'] != '' &&
+         isset($_POST['page']) && $_POST['page'] != '' &&
          isset($_POST['date']) && $_POST['date'] != '')
         {
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
-          $article_title=$_POST['article_title'];
-          $pages=$_POST['pages'];
+          $publishedin=$_POST['publishedin'];
           $volume=$_POST['volume'];
+          $number=$_POST['number'];
+          $page=$_POST['page'];
           $date=$_POST['date'];
-          $issue=$_POST['issue'];
           $type="journals";
 
-          $sql = "INSERT INTO `journals` (`author`, `date`, `article_title`, `titleTH`, `volume`, `issue`, `pages`, `id`, `titleEN`, `type`)
-                  VALUES ('$author', '$date', '$article_title', '$titleTH', '$volume', '$issue', '$pages', NULL, '$titleEN', '$type')";
+          $sql = "INSERT INTO `journals` (`author`, `date`, `publishedin`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`)
+                  VALUES ('$author', '$date', '$publishedin', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type')";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             header('Location: http://localhost/seniorproject/admin/admin.php');

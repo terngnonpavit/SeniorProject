@@ -14,16 +14,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
       <!-- file type -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   </head>
+
   <body>
     <?php require('navbar.php');?>
-    <div class="jumbotron jumbotron-fluid text-white" style="background-image: url(http://localhost/seniorproject/images/coverimage4.jpg); background-size: cover; height: 50%">
+    <div class="jumbotron jumbotron-fluid text-white" style="background-image: url(http://localhost/seniorproject/images/coverimage5.jpg); background-size: cover; height: 50%">
+    <!-- <div class="jumbotron jumbotron-fluid"> -->
       <div class="container">
         <h1>CPSU Management of Lecture’s Academic publication</h1>
         <p>เว็บแอปพลิเคชันจัดการผลงานวิชาการคณาจารย์ ภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร</p>
       </div>
     </div>
+
     <div class="container">
 
       <!-- include -->
@@ -144,7 +146,7 @@
 
             }
           } else {
-            echo "We were unable to find results.";
+            echo "No Results";
           }
         }
 

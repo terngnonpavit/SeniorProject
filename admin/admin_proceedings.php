@@ -21,10 +21,11 @@
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
       $author=$row['author'];
-      $date=$row['date'];
-      $type=$row['type'];
-      $place=$row['place'];
       $titleConference=$row['titleConference'];
+      $date=$row['date'];
+      $place=$row['place'];
+      $type=$row['type'];
+      
       $no++;
 
       echo "
@@ -63,7 +64,7 @@
     }
   }
   else {
-    echo "We were unable to find results.";
+    echo "No Results";
   }
   $conn->close();
 ?>
