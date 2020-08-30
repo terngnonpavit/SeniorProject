@@ -23,7 +23,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <?php require('../navbar.php');?>
 
     <div class="container">
-      <form action="create_books.php" method="post">
+      <form action="create_books.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="titleTH">title(TH)</label>
             <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
@@ -47,6 +47,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group">
             <label for="date">date</label>
             <input type="text" class="form-control" placeholder="Enter date" name="date">
+          </div>
+          <div class="form-group">
+            <label for="book_file">file</label>
+            <input type="file" class="form-control" placeholder="Upload file" name="book_file">
           </div>
           <button type="submit" class="btn btn-success">Done</button>
       </form>
@@ -74,6 +78,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['publisher']) && $_POST['publisher'] != '' &&
          isset($_POST['date']) && $_POST['date'] != '')
         {
+
+          $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+          $targetfolder = $targetfolder . basename( $_FILES['book_file']['name']) ;
+
+          if(move_uploaded_file($_FILES['book_file']['tmp_name'], $targetfolder))
+          {
+            echo "The file " . basename($_FILES['book_file']['name']) . " is uploaded";
+          }
+          else
+          {
+            echo "Problem uploading file" . basename($_FILES['book_file']['name']);
+          }
+
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
@@ -81,8 +98,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $publisher=$_POST['publisher'];
           $date=$_POST['date'];
           $type="books";
+          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
 
-          $sql = "INSERT INTO `books` (`author`, `date`, `titleTH`, `publisher`, `id`, `page`, `titleEN`, `type`) VALUES ('$author', '$date', '$titleTH', '$publisher', NULL, '$page', '$titleEN', '$type')";
+          $sql = "INSERT INTO `books` (`author`, `date`, `titleTH`, `publisher`, `id`, `page`, `titleEN`, `type`, `file_path`) VALUES ('$author', '$date', '$titleTH', '$publisher', NULL, '$page', '$titleEN', '$type', '$file_path')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

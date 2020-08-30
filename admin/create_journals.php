@@ -22,7 +22,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <?php require('../navbar.php');?>
 
     <div class="container">
-      <form action="create_journals.php" method="post">
+      <form action="create_journals.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="titleTH">title(TH)</label>
             <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
@@ -55,6 +55,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="date">date</label>
             <input type="text" class="form-control" placeholder="Enter date" name="date">
           </div>
+          <div class="form-group">
+            <label for="journal_file">file</label>
+            <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
+          </div>
           <button type="submit" class="btn btn-success">Done</button>
       </form>
     </div>
@@ -83,6 +87,18 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['page']) && $_POST['page'] != '' &&
          isset($_POST['date']) && $_POST['date'] != '')
         {
+          $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+          $targetfolder = $targetfolder . basename( $_FILES['journal_file']['name']) ;
+
+          if(move_uploaded_file($_FILES['journal_file']['tmp_name'], $targetfolder))
+          {
+            echo "The file " . basename($_FILES['journal_file']['name']) . " is uploaded";
+          }
+          else
+          {
+            echo "Problem uploading file" . basename($_FILES['journal_file']['name']);
+          }
+
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
@@ -92,9 +108,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $page=$_POST['page'];
           $date=$_POST['date'];
           $type="journals";
+          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
-          $sql = "INSERT INTO `journals` (`author`, `date`, `publishedin`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`)
-                  VALUES ('$author', '$date', '$publishedin', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type')";
+          $sql = "INSERT INTO `journals` (`author`, `date`, `publishedin`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`, `file_path`)
+                  VALUES ('$author', '$date', '$publishedin', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type','$file_path')";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             header('Location: http://localhost/seniorproject/admin/admin.php');

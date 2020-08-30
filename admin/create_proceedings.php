@@ -23,7 +23,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <?php require('../navbar.php');?>
 
     <div class="container">
-      <form action="create_proceedings.php" method="post">
+      <form action="create_proceedings.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="titleTH">title(TH)</label>
             <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
@@ -48,7 +48,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="place">place</label>
             <input type="text" class="form-control" placeholder="Enter place" name="place">
           </div>
-
+          <div class="form-group">
+            <label for="proceeding_file">file</label>
+            <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
+          </div>
           <button type="submit" class="btn btn-success">Done</button>
       </form>
     </div>
@@ -75,6 +78,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['date']) && $_POST['date'] != '' &&
          isset($_POST['place']) && $_POST['place'] != '')
         {
+
+          $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+          $targetfolder = $targetfolder . basename( $_FILES['proceeding_file']['name']) ;
+
+          if(move_uploaded_file($_FILES['proceeding_file']['tmp_name'], $targetfolder))
+          {
+            echo "The file " . basename($_FILES['proceeding_file']['name']) . " is uploaded";
+          }
+          else
+          {
+            echo "Problem uploading file" . basename($_FILES['proceeding_file']['name']);
+          }
+
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
@@ -82,9 +98,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $date=$_POST['date'];
           $place=$_POST['place'];
           $type="proceedings";
+          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
 
-          $sql = "INSERT INTO `proceedings` (`titleEN`, `author`, `id`, `type`, `titleTH`, `date`, `place`, `titleConference`)
-                  VALUES ('$titleEN', '$author', NULL, '$type', '$titleTH', '$date', '$place', '$titleConference')";
+          $sql = "INSERT INTO `proceedings` (`titleEN`, `author`, `id`, `type`, `titleTH`, `date`, `place`, `titleConference`, `file_path`)
+                  VALUES ('$titleEN', '$author', NULL, '$type', '$titleTH', '$date', '$place', '$titleConference', '$file_path')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

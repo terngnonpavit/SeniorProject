@@ -83,6 +83,7 @@
               $date=$row['date'];
               $type=$row['type'];
               $id=$row['id'];
+              $file_path=$row['file_path'];
               // $type=$row['type'];
               // $date=$row['date'];
               $no++;
@@ -103,7 +104,9 @@
                     <p><strong>author:</strong> $author </p>
                     <p><strong>date:</strong> $date </p>
                     <span class='badge badge-success'>Books</span>
-                    <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+                    <a class='text-success' href='$file_path' target='_blank'>
+                        <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+                    </a>
                   </div>
                 </div>
                 <br />
@@ -120,7 +123,9 @@
                     <p><strong>author:</strong> $author </p>
                     <p><strong>date:</strong> $date </p>
                     <span class='badge badge-info'>Journals</span>
-                    <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+                    <a class='text-success' href='$file_path' target='_blank'>
+                        <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+                    </a>
                   </div>
                 </div>
                 <br />
@@ -137,7 +142,9 @@
                     <p><strong>author:</strong> $author </p>
                     <p><strong>date:</strong> $date </p>
                     <span class='badge badge-primary'>Proceedings</span>
-                    <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+                    <a class='text-success' href='$file_path' target='_blank'>
+                        <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+                    </a>
                   </div>
                 </div>
                 <br />

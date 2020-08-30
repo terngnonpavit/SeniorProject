@@ -25,7 +25,8 @@
       $date=$row['date'];
       $place=$row['place'];
       $type=$row['type'];
-      
+      $file_path=$row['file_path'];
+
       $no++;
 
       echo "
@@ -38,7 +39,9 @@
           <p><strong>author:</strong> $author </p>
           <p><strong>date:</strong> $date </p>
           <span class='badge badge-primary'>Proceedings</span>
-          <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+          <a class='text-success' href='$file_path' target='_blank'>
+              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+          </a>
         </div>
         <div class='card-footer'>
           <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=$type' class='btn btn-outline-danger'>Delete</a>
