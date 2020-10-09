@@ -20,6 +20,9 @@
         echo '
         <ul class="navbar-nav">
           <li class="nav-item">
+            <a class="nav-link" href="http://localhost/seniorproject/admin/scholarship_menu.php">ฟอร์มขอทุนวิจัย</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="http://localhost/seniorproject/admin/admin.php">Dashboard</a>
           </li>
         </ul>

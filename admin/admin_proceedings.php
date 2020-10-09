@@ -45,6 +45,7 @@
         </div>
         <div class='card-footer'>
           <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=$type' class='btn btn-outline-danger'>Delete</a>
+          <a href='http://localhost/seniorproject/admin/edit_proceeding.php/?id=$id' class='btn btn-outline-warning'>Edit</a>
         </div>
       </div>
       <br />

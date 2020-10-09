@@ -23,6 +23,7 @@
       <div class="container">
         <h1>CPSU Management of Lecture’s Academic publication</h1>
         <p>เว็บแอปพลิเคชันจัดการผลงานวิชาการคณาจารย์ ภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร</p>
+        <!-- <a href="./report/generateReport.php">กด</a> -->
       </div>
     </div>
 
