@@ -203,42 +203,95 @@ class PDF_HTML extends FPDF {
 // $special = $pdf->special_conv(" ❏");
 // $pdf->cell(40, 50, $txt . $special);
 // $pdf->Output();
-// echo $_POST['titleTH'];
+// echo $row['titleTH'];
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$id=$_GET['id'];
+$sql = "select * from scholarship_book where id=$id";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc())  {
+    $year=$row['year'];
+    $titleTH=$row['titleTH'];
+    $titleEN=$row['titleEN'];
+    $writer_name=$row['writer_name'];
+    $writer_department=$row['writer_department'];
+    $write_ratio=$row['write_ratio'];
+    $co_writer_name=$row['co_writer_name'];
+    $co_writer_department=$row['co_writer_department'];
+    $co_write_ratio=$row['co_write_ratio'];
+    $keywordTH=$row['keywordTH'];
+    $keywordEN=$row['keywordEN'];
+    $amount=$row['amount'];
+    $amount_text=$row['amount_text'];
+    $subject_no=$row['subject_no'];
+    $subject=$row['subject'];
+    $for_student=$row['for_student'];
+    $student_year=$row['student_year'];
+    $page_amount=$row['page_amount'];
+    $chapter_no_1=$row['chapter_no_1'];
+    $chapter_no_2=$row['chapter_no_2'];
+    $chapter_no_3=$row['chapter_no_3'];
+    $chapter_name_1=$row['chapter_name_1'];
+    $chapter_name_2=$row['chapter_name_2'];
+    $chapter_name_3=$row['chapter_name_3'];
+    $content_1=$row['content_1'];
+    $content_2=$row['content_2'];
+    $content_3=$row['content_3'];
+    $teaching_history=$row['teaching_history'];
+    $applicant=$row['applicant'];
+    $head_of_department=$row['head_of_department'];
+    $department_name=$row['department_name'];
+  }
+}
+
 $npdf=new PDF_HTML();
 $npdf->AddPage();
 $npdf->SetThaiFont();
 $npdf->SetFont('THSarabunNew', '', '15');
-$year=$npdf->conv($_POST['year']);
-$titleTH=$npdf->conv($_POST['titleTH']);
-$titleEN=$npdf->conv($_POST['titleEN']);
-$writer_name=$npdf->conv($_POST['writer_name']);
-$writer_department=$npdf->conv($_POST['writer_department']);
-$write_ratio=$npdf->conv($_POST['write_ratio']);
-$co_writer_name=$npdf->conv($_POST['co_writer_name']);
-$co_writer_department=$npdf->conv($_POST['co_writer_department']);
-$co_write_ratio=$npdf->conv($_POST['co_write_ratio']);
-$keywordTH=$npdf->conv($_POST['keywordTH']);
-$keywordEN=$npdf->conv($_POST['keywordEN']);
-$amount=$npdf->conv($_POST['amount']);
-$amount_text=$npdf->conv($_POST['amount_text']);
-$subject_no=$npdf->conv($_POST['subject_no']);
-$subject=$npdf->conv($_POST['subject']);
-$for_student=$npdf->conv($_POST['for_student']);
-$student_year=$npdf->conv($_POST['student_year']);
-$page_amount=$npdf->conv($_POST['page_amount']);
-$chapter_no_1=$npdf->conv($_POST['chapter_no']);
-$chapter_no_2=$npdf->conv($_POST['chapter_no']);
-$chapter_no_3=$npdf->conv($_POST['chapter_no']);
-$chapter_name_1=$npdf->conv($_POST['chapter_name']);
-$chapter_name_2=$npdf->conv($_POST['chapter_name']);
-$chapter_name_3=$npdf->conv($_POST['chapter_name']);
-$content_1=$npdf->conv($_POST['content']);
-$content_2=$npdf->conv($_POST['content']);
-$content_3=$npdf->conv($_POST['content']);
-$teaching_history=$npdf->conv($_POST['teaching_history']);
-$applicant=$npdf->conv($_POST['applicant']);
-$headofdepartment=$npdf->conv($_POST['head_of_department']);
-$department_name=$npdf->conv($_POST['department_name']);
+$year=$npdf->conv($year);
+$titleTH=$npdf->conv($titleTH);
+$titleEN=$npdf->conv($titleEN);
+$writer_name=$npdf->conv($writer_name);
+$writer_department=$npdf->conv($writer_department);
+$write_ratio=$npdf->conv($write_ratio);
+$co_writer_name=$npdf->conv($co_writer_name);
+$co_writer_department=$npdf->conv($co_writer_department);
+$co_write_ratio=$npdf->conv($co_write_ratio);
+$keywordTH=$npdf->conv($keywordTH);
+$keywordEN=$npdf->conv($keywordEN);
+$amount=$npdf->conv($amount);
+$amount_text=$npdf->conv($amount_text);
+$subject_no=$npdf->conv($subject_no);
+$subject=$npdf->conv($subject);
+$for_student=$npdf->conv($for_student);
+$student_year=$npdf->conv($student_year);
+$page_amount=$npdf->conv($page_amount);
+$chapter_no_1=$npdf->conv($chapter_no_1);
+$chapter_no_2=$npdf->conv($chapter_no_2);
+$chapter_no_3=$npdf->conv($chapter_no_3);
+$chapter_name_1=$npdf->conv($chapter_name_1);
+$chapter_name_2=$npdf->conv($chapter_name_2);
+$chapter_name_3=$npdf->conv($chapter_name_3);
+$content_1=$npdf->conv($content_1);
+$content_2=$npdf->conv($content_2);
+$content_3=$npdf->conv($content_3);
+$teaching_history=$npdf->conv($teaching_history);
+$applicant=$npdf->conv($applicant);
+$head_of_department=$npdf->conv($head_of_department);
+$department_name=$npdf->conv($department_name);
 
 $header=$npdf->conv('ข้อเสนอโครงการ');
 $header2=$npdf->conv('ทุนสนับสนุนการเขียนตำราจากกองทุนสนับสนุนการวิจัย');
@@ -350,52 +403,87 @@ $section5_1.......$subject_no.......$section5_2.......$subject.......$section5_3
 <br>
 <b>$section6</b><br>
 $section6_1.......$page_amount.......$section6_2<br>
-$section6_3.......$chapter_no1.......$section6_4.......$chapter_name1..............................................................................................................................<br>
+$section6_3.......$chapter_no_1.......$section6_4.......$chapter_name_1..............................................................................................................................<br>
 ");
 
 $section6_5=$npdf->conv('          *เนื้อหา ');
 $npdf->SetTextColor(255,0,0);
+// $npdf->WriteHTML("$section6_5");
+$npdf->Write(6.5,$section6_5);
+
+
+$npdf->SetTextColor(0,0,0);
+$npdf->Write(6.5,"..........$content_1................................................................................................................................");
+$npdf->Write(6.5,"...............................................................................................................................................................................................................
+......................................................................................................................................................................................................................");
+
+$npdf->SetTextColor(0,0,0);
 $npdf->WriteHTML("
-$section6_5................................................................................................................................................................................<br>
-.............................................................................................................................................................................................................<br>
-.............................................................................................................................................................................................................<br>
+<br><br>
+$section6_3.......$chapter_no_2.......$section6_4.......$chapter_name_2..............................................................................................................................<br>
 ");
+
+$npdf->SetTextColor(255,0,0);
+// $npdf->WriteHTML("$section6_5");
+
+$npdf->Write(6.5,$section6_5);
+$npdf->SetTextColor(0,0,0);
+$npdf->Write(6.5,"..........$content_2................................................................................................................................");
+$npdf->Write(6.5,"...............................................................................................................................................................................................................
+......................................................................................................................................................................................................................");
+
+$npdf->SetTextColor(0,0,0);
+$npdf->WriteHTML("
+<br><br>
+$section6_3.......$chapter_no_3.......$section6_4.......$chapter_name_3..............................................................................................................................<br>
+");
+
+$section6_6=$npdf->conv('          *เนื้อหา ');
+$npdf->SetTextColor(255,0,0);
+// $npdf->WriteHTML("$section6_5");
+
+$npdf->Write(6.5,$section6_5);
+$npdf->SetTextColor(0,0,0);
+$npdf->Write(6.5,"..........$content_3................................................................................................................................");
+$npdf->Write(6.5,"...............................................................................................................................................................................................................
+......................................................................................................................................................................................................................");
 
 $section7=$npdf->conv('7. ประวัติการสอน');
 $section7_1=$npdf->conv('(โดยสังเขป)');
 $npdf->SetTextColor(0,0,0);
 $npdf->WriteHTML("
-<br><b>$section7</b>
+<br><br><b>$section7</b>
 $section7_1<br>
+");
+
+$npdf->SetTextColor(0,0,0);
+$npdf->WriteHTML("   ..............$teaching_history......................................................................................................................................................................<br>
+   .......................................................................................................................................................................................................<br>
+   .......................................................................................................................................................................................................<br>
 ");
 
 $section7_2=$npdf->conv('  *หากมีอยู่แล้วสามารถแนบประวัติการสอนต่อท้ายข้อเสนอโครงการได้');
 $npdf->SetTextColor(255,0,0);
 $npdf->WriteHTML("
 $section7_2<br>
-................................................................................................................................................................................................................<br>
-................................................................................................................................................................................................................<br>
-................................................................................................................................................................................................................<br>
 ");
 
-$section8=$npdf->conv('                                                                                                                 ลงชื่อ');
-$section8_1=$npdf->conv('                                                                                                               (...................................)');
-$section8_2=$npdf->conv('                                                                                                                       ผู้ขอรับทุน');
+$section8=$npdf->conv('                                                                                                                 ลงชื่อ...................................');
+$section8_1=$npdf->conv('                                                                                                                       ผู้ขอรับทุน');
 $npdf->SetTextColor(0,0,0);
 $npdf->WriteHTML("
-<br><br><br><br><br>$section8 $applicant<br>
-$section8_1<br>
-$section8_2<br>
+<br><br><br><br><br>$section8<br>
+                                                                                                                (..........$applicant........)<br>
+    $section8_1<br>
 ");
 
-$section9=$npdf->conv('                                                                                                                 ลงชื่อ');
-$section9_1=$npdf->conv('                                                                                                               (...................................)');
-$section9_2=$npdf->conv('                                                                                                                  หัวหน้าภาควิชา');
+$section9=$npdf->conv('                                                                                                                 ลงชื่อ..................................');
+$section9_1=$npdf->conv('                                                                                                               หัวหน้าภาควิชา');
 $npdf->SetTextColor(0,0,0);
 $npdf->WriteHTML("
-<br><br><br><br><br>$section9 $headofdepartment<br>
-$section9_1<br>
-$section9_2 $department_name<br>
+<br><br><br><br><br>$section9<br>
+                                                                                                                (..........$head_of_department........)<br>
+$section9_1.....$department_name.....<br>
 ");
 
 

@@ -36,10 +36,11 @@
       <div class="tab-content">
         <div id="books" class="container tab-pane active"><br>
           <h3>
-            Books
-
+            ขอทุนวิจัยการเขียนตำรา
+            <a href="scholarship_book.php" class="btn btn-success">Create</a>
           </h3>
-          <?php require('scholarship_book.php');?>
+          
+          <?php require('admin_scholarship_book.php');?>
         </div>
         <div id="journals" class="container tab-pane fade"><br>
           <h3>
