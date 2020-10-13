@@ -12,7 +12,7 @@
     die("Connection failed: " . $conn->connect_error);
   }
   $sql = "select * from scholarship_book";
-
+  
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     $no = 0;
@@ -33,7 +33,7 @@
         </div>
         <div class='card-footer'>
           <a href='' class='btn btn-outline-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/scholarship_book.php' class='btn btn-outline-warning'>Edit</a>
+          <a href='http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id' class='btn btn-outline-warning'>Edit</a>
         </div>
       </div>
       <br />

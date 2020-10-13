@@ -1,5 +1,10 @@
-<?php session_start(); ?>
-
+<?php
+// Start the session
+session_start();
+if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
+    header('Location: http://localhost/seniorproject/login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -39,7 +44,6 @@
             ขอทุนวิจัยการเขียนตำรา
             <a href="scholarship_book.php" class="btn btn-success">Create</a>
           </h3>
-          
           <?php require('admin_scholarship_book.php');?>
         </div>
         <div id="journals" class="container tab-pane fade"><br>
