@@ -263,11 +263,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           , `keywordTH`='$keywordTH', `keywordEN`='$keywordEN', `amount`='$amount', `amount_text`='$amount_text', `subject_no`='$subject_no', `subject`='$subject', `for_student`='$for_student', `student_year`='$student_year', `page_amount`='$page_amount', `chapter_no_1`='$chapter_no_1'
           , `chapter_name_1`='$chapter_name_1'
           , `content_1`='$content_1', `chapter_no_2`='$chapter_no_2', `chapter_name_2`='$chapter_name_2', `content_2`='$content_2', `chapter_no_3`='$chapter_no_3', `chapter_name_3`='$chapter_name_3', `content_3`='$content_3', `teaching_history`='$teaching_history'
-          , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name') WHERE `scholarship_book`.`id` = $id;";
+          , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name' WHERE `scholarship_book`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
+            // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
+            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/scholarship_menu  .php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }

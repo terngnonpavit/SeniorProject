@@ -48,17 +48,17 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         </div>
         <div id="journals" class="container tab-pane fade"><br>
           <h3>
-            Journals
-
+            ขอทุนวิจัยการตีพิมพ์ในวารสารทางวิชาการ
+            <a href="scholarship_journal.php" class="btn btn-success">Create</a>
           </h3>
           <?php //require('admin_journals.php');?>
         </div>
         <div id="proceedings" class="container tab-pane fade"><br>
           <h3>
-            Proceedings
-
+            ขอทุนวิจัยการตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการ
+            <a href="scholarship_proceeding.php" class="btn btn-success">Create</a>
           </h3>
-          <?php //require('admin_proceedings.php');?>
+          <?php require('admin_scholarship_proceeding.php');?>
         </div>
       </div>
     </div>

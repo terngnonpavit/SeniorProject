@@ -141,11 +141,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="กรุณาระบุชื่อผู้ขอรับทุน" name="applicant">
           </div>
           <div class="form-group">
-            <label for="Head of Department">ลงชื่อ(หัวหน้าภาควิชา)</label>
+            <label for="head_of_department">ลงชื่อ(หัวหน้าภาควิชา)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุชื่อหัวหน้าภาควิชา" name="head_of_department">
           </div>
           <div class="form-group">
-            <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น ภาควิชาคอมพิวเตอร์)</label>
+            <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น คอมพิวเตอร์)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name">
           </div>
           <button type="submit" class="btn btn-success">Done</button>
