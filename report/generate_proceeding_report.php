@@ -359,14 +359,14 @@ $npdf->SetXY(19,103);
 $npdf->write(6.5,"$section3_1");
 //2
 $npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(14,109);
+$npdf->SetXY(14,110);
 if($type_of_publication=="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ"){
   $npdf->write(6.5,'3');
 }
-$npdf->SetXY(14,109);
+$npdf->SetXY(14,110);
 $npdf->write(6.5,'q');
 $npdf->SetFont('THSarabunNew', '', '15');
-$npdf->SetXY(19,109);
+$npdf->SetXY(19,110);
 $npdf->write(6.5,"$section3_2");
 //3
 $npdf->SetFont('ZapfDingbats','', 13);
@@ -535,12 +535,8 @@ $npdf->write(6.5,'q');
 $npdf->SetFont('THSarabunNew', '', '15');
 $npdf->SetXY(120,190);
 $npdf->write(6.5,"$section6_4");
-
-
-
-
-
-
+$npdf->SetXY(120,190.75);
+$npdf->write(6.5,"..........");
 
 $section7=$npdf->conv('เอกสารแนบ');
 $section7_1=$npdf->conv('(ต้องมีทุกรายการ)');
@@ -567,18 +563,106 @@ $npdf->WriteHTML("<br><br><b> $section7</b> $section7_1<br>
 $section8=$npdf->conv('การรับรองผลงาน');
 $section8_1=$npdf->conv('ข้าพเจ้าขอรับรองว่า ผลงานเรื่องดังกล่าวข้างต้น เป็นไปตามหลักเกณฑ์ เงื่อนไข และวิธีการสนับสนุนเงินรางวัล');
 $section8_2=$npdf->conv('หรือเงินสมนาคุณจากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์ ดังนี้');
+$section8_3=$npdf->conv('เป็นผลงานที่เกิดขึ้นในระหว่างที่ผู้ขอรับการสนับสนุนปฏิบัติงานที่คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร และ');
+$section8_4=$npdf->conv('ไม่เป็นส่วนหนึ่งของวิทยานิพนธ์เพื่อสำเร็จการศึกษาในระดับใด ๆ ของผู้ขอรับการสนับสนุน');
+$section8_5=$npdf->conv('ที่อยู่ของผู้ขอรับการสนับสนุนในผลงานปรากฏชื่อ คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร เป็นอย่างน้อย');
+$section8_6=$npdf->conv('เป็นผลงานที่ตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการที่มี peer-review');
+$section8_7=$npdf->conv('ผลงานเรื่องดังกล่าวตีพิมพ์เผยแพร่มาแล้วเป็นระยะเวลาไม่เกิน 1 ปี นับถึงวันที่ยื่นขอรับการสนับสนุน และไม่เคย');
+$section8_8=$npdf->conv('ได้รับการสนับสนุนเงินรางวัลหรือเงินสมนาคุณประเภทใด ๆ จากคณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร');
+$section8_9=$npdf->conv('ข้าพเจ้าขอรับการสนับสนุนเงินรางวัลการเผยแพร่ผลงานดังกล่าว จากกองทุนสนับสนุนการวิจัย นวัตกรรมและ');
+$section8_10=$npdf->conv('การสร้างสรรค์ คณะวิทยาศาสตร์ เป็นจำนวนเงิน');
+$section8_11=$npdf->conv('บาท');
+$section8_12=$npdf->conv('ลงชื่อ ');
+$section8_13=$npdf->conv('ผู้ขอรับการสนับสนุน');
+$section8_14=$npdf->conv('หัวหน้าภาควิชา');
+
 $npdf->WriteHTML("
 <br><br><b> $section8</b><br>
           $section8_1<br>
-$section8_2
+$section8_2");
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(15,280);
+$npdf->write(6.5,'3');
+$npdf->SetXY(15,10);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,10);
+$npdf->write(6.5,"$section8_3");
+$npdf->SetXY(20,18);
+$npdf->write(6.5,"$section8_4");
+
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(15,26);
+$npdf->write(6.5,'3');
+$npdf->SetXY(15,26);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,26);
+$npdf->write(6.5,"$section8_5");
+
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(15,34);
+$npdf->write(6.5,'3');
+$npdf->SetXY(15,34);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,34);
+$npdf->write(6.5,"$section8_6");
+
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(15,42);
+$npdf->write(6.5,'3');
+$npdf->SetXY(15,42);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,42);
+$npdf->write(6.5,"$section8_7");
+$npdf->SetXY(20,50);
+$npdf->write(6.5,"$section8_8");
+
+$npdf->SetXY(23,65);
+$npdf->write(6.5,"$section8_9");
+$npdf->SetXY(11,73);
+$npdf->write(6.5,"$section8_10 $amount $section8_11");
+$npdf->SetXY(115,73);
+$npdf->write(6.5,"$amount_text");
+$npdf->SetXY(100,74);
+$npdf->write(6.5,"(..............................................................)");
+
+$npdf->SetXY(100,90);
+$npdf->write(6.5,"$section8_12");
+$npdf->SetXY(108,91);
+$npdf->write(6.5,"..............................................................");
+$npdf->SetXY(120,98);
+$npdf->write(6.5,"$applicant");
+$npdf->SetXY(105,99);
+$npdf->write(6.5,"(....................................................................)");
+$npdf->SetXY(120,107);
+$npdf->write(6.5,"$section8_13");
+
+$section9=$npdf->conv('คำรับรองจากหัวหน้าภาควิชา/หัวหน้างาน');
+$section9_1=$npdf->conv('ข้าพเจ้าขอรับรองว่าข้อความดังกล่าวข้างต้นเป็นจริงทุกประการ และผลงานดังกล่าวสมควรได้รับการสนับสนุน');
+$section9_2=$npdf->conv('เงินรางวัลการเผยแพร่ผลงานจากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์');
+$npdf->WriteHTML("
+<br><br><b> $section9</b><br>
+          $section9_1<br>
+$section9_2
 ");
 
-// $section9=$npdf->conv('คำรับรองจากหัวหน้าภาควิชา/หัวหน้างาน');
-// $npdf->WriteHTML("
-// <br><b>$section9</b>
-// ");
-
-
+$npdf->SetXY(100,150);
+$npdf->write(6.5,"$section8_12");
+$npdf->SetXY(108,151);
+$npdf->write(6.5,"..............................................................");
+$npdf->SetXY(120,160);
+$npdf->write(6.5,"$head_of_department");
+$npdf->SetXY(105,161);
+$npdf->write(6.5,"(....................................................................)");
+$npdf->SetXY(98,169);
+$npdf->write(6.5,"$section8_14");
+$npdf->SetXY(125,169);
+$npdf->write(6.5,"$department_name");
+$npdf->SetXY(120,170);
+$npdf->write(6.5,"..............................................................");
 
 $npdf->Output();
 
