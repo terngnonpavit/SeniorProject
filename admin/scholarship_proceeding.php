@@ -33,13 +33,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department">
           </div>
           <div class="form-group">
-            <label for="titleTH">ชื่อผลงานวิจัย(ไทย)</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(ไทย)" name="titleTH">
-          </div>
-          <div class="form-group">
             <label for="titleEN">ชื่อผลงานวิจัย(english)</label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN">
           </div>
+          <div class="form-group">
+            <label for="titleTH">ชื่อผลงานวิจัย(ไทย)</label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(ไทย)" name="titleTH">
+          </div>
+
           <div class="form-group">
             <label for="conference_name">ชื่อการประชุมวิชาการ</label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อการประชุมวิชาการ" name="conference_name">
@@ -54,27 +55,44 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group">
             <label for="type_of_document">ประเภทของผลงาน</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกประเภทของผลงาน" name="type_of_document">
+            <select class="form-control" name="type_of_document">
+                <option value="research_article">Research Article</option>
+                <option value="review_article">Review Article</option>
+                <option value="abstract">Abstract</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="type_of_publication">ประเภทของการตีพิมพ์และการประชุมวิชาการ(เลือกเพียง 1 ประเภท)</label>
-            <input type="text" class="form-control" placeholder="กรุณาเลือกประเภทของการตีพิมพ์และการประชุมวิชาการ(เลือกเพียง 1 ประเภท)" name="type_of_publication">
+            <select class="form-control" name="type_of_publication">
+                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ">Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ รางวัลละไม่เกิน 3,000 บาท</option>
+                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ">Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 2,000 บาท</option>
+                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ">บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาต รางวัลละไม่เกิน 1,500 บาท</option>
+                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ">บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 1,000 บาท</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="approval">การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุ" name="approval">
+            <select class="form-control" name="approval">
+                <option value="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)ิ">กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)</option>
+                <option value="กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)">กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="participation">การมีส่วนร่วมในผลงาน</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุ" name="participation">
+            <select class="form-control" name="participation">
+                <option value="กรณีที่ 1 First Author">กรณีที่ 1 First Author (ได้รับการสนับสนุนเต็มจำนวน)</option>
+                <option value="กรณีที่ 1 Corresponding Author">กรณีที่ 1 Corresponding Author (ได้รับการสนับสนุนเต็มจำนวน)</option>
+                <option value="กรณีที่ 2 เป็นผู้ร่วมเขียน">กรณีที่ 2 เป็นผู้ร่วมเขียน (ได้รับการสนับสนุนกึ่งหนึ่งของเงินรางวัลที่ได้รับจากหัวข้อก่อนหน้า)</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="form_document">รูปแบบของเอกสารที่เผยแพร่</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุ" name="form_document">
-          </div>
-          <div class="form-group">
-            <label for="certification">การรับรองผลงาน</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุ" name="certification">
+            <select class="form-control" name="form_document[]" multiple>
+                <option value="รูปเล่ม หรือ หนังสือ">รูปเล่ม หรือ หนังสือ</option>
+                <option value="ซีดี">ซีดี</option>
+                <option value="เว็บไซต์">เว็บไซต์</option>
+            </select>
+            <input type="text" class="form-control" placeholder="อื่นๆ กรุณาระบุ" name="other">
           </div>
           <div class="form-group">
             <label for="amount">จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 3,000)</label>
@@ -115,8 +133,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         die("Connection failed: " . $conn->connect_error);
       }
 
-      if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
-         isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
+      if(isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '')
          {
           $author=$_POST['author'];
@@ -131,6 +148,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $approval=$_POST['approval'];
           $participation=$_POST['participation'];
           $form_document=$_POST['form_document'];
+          $other=$_POST['other'];
           $certification=$_POST['certification'];
           $amount=$_POST['amount'];
           $amount_text=$_POST['amount_text'];
@@ -138,7 +156,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $head_of_department=$_POST['head_of_department'];
           $department_name=$_POST['department_name'];
 
-          $sql = "INSERT INTO `scholarship_proceeding` (`author`, `department`, `titleTH`, `titleEN`, `conference_name`, `place`, `date`, `type_of_document`, `type_of_publication`, `approval`, `participation`, `form_document`, `certification`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$conference_name', '$place', '$date', '$type_of_document', '$type_of_publication', '$approval', '$participation', '$form_document', '$certification', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
+          $form_document_str='';
+          foreach($form_document as $document){
+            $form_document_str .= ($document.',');
+          }
+          $form_document_str .= $other;
+
+          $sql = "INSERT INTO `scholarship_proceeding` (`author`, `department`, `titleTH`, `titleEN`, `conference_name`, `place`, `date`, `type_of_document`, `type_of_publication`, `approval`, `participation`, `form_document`, `certification`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$conference_name', '$place', '$date', '$type_of_document', '$type_of_publication', '$approval', '$participation', '$form_document_str', '$certification', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

@@ -224,6 +224,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc())  {
     $author=$row['author'];
+    $department=$row['department'];
     $titleTH=$row['titleTH'];
     $titleEN=$row['titleEN'];
     $conference_name=$row['conference_name'];
@@ -242,227 +243,341 @@ if ($result->num_rows > 0) {
     $department_name=$row['department_name'];
   }
 }
-
 $npdf=new PDF_HTML();
 $npdf->AddPage();
 $npdf->SetThaiFont();
 $npdf->SetFont('THSarabunNew', '', '15');
 $author=$npdf->conv($author);
+$department=$npdf->conv($department);
 $titleTH=$npdf->conv($titleTH);
 $titleEN=$npdf->conv($titleEN);
 $conference_name=$npdf->conv($conference_name);
 $place=$npdf->conv($place);
 $date=$npdf->conv($date);
-$type_of_document=$npdf->conv($type_of_document);
-$type_of_publication=$npdf->conv($type_of_publication);
-$approval=$npdf->conv($approval);
-$participation=$npdf->conv($participation);
-$form_document=$npdf->conv($form_document);
-$certification=$npdf->conv($certification);
+// $type_of_document=$npdf->conv($type_of_document);
+// $type_of_publication=$npdf->conv($type_of_publication);
+// $approval=$npdf->conv($approval);
+// $participation=$npdf->conv($participation);
+// $form_document=$npdf->conv($form_document);
+// $certification=$npdf->conv($certification);
 $amount=$npdf->conv($amount);
 $amount_text=$npdf->conv($amount_text);
 $applicant=$npdf->conv($applicant);
 $head_of_department=$npdf->conv($head_of_department);
 $department_name=$npdf->conv($department_name);
 
-$npdf->SetFont('ZapfDingbats','', 10);
-$npdf->SetXY(50,50);
-$npdf->write(6.5,'4');
-$npdf->SetXY(50,50);
-$npdf->write(6.5,'q');
+// $npdf->SetFont('ZapfDingbats','', 10);
+// $npdf->SetXY(50,50);
+// $npdf->write(6.5,'4');
+// $npdf->SetXY(50,50);
+// $npdf->write(6.5,'q');
 
-$npdf->SetFont('THSarabunNew', '', '15');
-$header=$npdf->conv('แบบฟอร์มขอรับการสนับสนุนเงินรางวัลสำหรับการเผยแพร่ผลงาน');
+$npdf->SetFont('THSarabunNew', '', '14');
+$righttop=$npdf->conv('(แบบฟอร์มขอรับการสนับสนุนเงินรางวัลสำหรับผลงานที่ตีพิมพ์เผยแพร่ตั้งแต่วันที่ 1 ตุลาคม 2561)');
+$npdf->SetXY(65,7);
+$npdf->write(1,"$righttop");
+
+$npdf->WriteHTML("<br>");
+$npdf->SetFont('THSarabunNew', '', '17');
+$header1=$npdf->conv('แบบฟอร์มขอรับการสนับสนุนเงินรางวัลสำหรับการเผยแพร่ผลงาน');
 $header2=$npdf->conv('จากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์');
 $header3=$npdf->conv('ประเภท ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการ');
 
-$section1=$npdf->conv('ชื่อผู้ขอรับการสนับสนุน');
-$section1_1=$npdf->conv("สังกัด");
-$section1_2=$npdf->conv("    ");
+$npdf->WriteHTML("
+<b><p align='center'>$header1</p></b>
+<b><p align='center'>$header2</p></b>
+<b><p align='center'>$header3</p></b>
+");
 
-// $section2=$npdf->conv('2. ชื่อผู้เขียน หรือคณะผู้เขียน');
-// $section2_1=$npdf->conv('    หัวหน้าโครงการ          ชื่อ-สกุล');
-// $section2_2=$npdf->conv('                                 ภาควิชา');
-// $section2_3=$npdf->conv('                                 สัดส่วนของการเขียนตำรา');
-// $section2_4=$npdf->conv('เปอร์เซ็นต์');
-// $section2_5=$npdf->conv('    ผู้ร่วมโครงการ            ชื่อ-สกุล');
-// $section2_6=$npdf->conv('                                 ภาควิชา');
-// $section2_7=$npdf->conv('                                 สัดส่วนของการเขียนตำรา');
-// $section2_8=$npdf->conv('เปอร์เซ็นต์');
-//
-// $section3=$npdf->conv('3. คำสำคัญ');
-// $section3_1=$npdf->conv("    (ไทย)");
-// $section3_2=$npdf->conv("    (English)");
-//
-// $section4=$npdf->conv('4. จำนวนเงินทุนที่ขอรับการสนับสนุน');
-//
+$npdf->SetFont('THSarabunNew', '', '15');
+$section1_1=$npdf->conv('ชื่อผู้ขอรับการสนับสนุน');
+$section1_2=$npdf->conv("สังกัด");
+$section1_3=$npdf->conv("ชื่อผลงานวิจัย");
+$section1_4=$npdf->conv("ชื่อการประชุมวิชาการ");
+$section1_5=$npdf->conv("สถานที่ วันเดือนปี ที่จัด");
+
+$npdf->WriteHTML("
+<br> $section1_1 $author.................................................................................... $section1_2 .....$department.......<br>
+$section1_3 .....$titleEN................................<br>
+                  ......$titleTH.......................................................................................................................................................................................<br>
+$section1_4 $conference_name.......................................................<br>
+$section1_5 $place, $date.....................................................................<br>
+");
+
+$section2=$npdf->conv('ประเภทของผลงาน');
+$npdf->WriteHTML("<br><b> $section2</b>");
+//1
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(14,85);
+if($type_of_document=="research_article"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(14,85);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(19,85);
+$npdf->write(6.5,"Research Article");
+//2
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(80,120);
+if($type_of_document=="review_article"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(60,85);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(65,85);
+$npdf->write(6.5,"Review Article");
+//3
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(76,120);
+if($type_of_document=="abstract"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(105,85);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(110,85);
+$npdf->write(6.5,"Abstact");
+
+$section3=$npdf->conv('ประเภทของการตีพิมพ์และการประชุมวิชาการ(เลือกเพียง 1 ประเภท)');
+$section3_1=$npdf->conv('Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ รางวัลละไม่เกิน 3,000 บาท');
+$section3_2=$npdf->conv('Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 2,000 บาท');
+$section3_3=$npdf->conv('บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาต รางวัลละไม่เกิน 1,500 บาท');
+$section3_4=$npdf->conv('บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 1,000 บาท');
+$npdf->WriteHTML("<br><br><b> $section3</b>");
+//1
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(14,103);
+if($type_of_publication=="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(14,103);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(19,103);
+$npdf->write(6.5,"$section3_1");
+//2
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(14,109);
+if($type_of_publication=="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(14,109);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(19,109);
+$npdf->write(6.5,"$section3_2");
+//3
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(14,115);
+if($type_of_publication=="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(14,115);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(19,115);
+$npdf->write(6.5,"$section3_3");
+//4
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(14,121);
+if($type_of_publication=="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(14,121);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(19,121);
+$npdf->write(6.5,"$section3_4");
+
+$section4=$npdf->conv('การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์');
+$section4_1=$npdf->conv('กรณีที่ 1');
+$section4_2=$npdf->conv(' ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)');
+$section4_3=$npdf->conv('กรณีที่ 2');
+$section4_4=$npdf->conv(' เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)');
+$npdf->WriteHTML("<br><br><b> $section4</b>");
+//1
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(35,140);
+if($approval=="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)ิ"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(35,140);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,139.5);
+$npdf->write(6.5,"$section4_1");
+$npdf->SetXY(40,139.5);
+$npdf->write(6.5,"$section4_2");
+//2
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(35,145);
+if($approval=="กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(35,145);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,144.5);
+$npdf->write(6.5,"$section4_3");
+$npdf->SetXY(40,144.5);
+$npdf->write(6.5,"$section4_4");
+
+$section5=$npdf->conv('การมีส่วนร่วมในผลงาน');
+$section5_1=$npdf->conv('กรณีที่ 1');
+$section5_2=$npdf->conv('First Author หรือ');
+$section5_3=$npdf->conv(' Corresponding Author (ได้รับการสนับสนุนเต็มจำนวน)');
+$section5_4=$npdf->conv('กรณีที่ 2');
+$section5_5=$npdf->conv(' เป็นผู้ร่วมเขียน (ได้รับการสนับสนุนกึ่งหนึ่งของเงินรางวัลที่ได้รับจากหัวข้อก่อนหน้า)');
+$npdf->WriteHTML("<br><br><b> $section5</b>");
+//1
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(35,163);
+if($participation=="กรณีที่ 1 First Author"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(35,163);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,163);
+$npdf->write(6.5,"$section5_1");
+$npdf->SetXY(40,163);
+$npdf->write(6.5,"$section5_2");
+//2
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(68,163.5);
+if($participation=="กรณีที่ 1 Corresponding Author"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(68,163.5);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(73,163);
+$npdf->write(6.5,"$section5_3");
+//3
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(35,170);
+if($participation=="กรณีที่ 2 เป็นผู้ร่วมเขียน"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(35,170);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(20,170);
+$npdf->write(6.5,"$section5_4");
+$npdf->SetXY(39,170);
+$npdf->write(6.5,"$section5_5");
+
+$section6=$npdf->conv('รูปแบบของเอกสารที่เผยแพร่');
+$npdf->WriteHTML("<br><br><b> $section6</b>");
+//1
+$section6_1=$npdf->conv('รูปเล่ม หรือ หนังสือ');
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(14,190);
+$form_document_arr=explode(',',$form_document);
+foreach ($form_document_arr as $document) {
+  if($document=='รูปเล่ม หรือ หนังสือ'){
+    $npdf->write(6.5,'3');
+  }
+}
+$npdf->SetXY(14,190);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(19,190);
+$npdf->write(6.5,"$section6_1");
+//2
+$section6_2=$npdf->conv('ซีดี');
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(60,190);
+$form_document_arr=explode(',',$form_document);
+foreach ($form_document_arr as $document) {
+  if($document=='ซีดี'){
+    $npdf->write(6.5,'3');
+  }
+}
+$npdf->SetXY(60,190);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(65,190);
+$npdf->write(6.5,"$section6_2");
+//3
+$section6_3=$npdf->conv('เว็บไซต์');
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(85,190);
+$form_document_arr=explode(',',$form_document);
+foreach ($form_document_arr as $document) {
+  if($document=='เว็บไซต์'){
+    $npdf->write(6.5,'3');
+  }
+}
+$npdf->SetXY(85,190);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(90,190);
+$npdf->write(6.5,"$section6_3");
+//4
+$section6_4=$npdf->conv('อื่นๆ ระบุ');
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(115,190);
+$form_document_arr=explode(',',$form_document);
+foreach ($form_document_arr as $document) {
+  if($document!='รูปเล่ม หรือ หนังสือ' && $document!='ซีดี' && $document!='เว็บไซต์'){
+    $npdf->write(6.5,'3');
+    $npdf->SetXY(140,190);
+    $npdf->SetFont('THSarabunNew', '', '15');
+    $npdf->write(6.5,"$document");
+  }
+}
+$npdf->SetXY(115,190);
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(120,190);
+$npdf->write(6.5,"$section6_4");
+
+
+
+
+
+
+
+$section7=$npdf->conv('เอกสารแนบ');
+$section7_1=$npdf->conv('(ต้องมีทุกรายการ)');
+$section7_2=$npdf->conv('- สำนวนหน้าปกเอกสารประกอบการประชุมวิชาการหรือรายงานสืบเนื่องจากการประชุมวิชาการ');
+$section7_3=$npdf->conv('- สำเนารายชื่อกองบรรณาธิการจัดทำรายงาน หรือคณะกรรมการจัดการประชุม');
+$section7_4=$npdf->conv('- สำเนากำหนดการนำเสนอผลงานที่ปรากฏชื่อผลงานที่ขอรับการสนับสนุน');
+$section7_5=$npdf->conv('- ในกรณี');
+$section7_6=$npdf->conv('ที่มี');
+$section7_7=$npdf->conv('สำเนาผลงานวิจัยฉบับที่ตีพิมพ์เป็นดิจิตอลไฟล์ แนบมาเฉพาะสำเนาหน้าแรกของผลงานและหน้าที่');
+$section7_8=$npdf->conv('ปรากฏชื่อผู้เขียน แล้วส่งไฟล์ผลงานวิจัยมายัง scisilpakorn@gmail.com');
+$section7_9=$npdf->conv('หรือ');
+$section7_10=$npdf->conv('ในกรณี');
+$section7_11=$npdf->conv('ที่ไม่มี');
+$section7_12=$npdf->conv('สำเนาผลงานวิจัยเป็นดิจิตอลไฟล์ แนบสำเนาผลงานที่ตีพิมพ์ทั้งฉบับ');
+$npdf->WriteHTML("<br><br><b> $section7</b> $section7_1<br>
+        $section7_2<br>
+        $section7_3<br>
+        $section7_4<br>
+        $section7_5<b><u>$section7_6</u></b>$section7_7<br>
+          $section7_8 <b>$section7_9</b><br>
+          $section7_10<b><u>$section7_11</u></b>$section7_12
+");
+
+$section8=$npdf->conv('การรับรองผลงาน');
+$section8_1=$npdf->conv('ข้าพเจ้าขอรับรองว่า ผลงานเรื่องดังกล่าวข้างต้น เป็นไปตามหลักเกณฑ์ เงื่อนไข และวิธีการสนับสนุนเงินรางวัล');
+$section8_2=$npdf->conv('หรือเงินสมนาคุณจากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์ ดังนี้');
+$npdf->WriteHTML("
+<br><br><b> $section8</b><br>
+          $section8_1<br>
+$section8_2
+");
+
+// $section9=$npdf->conv('คำรับรองจากหัวหน้าภาควิชา/หัวหน้างาน');
 // $npdf->WriteHTML("
-// <br>
-// <b><p align='center'>$header</p></b>
-// <b><p align='center'>$header2</p></b>
-// <b><p align='center'>$header3</p></b>
-// <b><p align='center'>$header4..........$year..........</p></b>
-// <br>
-// <b>$section1</b><br>
-// $section1_1................$titleTH....................................................................................................................................................<br>
-//     ...........................................................................................................................................................................................................<br>
-// $section1_2................$titleEN....................................................................................................................................................<br>
-//     ...........................................................................................................................................................................................................<br>
-// <br>
-// <b>$section2</b><br>
-// $section2_1................$writer_name..............................................................................................................<br>
-// $section2_2................$writer_department..................................................................................................................<br>
-// $section2_3.....$write_ratio.....$section2_4<br>
-// $section2_5................$co_writer_name..............................................................................................................<br>
-// $section2_6................$co_writer_department..................................................................................................................<br>
-// $section2_7.....$co_write_ratio.....$section2_8<br>
-// <br>
-// <b>$section3</b><br>
-// $section3_1.............................$keywordTH....................................................................................................................................................<br>
-// $section3_2.......................$keywordEN....................................................................................................................................................<br>
-// <br>
-// <b>$section4</b><br>
+// <br><b>$section9</b>
 // ");
-//
-// $section4_1=$npdf->conv('   จำนวน');
-// $section4_2=$npdf->conv('บาท');
-// $section4_3=$npdf->conv('(');
-// $section4_4=$npdf->conv('บาทถ้วน)');
-//
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// $section4_1.......$amount.......$section4_2
-// $section4_3.......$amount_text.......$section4_4<br>
-// ");
-//
-// $section4_5=$npdf->conv('   * จำนวนเงินทุนพิจารณาสนับสนุนทางด้านวิชาการและสนับสนุนด้านการพิมพ์เอกสาร ดังนี้');
-// $section4_6=$npdf->conv('    ส่วนที่ 1 ด้านวิชาการ');
-// $section4_7=$npdf->conv('            -    ตำราประกอบการสอนรายวิชาชั้นปีที่ 1 และ 2         สนับสนุนเงินทุน 20,000 บาท');
-// $section4_8=$npdf->conv('            -    ตำราประกอบการสอนรายวิชาชั้นปีที่ 3 และ 4         สนับสนุนเงินทุน 30,000 บาท');
-// $section4_9=$npdf->conv('            -    ตำราประกอบการสอนรายวิชาระดับบัณฑิตศึกษา      สนับสนุนเงินทุน 40,000 บาท');
-// $section4_10=$npdf->conv('    ส่วนที่ 2 ด้านการพิมพ์เอกสาร');
-// $section4_11=$npdf->conv('           คำนวณจากปริมาณเนื้อหา (จำนวนหน้า) หน้าละ 100 บาท');
-// $section4_12=$npdf->conv('    โดยข้อเสนอโครงการเขียนตำราทุกโครงการจะได้รับการจัดสรรเงินทุนสนับสนุนการเขียนตำราทั้ง 2 ส่วน แต่รวมแล้ว');
-// $section4_13=$npdf->conv('    ต้องไม่เกิน 50,000 บาท');
-// $section4_14=$npdf->conv('    * ในกรณีที่เป็นตำราในรายวิชาปฏิบัติการให้การสนับสนัุนเป็นกึ่งหนึ่งตามหลักเกณฑ์ข้างต้น');
-//
-// $npdf->SetTextColor(255,0,0);
-// $npdf->WriteHTML("
-// $section4_5<br>
-// <b>$section4_6</b><br>
-// $section4_7<br>
-// $section4_8<br>
-// $section4_9<br>
-// <b>$section4_10</b><br>
-// $section4_11<br>
-// $section4_12<br>
-// $section4_13<br>
-// $section4_14<br>
-// <br>
-// ");
-//
-// $section5=$npdf->conv('5. ใช้ประกอบการสอน');
-// $section5_1=$npdf->conv('     รายวิชา');
-// $section5_2=$npdf->conv('ชื่อวิชา');
-// $section5_3=$npdf->conv('สำหรับนักศึกษาระดับ');
-// $section5_4=$npdf->conv('ชั้นปีที่');
-// $section6=$npdf->conv('6. ปริมาณเนื้อหาและเนื้อหาโดยสังเขป');
-// $section6_1=$npdf->conv('    ปริมาณเนื้อหา (จำนวนหน้า) โดยประมาณ จำนวน');
-// $section6_2=$npdf->conv('หน้า โดยประกอบด้วยเนื้อหาโดยสังเขป ดังนี้');
-// $section6_3=$npdf->conv('    บทที่');
-// $section6_4=$npdf->conv('ชื่อบท');
-//
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// <b>$section5</b><br>
-// $section5_1.......$subject_no.......$section5_2.......$subject.......$section5_3.......$for_student.......$section5_4 $student_year<br>
-// <br>
-// <br>
-// <br>
-// <b>$section6</b><br>
-// $section6_1.......$page_amount.......$section6_2<br>
-// $section6_3.......$chapter_no_1.......$section6_4.......$chapter_name_1..............................................................................................................................<br>
-// ");
-//
-// $section6_5=$npdf->conv('          *เนื้อหา ');
-// $npdf->SetTextColor(255,0,0);
-// // $npdf->WriteHTML("$section6_5");
-// $npdf->Write(6.5,$section6_5);
-//
-//
-// $npdf->SetTextColor(0,0,0);
-// $npdf->Write(6.5,"..........$content_1................................................................................................................................");
-// $npdf->Write(6.5,"...............................................................................................................................................................................................................
-// ......................................................................................................................................................................................................................");
-//
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// <br><br>
-// $section6_3.......$chapter_no_2.......$section6_4.......$chapter_name_2..............................................................................................................................<br>
-// ");
-//
-// $npdf->SetTextColor(255,0,0);
-// // $npdf->WriteHTML("$section6_5");
-//
-// $npdf->Write(6.5,$section6_5);
-// $npdf->SetTextColor(0,0,0);
-// $npdf->Write(6.5,"..........$content_2................................................................................................................................");
-// $npdf->Write(6.5,"...............................................................................................................................................................................................................
-// ......................................................................................................................................................................................................................");
-//
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// <br><br>
-// $section6_3.......$chapter_no_3.......$section6_4.......$chapter_name_3..............................................................................................................................<br>
-// ");
-//
-// $section6_6=$npdf->conv('          *เนื้อหา ');
-// $npdf->SetTextColor(255,0,0);
-// // $npdf->WriteHTML("$section6_5");
-//
-// $npdf->Write(6.5,$section6_5);
-// $npdf->SetTextColor(0,0,0);
-// $npdf->Write(6.5,"..........$content_3................................................................................................................................");
-// $npdf->Write(6.5,"...............................................................................................................................................................................................................
-// ......................................................................................................................................................................................................................");
-//
-// $section7=$npdf->conv('7. ประวัติการสอน');
-// $section7_1=$npdf->conv('(โดยสังเขป)');
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// <br><br><b>$section7</b>
-// $section7_1<br>
-// ");
-//
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("   ..............$teaching_history......................................................................................................................................................................<br>
-//    .......................................................................................................................................................................................................<br>
-//    .......................................................................................................................................................................................................<br>
-// ");
-//
-// $section7_2=$npdf->conv('  *หากมีอยู่แล้วสามารถแนบประวัติการสอนต่อท้ายข้อเสนอโครงการได้');
-// $npdf->SetTextColor(255,0,0);
-// $npdf->WriteHTML("
-// $section7_2<br>
-// ");
-//
-// $section8=$npdf->conv('                                                                                                                 ลงชื่อ...................................');
-// $section8_1=$npdf->conv('                                                                                                                       ผู้ขอรับทุน');
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// <br><br><br><br><br>$section8<br>
-//                                                                                                                 (..........$applicant........)<br>
-//     $section8_1<br>
-// ");
-//
-// $section9=$npdf->conv('                                                                                                                 ลงชื่อ..................................');
-// $section9_1=$npdf->conv('                                                                                                               หัวหน้าภาควิชา');
-// $npdf->SetTextColor(0,0,0);
-// $npdf->WriteHTML("
-// <br><br><br><br><br>$section9<br>
-//                                                                                                                 (..........$head_of_department........)<br>
-// $section9_1.....$department_name.....<br>
-// ");
+
 
 
 $npdf->Output();
