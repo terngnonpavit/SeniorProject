@@ -36,44 +36,44 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
       }
-          $id=$_GET['id'];
-          $sql = "SELECT * FROM `scholarship_book` WHERE `id`=$id";
-          $result = $conn->query($sql);
-          $row = $result->fetch_assoc();
-          $year=$row['year'];
-          $titleTH=$row['titleTH'];
-          $titleEN=$row['titleEN'];
-          $writer_name=$row['writer_name'];
-          $writer_department=$row['writer_department'];
-          $write_ratio=$row['write_ratio'];
-          $co_writer_name=$row['co_writer_name'];
-          $co_writer_department=$row['co_writer_department'];
-          $co_write_ratio=$row['co_write_ratio'];
-          $keywordTH=$row['keywordTH'];
-          $keywordEN=$row['keywordEN'];
-          $amount=$row['amount'];
-          $amount_text=$row['amount_text'];
-          $subject_no=$row['subject_no'];
-          $subject=$row['subject'];
-          $for_student=$row['for_student'];
-          $student_year=$row['student_year'];
-          $page_amount=$row['page_amount'];
-          $chapter_no_1=$row['chapter_no_1'];
-          $chapter_no_2=$row['chapter_no_2'];
-          $chapter_no_3=$row['chapter_no_3'];
-          $chapter_name_1=$row['chapter_name_1'];
-          $chapter_name_2=$row['chapter_name_2'];
-          $chapter_name_3=$row['chapter_name_3'];
-          $content_1=$row['content_1'];
-          $content_2=$row['content_2'];
-          $content_3=$row['content_3'];
-          $teaching_history=$row['teaching_history'];
-          $applicant=$row['applicant'];
-          $head_of_department=$row['head_of_department'];
-          $department_name=$row['department_name'];
+      $id=$_GET['id'];
+      $sql = "SELECT * FROM `scholarship_book` WHERE `id`=$id";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $year=$row['year'];
+      $titleTH=$row['titleTH'];
+      $titleEN=$row['titleEN'];
+      $writer_name=$row['writer_name'];
+      $writer_department=$row['writer_department'];
+      $write_ratio=$row['write_ratio'];
+      $co_writer_name=$row['co_writer_name'];
+      $co_writer_department=$row['co_writer_department'];
+      $co_write_ratio=$row['co_write_ratio'];
+      $keywordTH=$row['keywordTH'];
+      $keywordEN=$row['keywordEN'];
+      $amount=$row['amount'];
+      $amount_text=$row['amount_text'];
+      $subject_no=$row['subject_no'];
+      $subject=$row['subject'];
+      $for_student=$row['for_student'];
+      $student_year=$row['student_year'];
+      $page_amount=$row['page_amount'];
+      $chapter_no_1=$row['chapter_no_1'];
+      $chapter_no_2=$row['chapter_no_2'];
+      $chapter_no_3=$row['chapter_no_3'];
+      $chapter_name_1=$row['chapter_name_1'];
+      $chapter_name_2=$row['chapter_name_2'];
+      $chapter_name_3=$row['chapter_name_3'];
+      $content_1=$row['content_1'];
+      $content_2=$row['content_2'];
+      $content_3=$row['content_3'];
+      $teaching_history=$row['teaching_history'];
+      $applicant=$row['applicant'];
+      $head_of_department=$row['head_of_department'];
+      $department_name=$row['department_name'];
 
-          $conn->close();
-        ?>
+      $conn->close();
+    ?>
 
         <div class="container">
           <form action='<?php echo "http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id"?>' method="post" enctype="multipart/form-data">

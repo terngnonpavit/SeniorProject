@@ -32,7 +32,7 @@
           <p><strong>title(EN):</strong> $titleEN </p>
         </div>
         <div class='card-footer'>
-          <a href='' class='btn btn-outline-danger'>Delete</a>
+          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-outline-danger'>Delete</a>
           <a href='http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id' class='btn btn-outline-warning'>Edit</a>
         </div>
       </div>

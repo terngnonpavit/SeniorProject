@@ -219,7 +219,7 @@ if ($conn->connect_error) {
 }
 
 $id=$_GET['id'];
-$sql = "select * from scholarship_proceeding where id=$id";
+$sql = "select * from scholarship_journal where id=$id";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc())  {
@@ -227,15 +227,14 @@ if ($result->num_rows > 0) {
     $department=$row['department'];
     $titleTH=$row['titleTH'];
     $titleEN=$row['titleEN'];
-    $conference_name=$row['conference_name'];
-    $place=$row['place'];
+    $journal_name=$row['journal_name'];
+    $year=$row['year'];
     $date=$row['date'];
     $type_of_document=$row['type_of_document'];
     $type_of_publication=$row['type_of_publication'];
+    $database_name=$row['database_name'];
     $approval=$row['approval'];
     $participation=$row['participation'];
-    $form_document=$row['form_document'];
-    $certification=$row['certification'];
     $amount=$row['amount'];
     $amount_text=$row['amount_text'];
     $applicant=$row['applicant'];
@@ -251,26 +250,19 @@ $author=$npdf->conv($author);
 $department=$npdf->conv($department);
 $titleTH=$npdf->conv($titleTH);
 $titleEN=$npdf->conv($titleEN);
-$conference_name=$npdf->conv($conference_name);
-$place=$npdf->conv($place);
+$journal_name=$npdf->conv($journal_name);
+$year=$npdf->conv($year);
 $date=$npdf->conv($date);
-// $type_of_document=$npdf->conv($type_of_document);
-// $type_of_publication=$npdf->conv($type_of_publication);
-// $approval=$npdf->conv($approval);
-// $participation=$npdf->conv($participation);
-// $form_document=$npdf->conv($form_document);
-// $certification=$npdf->conv($certification);
+$type_of_document=$npdf->conv($type_of_document);
+$type_of_publication=$npdf->conv($type_of_publication);
+$database_name=$npdf->conv($database_name);
+$approval=$npdf->conv($approval);
+$participation=$npdf->conv($participation);
 $amount=$npdf->conv($amount);
 $amount_text=$npdf->conv($amount_text);
 $applicant=$npdf->conv($applicant);
 $head_of_department=$npdf->conv($head_of_department);
 $department_name=$npdf->conv($department_name);
-
-// $npdf->SetFont('ZapfDingbats','', 10);
-// $npdf->SetXY(50,50);
-// $npdf->write(6.5,'4');
-// $npdf->SetXY(50,50);
-// $npdf->write(6.5,'q');
 
 $npdf->SetFont('THSarabunNew', '', '14');
 $righttop=$npdf->conv('(แบบฟอร์มขอรับการสนับสนุนเงินรางวัลสำหรับผลงานที่ตีพิมพ์เผยแพร่ตั้งแต่วันที่ 1 ตุลาคม 2561)');
@@ -281,7 +273,7 @@ $npdf->WriteHTML("<br>");
 $npdf->SetFont('THSarabunNew', '', '17');
 $header1=$npdf->conv('แบบฟอร์มขอรับการสนับสนุนเงินรางวัลสำหรับการเผยแพร่ผลงาน');
 $header2=$npdf->conv('จากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์');
-$header3=$npdf->conv('ประเภท ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการ');
+$header3=$npdf->conv('ประเภท ตีพิมพ์ในวารสารวิชาการ');
 
 $npdf->WriteHTML("
 <b><p align='center'>$header1</p></b>
@@ -293,15 +285,16 @@ $npdf->SetFont('THSarabunNew', '', '15');
 $section1_1=$npdf->conv('ชื่อผู้ขอรับการสนับสนุน');
 $section1_2=$npdf->conv("สังกัด");
 $section1_3=$npdf->conv("ชื่อผลงานวิจัย");
-$section1_4=$npdf->conv("ชื่อการประชุมวิชาการ");
-$section1_5=$npdf->conv("สถานที่ วันเดือนปี ที่จัด");
+$section1_4=$npdf->conv("ชื่อวารสารที่ตีพิมพ์");
+$section1_5=$npdf->conv("ปีที่ ฉบับที่ เลขหน้า");
+$section1_6=$npdf->conv("วัน เดือน ปี ที่ตีพิมพ์");
 
 $npdf->WriteHTML("
 <br> $section1_1 $author.................................................................................... $section1_2 .....$department.......<br>
 $section1_3 .....$titleEN................................<br>
                   ......$titleTH.......................................................................................................................................................................................<br>
-$section1_4 $conference_name.......................................................<br>
-$section1_5 $place, $date.....................................................................<br>
+$section1_4 $journal_name.......................................................<br>
+$section1_5 $year, $date.....................................................................<br>
 ");
 
 $section2=$npdf->conv('ประเภทของผลงาน');
@@ -331,25 +324,36 @@ $npdf->write(6.5,"Review Article");
 //3
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(76,120);
-if($type_of_document=="abstract"){
+if($type_of_document=="book"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(105,85);
 $npdf->write(6.5,'q');
 $npdf->SetFont('THSarabunNew', '', '15');
 $npdf->SetXY(110,85);
-$npdf->write(6.5,"Abstact");
+$npdf->write(6.5,"Book");
+//4
+$npdf->SetFont('ZapfDingbats','', 13);
+$npdf->SetXY(76,120);
+if($type_of_document=="book_chapter"){
+  $npdf->write(6.5,'3');
+}
+$npdf->SetXY(105,85);
+$npdf->write(6.5,'q');
+$npdf->SetFont('THSarabunNew', '', '15');
+$npdf->SetXY(110,85);
+$npdf->write(6.5,"Book Chapter");
 
-$section3=$npdf->conv('ประเภทของการตีพิมพ์และการประชุมวิชาการ(เลือกเพียง 1 ประเภท)');
-$section3_1=$npdf->conv('Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ รางวัลละไม่เกิน 3,000 บาท');
-$section3_2=$npdf->conv('Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 2,000 บาท');
-$section3_3=$npdf->conv('บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาต รางวัลละไม่เกิน 1,500 บาท');
-$section3_4=$npdf->conv('บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 1,000 บาท');
+$section3=$npdf->conv('ประเภทของวารสารที่ตีพิมพ์(เลือกเพียง 1 ประเภท)');
+$section3_1=$npdf->conv('วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท');
+$section3_2=$npdf->conv('วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท');
+$section3_3=$npdf->conv('วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท');
+$section3_4=$npdf->conv('วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท');
 $npdf->WriteHTML("<br><br><b> $section3</b>");
 //1
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(14,103);
-if($type_of_publication=="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ"){
+if($type_of_publication=="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(14,103);
@@ -360,7 +364,7 @@ $npdf->write(6.5,"$section3_1");
 //2
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(14,110);
-if($type_of_publication=="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ"){
+if($type_of_publication=="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาทิ"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(14,110);
@@ -371,7 +375,7 @@ $npdf->write(6.5,"$section3_2");
 //3
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(14,115);
-if($type_of_publication=="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ"){
+if($type_of_publication=="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(14,115);
@@ -382,7 +386,7 @@ $npdf->write(6.5,"$section3_3");
 //4
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(14,121);
-if($type_of_publication=="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ"){
+if($type_of_publication=="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(14,121);
@@ -469,113 +473,48 @@ $npdf->write(6.5,"$section5_4");
 $npdf->SetXY(39,170);
 $npdf->write(6.5,"$section5_5");
 
-$section6=$npdf->conv('รูปแบบของเอกสารที่เผยแพร่');
-$npdf->WriteHTML("<br><br><b> $section6</b>");
-//1
-$section6_1=$npdf->conv('รูปเล่ม หรือ หนังสือ');
-$npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(14,190);
-$form_document_arr=explode(',',$form_document);
-foreach ($form_document_arr as $document) {
-  if($document=='รูปเล่ม หรือ หนังสือ'){
-    $npdf->write(6.5,'3');
-  }
-}
-$npdf->SetXY(14,190);
-$npdf->write(6.5,'q');
-$npdf->SetFont('THSarabunNew', '', '15');
-$npdf->SetXY(19,190);
-$npdf->write(6.5,"$section6_1");
-//2
-$section6_2=$npdf->conv('ซีดี');
-$npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(60,190);
-$form_document_arr=explode(',',$form_document);
-foreach ($form_document_arr as $document) {
-  if($document=='ซีดี'){
-    $npdf->write(6.5,'3');
-  }
-}
-$npdf->SetXY(60,190);
-$npdf->write(6.5,'q');
-$npdf->SetFont('THSarabunNew', '', '15');
-$npdf->SetXY(65,190);
-$npdf->write(6.5,"$section6_2");
-//3
-$section6_3=$npdf->conv('เว็บไซต์');
-$npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(85,190);
-$form_document_arr=explode(',',$form_document);
-foreach ($form_document_arr as $document) {
-  if($document=='เว็บไซต์'){
-    $npdf->write(6.5,'3');
-  }
-}
-$npdf->SetXY(85,190);
-$npdf->write(6.5,'q');
-$npdf->SetFont('THSarabunNew', '', '15');
-$npdf->SetXY(90,190);
-$npdf->write(6.5,"$section6_3");
-//4
-$section6_4=$npdf->conv('อื่นๆ ระบุ');
-$npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(115,190);
-$form_document_arr=explode(',',$form_document);
-foreach ($form_document_arr as $document) {
-// echo $document.'5<br>';
-  if($document!='รูปเล่ม หรือ หนังสือ' && $document!='ซีดี' && $document!='เว็บไซต์' && $document!=''){
-    $npdf->write(6.5,'3');
-    $npdf->SetXY(140,190);
-    $npdf->SetFont('THSarabunNew', '', '15');
-    $npdf->write(6.5,"$document");
-  }
-}
-$npdf->SetXY(115,190);
-$npdf->SetFont('ZapfDingbats','', 13);
-$npdf->write(6.5,'q');
-$npdf->SetFont('THSarabunNew', '', '15');
-$npdf->SetXY(120,190);
-$npdf->write(6.5,"$section6_4");
-$npdf->SetXY(120,190.75);
-$npdf->write(6.5,"..........");
-
 $section7=$npdf->conv('เอกสารแนบ');
 $section7_1=$npdf->conv('(ต้องมีทุกรายการ)');
-$section7_2=$npdf->conv('- สำนวนหน้าปกเอกสารประกอบการประชุมวิชาการหรือรายงานสืบเนื่องจากการประชุมวิชาการ');
-$section7_3=$npdf->conv('- สำเนารายชื่อกองบรรณาธิการจัดทำรายงาน หรือคณะกรรมการจัดการประชุม');
-$section7_4=$npdf->conv('- สำเนากำหนดการนำเสนอผลงานที่ปรากฏชื่อผลงานที่ขอรับการสนับสนุน');
-$section7_5=$npdf->conv('- ในกรณี');
-$section7_6=$npdf->conv('ที่มี');
-$section7_7=$npdf->conv('สำเนาผลงานวิจัยฉบับที่ตีพิมพ์เป็นดิจิตอลไฟล์ แนบมาเฉพาะสำเนาหน้าแรกของผลงานและหน้าที่');
-$section7_8=$npdf->conv('ปรากฏชื่อผู้เขียน แล้วส่งไฟล์ผลงานวิจัยมายัง scisilpakorn@gmail.com');
-$section7_9=$npdf->conv('หรือ');
-$section7_10=$npdf->conv('ในกรณี');
-$section7_11=$npdf->conv('ที่ไม่มี');
-$section7_12=$npdf->conv('สำเนาผลงานวิจัยเป็นดิจิตอลไฟล์ แนบสำเนาผลงานที่ตีพิมพ์ทั้งฉบับ');
+$section7_2=$npdf->conv('ในกรณี');
+$section7_3=$npdf->conv('ที่มี');
+$section7_4=$npdf->conv('สำเนาผลงานวิจัยฉบับที่ตีพิมพ์เป็นดิจิตอลไฟล์');
+$section7_5=$npdf->conv('- ส่งไฟล์งานวิจัยมายัง scisilpakorn@gmail.com');
+$section7_6=$npdf->conv('- สำเนาหน้าแรกของผลงานและหน้าที่ปรากฏชื่อผู้เขียน');
+$section7_7=$npdf->conv('- หลักฐานการปรากฏในฐานข้อมูลตามที่ระบุ');
+$section7_8=$npdf->conv('ในกรณี');
+$section7_9=$npdf->conv('ที่ไม่มี');
+$section7_10=$npdf->conv('สำเนาผลงานวิจัยเป็นดิจิตอลไฟล์');
+$section7_11=$npdf->conv('- สำเนาผลงานที่ตีพิมพ์ทั้งฉบับ');
+$section7_12=$npdf->conv('- หลักฐานการปรากฏในฐานข้อมูลตามที่ระบุ');
 $npdf->WriteHTML("<br><br><b> $section7</b> $section7_1<br>
-        $section7_2<br>
-        $section7_3<br>
-        $section7_4<br>
-        $section7_5<b><u>$section7_6</u></b>$section7_7<br>
-          $section7_8 <b>$section7_9</b><br>
-          $section7_10<b><u>$section7_11</u></b>$section7_12
+        $section7_2<b><u>$section7_3</u></b>$section7_4<br>
+        $section7_5<br>
+        $section7_6<br>
+        $section7_7<br>
+        $section7_8<b><u>$section7_9</u></b>$section7_10<br>
+        $section7_11<br>
+        $section7_12
 ");
 
 $section8=$npdf->conv('การรับรองผลงาน');
-$section8_1=$npdf->conv('ข้าพเจ้าขอรับรองว่า ผลงานเรื่องดังกล่าวข้างต้น เป็นไปตามหลักเกณฑ์ เงื่อนไข และวิธีการสนับสนุนเงินรางวัล');
-$section8_2=$npdf->conv('หรือเงินสมนาคุณจากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์ ดังนี้');
-$section8_3=$npdf->conv('เป็นผลงานที่เกิดขึ้นในระหว่างที่ผู้ขอรับการสนับสนุนปฏิบัติงานที่คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร และ');
-$section8_4=$npdf->conv('ไม่เป็นส่วนหนึ่งของวิทยานิพนธ์เพื่อสำเร็จการศึกษาในระดับใด ๆ ของผู้ขอรับการสนับสนุน');
-$section8_5=$npdf->conv('ที่อยู่ของผู้ขอรับการสนับสนุนในผลงานปรากฏชื่อ คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร เป็นอย่างน้อย');
-$section8_6=$npdf->conv('เป็นผลงานที่ตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการที่มี peer-review');
-$section8_7=$npdf->conv('ผลงานเรื่องดังกล่าวตีพิมพ์เผยแพร่มาแล้วเป็นระยะเวลาไม่เกิน 1 ปี นับถึงวันที่ยื่นขอรับการสนับสนุน และไม่เคย');
-$section8_8=$npdf->conv('ได้รับการสนับสนุนเงินรางวัลหรือเงินสมนาคุณประเภทใด ๆ จากคณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร');
-$section8_9=$npdf->conv('ข้าพเจ้าขอรับการสนับสนุนเงินรางวัลการเผยแพร่ผลงานดังกล่าว จากกองทุนสนับสนุนการวิจัย นวัตกรรมและ');
-$section8_10=$npdf->conv('การสร้างสรรค์ คณะวิทยาศาสตร์ เป็นจำนวนเงิน');
-$section8_11=$npdf->conv('บาท');
-$section8_12=$npdf->conv('ลงชื่อ ');
-$section8_13=$npdf->conv('ผู้ขอรับการสนับสนุน');
-$section8_14=$npdf->conv('หัวหน้าภาควิชา');
+$section8_1=$npdf->conv('ข้าพเจ้าขอรับรองว่า ผลงานเรื่องดังกล่าวข้างต้น เป็นไปตามหลักเกณฑ์ เงื่อนไข');
+$section8_2=$npdf->conv('และวิธีการสนับสนุนเงินรางวัลหรือเงินสมนาคุณจากกองทุนสนับสนุนการวิจัย นวัตกรรมและการสร้างสรรค์');
+$section8_3=$npdf->conv('คณะวิทยาศาสตร์ ดังนี้');
+$section8_4=$npdf->conv('เป็นผลงานที่เกิดขึ้นในระหว่างที่ผู้ขอรับการสนับสนุนปฏิบัติงานที่คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร และ');
+$section8_5=$npdf->conv('ไม่เป็นส่วนหนึ่งของวิทยานิพนธ์เพื่อสำเร็จการศึกษาในระดับใด ๆ ของผู้ขอรับการสนับสนุน');
+$section8_6=$npdf->conv('ที่อยู่ของผู้ขอรับการสนับสนุนในผลงานปรากฏชื่อ คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร เป็นอย่างน้อย');
+$section8_7=$npdf->conv('เป็นผลงานที่ตีพิมพ์ในวารสารที่มี peer-review');
+$section8_7=$npdf->conv('ณ วันที่ส่งผลงานเพื่อตีพิมพ์ (Submitted) วารสารดังกล่าวหรือสำนักพิมพ์เจ้าของวารสารไม่ปรากฏอยู่ใน');
+$section8_7=$npdf->conv('Beall`s List');
+$section8_8=$npdf->conv('ผลงานเรื่องดังกล่าวตีพิมพ์เผยแพร่มาแล้วเป็นระยะเวลาไม่เกิน 1 ปี นับถึงวันที่ยื่นขอรับการสนับสนุน');
+$section8_9=$npdf->conv('และไม่เคยได้รับการสนับสนุนเงินรางวัลหรือเงินสมนาคุณประเภทใด ๆ จากคณะวิทยาศาสตร์');
+$section8_9=$npdf->conv('มหาวิทยาลัยศิลปากร');
+$section8_10=$npdf->conv('ข้าพเจ้าขอรับการสนับสนุนเงินรางวัลการเผยแพร่ผลงานดังกล่าว จากกองทุนสนับสนุนการวิจัย');
+$section8_11=$npdf->conv('นวัตกรรมและการสร้างสรรค์ คณะวิทยาศาสตร์ เป็นจำนวนเงิน');
+$section8_12=$npdf->conv('บาท');
+$section8_13=$npdf->conv('ลงชื่อ ');
+$section8_14=$npdf->conv('ผู้ขอรับการสนับสนุน');
+$section8_15=$npdf->conv('หัวหน้าภาควิชา');
 
 $npdf->WriteHTML("
 <br><br><b> $section8</b><br>

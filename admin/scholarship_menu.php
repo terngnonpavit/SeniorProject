@@ -51,7 +51,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             ขอทุนวิจัยการตีพิมพ์ในวารสารทางวิชาการ
             <a href="scholarship_journal.php" class="btn btn-success">Create</a>
           </h3>
-          <?php //require('admin_journals.php');?>
+          <?php require('admin_scholarship_journal.php');?>
         </div>
         <div id="proceedings" class="container tab-pane fade"><br>
           <h3>

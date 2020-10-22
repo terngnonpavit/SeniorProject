@@ -11,21 +11,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <title>CPSU</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
 
   </head>
   <body>
     <?php require('../navbar.php');?>
 
     <div class="container">
-      <form action="scholarship_proceeding.php" method="post" enctype="multipart/form-data">
+      <form action="scholarship_journal.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="author">ชื่อผู้ขอรับการสนับสนุน</label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้ขอรับการสนับสนุน" name="author">
@@ -42,14 +40,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="titleTH">ชื่อผลงานวิจัย(ไทย)</label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(ไทย)" name="titleTH">
           </div>
-
           <div class="form-group">
-            <label for="conference_name">ชื่อการประชุมวิชาการ</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อการประชุมวิชาการ" name="conference_name">
+            <label for="journal_name">ชื่อวารสารที่ตีพิมพ์</label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ" name="journal_name">
           </div>
           <div class="form-group">
-            <label for="place">สถานที่</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกสถานที่" name="place">
+            <label for="year">ปีที่ ฉบับที่ เลขหน้า</label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกปีที่ ฉบับที่ เลขหน้า" name="year">
           </div>
           <div class="form-group">
             <label for="date">วัน/เดือน/ปี</label>
@@ -60,17 +57,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <select class="form-control" name="type_of_document">
                 <option value="research_article">Research Article</option>
                 <option value="review_article">Review Article</option>
-                <option value="abstract">Abstract</option>
+                <option value="book">Book</option>
+                <option value="book_chapter">Book Chapter</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="type_of_publication">ประเภทของการตีพิมพ์และการประชุมวิชาการ(เลือกเพียง 1 ประเภท)</label>
+            <label for="type_of_publication">ประเภทของวารสารที่ตีพิมพ์(เลือกเพียง 1 ประเภท)</label>
             <select class="form-control" name="type_of_publication">
-                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ">Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ รางวัลละไม่เกิน 3,000 บาท</option>
-                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ">Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 2,000 บาท</option>
-                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ">บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาต รางวัลละไม่เกิน 1,500 บาท</option>
-                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ">บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ รางวัลละไม่เกิน 1,000 บาท</option>
+                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท">วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท</option>
+                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท">วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท</option>
+                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท">วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท</option>
+                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท">วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท</option>
             </select>
+              <input type="text" class="form-control" placeholder="กรณีที่เลือกวารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. โปรดระบุชื่อฐานข้อมูล" name="database_name">
           </div>
           <div class="form-group">
             <label for="approval">การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์</label>
@@ -86,15 +85,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 <option value="กรณีที่ 1 Corresponding Author">กรณีที่ 1 Corresponding Author (ได้รับการสนับสนุนเต็มจำนวน)</option>
                 <option value="กรณีที่ 2 เป็นผู้ร่วมเขียน">กรณีที่ 2 เป็นผู้ร่วมเขียน (ได้รับการสนับสนุนกึ่งหนึ่งของเงินรางวัลที่ได้รับจากหัวข้อก่อนหน้า)</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="form_document">รูปแบบของเอกสารที่เผยแพร่</label>
-            <select class="form-control selectpicker" name="form_document[]" multiple data-live-search="true">
-                <option value="รูปเล่ม หรือ หนังสือ">รูปเล่ม หรือ หนังสือ</option>
-                <option value="ซีดี">ซีดี</option>
-                <option value="เว็บไซต์">เว็บไซต์</option>
-            </select>
-            <input type="text" class="form-control" placeholder="อื่นๆ กรุณาระบุ" name="other">
           </div>
           <div class="form-group">
             <label for="amount">จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 3,000)</label>
@@ -119,11 +109,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <button type="submit" class="btn btn-success">Done</button>
       </form>
     </div>
-    <script>
-      $(document).ready(function(){
-        $('#selectpicker').selectpicker();
-      });
-    </script>
 
     <?php
 
@@ -147,29 +132,21 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department=$_POST['department'];
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
-          $conference_name=$_POST['conference_name'];
-          $place=$_POST['place'];
+          $journal_name=$_POST['journal_name'];
+          $year=$_POST['year'];
           $date=$_POST['date'];
           $type_of_document=$_POST['type_of_document'];
           $type_of_publication=$_POST['type_of_publication'];
+          $database_name=$_POST['database_name'];
           $approval=$_POST['approval'];
           $participation=$_POST['participation'];
-          $form_document=$_POST['form_document'];
-          $other=$_POST['other'];
-          $certification=$_POST['certification'];
           $amount=$_POST['amount'];
           $amount_text=$_POST['amount_text'];
           $applicant=$_POST['applicant'];
           $head_of_department=$_POST['head_of_department'];
           $department_name=$_POST['department_name'];
 
-          $form_document_str='';
-          foreach($form_document as $document){
-            $form_document_str .= ($document.',');
-          }
-          $form_document_str .= $other;
-
-          $sql = "INSERT INTO `scholarship_proceeding` (`author`, `department`, `titleTH`, `titleEN`, `conference_name`, `place`, `date`, `type_of_document`, `type_of_publication`, `approval`, `participation`, `form_document`, `certification`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$conference_name', '$place', '$date', '$type_of_document', '$type_of_publication', '$approval', '$participation', '$form_document_str', '$certification', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
+          $sql = "INSERT INTO `scholarship_journal` (`author`, `department`, `titleTH`, `titleEN`, `journal_name`, `year`, `date`, `type_of_document`, `type_of_publication`, `database_name`, `approval`, `participation`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$journal_name', '$year', '$date', '$type_of_document', '$type_of_publication', '$database_name', '$approval', '$participation', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
