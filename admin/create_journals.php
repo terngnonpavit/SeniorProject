@@ -2,7 +2,8 @@
 // Start the session
 session_start();
 if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
-    header('Location: http://localhost/seniorproject/login.php');}
+    header('Location: http://localhost/seniorproject/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

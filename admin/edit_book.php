@@ -129,7 +129,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $type="books";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
 
-          $sql = "UPDATE `books` SET `author` = '$author', `date` = '$date', `publisher` = '$publisher', `page` = '$page', `titleEN` = '$titleEN', `titleTH` = '$titleTH' WHERE `books`.`id` = $id;";
+          $sql = "UPDATE `books` SET `author` = '$author', `date` = '$date', `publisher` = '$publisher', `page` = '$page', `titleEN` = '$titleEN', `titleTH` = '$titleTH', `file_path` = '$file_path' WHERE `books`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

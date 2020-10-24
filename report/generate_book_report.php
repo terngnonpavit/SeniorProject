@@ -489,7 +489,7 @@ $section9_1.....$department_name.....<br>
 ");
 
 if(isset($_GET['save']) && $_GET['save']=='true'){
-  $npdf->Output("./save_generate_pdf/$id.pdf",'F');
+  $npdf->Output("./save_generate_pdf/book_$id.pdf",'F');
   echo "
   <!DOCTYPE html>
   <html lang='en'>
@@ -500,7 +500,7 @@ if(isset($_GET['save']) && $_GET['save']=='true'){
   </head>
   <body>
     <script>
-      printJS('./seniorproject/report/save_generate_pdf/$id.pdf')
+      printJS('./seniorproject/report/save_generate_pdf/book_$id.pdf')
     </script>
   </body>
   </html>

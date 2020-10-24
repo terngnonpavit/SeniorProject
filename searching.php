@@ -19,19 +19,19 @@ $type=$_POST['type'] ;
 $sql='';
 if  ($type=='all')
 {
-  $sql = "select titleTH , titleEN, author
-          from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+  $sql = "select titleTH , titleEN, author, date
+          from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
           UNION
-          select titleTH , titleEN, author
-          from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+          select titleTH , titleEN, author, date
+          from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
           UNION
-          select titleTH , titleEN, author
-          from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+          select titleTH , titleEN, author, date
+          from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
           ";
 }
 else
 {
-  $sql = "select * from ".$type." where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'";
+  $sql = "select * from ".$type." where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'";
 }
  echo $sql."<br />";
 

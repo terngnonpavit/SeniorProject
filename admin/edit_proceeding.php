@@ -128,7 +128,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $type="proceedings";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
 
-          $sql = "UPDATE `proceedings` SET `titleEN` = '$titleEN', `author` = '$author', `titleTH` = '$titleTH', `date` = '$date', `place` = '$place', `titleConference` = '$titleConference' WHERE `proceedings`.`id` = $id;";
+          $sql = "UPDATE `proceedings` SET `titleEN` = '$titleEN', `author` = '$author', `titleTH` = '$titleTH', `date` = '$date', `place` = '$place', `titleConference` = '$titleConference', `file_path` = '$file_path' WHERE `proceedings`.`id` = $id;";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             // header('Location: http://localhost/seniorproject/admin/admin.php');

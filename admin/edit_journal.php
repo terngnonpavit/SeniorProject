@@ -143,7 +143,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
           $sql = "UPDATE `journals` SET `author` = '$author', `date` = '$date', `publishedin` =  '$publishedin', `titleTH` = '$titleTH', `volume` = '$volume', `number` = '$number', `page` = '$page'
-          , `titleEN` = '$titleEN' WHERE `journals`.`id` = $id;";
+          , `titleEN` = '$titleEN', `file_path` = '$file_path' WHERE `journals`.`id` = $id;";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             // header('Location: http://localhost/seniorproject/admin/admin.php');

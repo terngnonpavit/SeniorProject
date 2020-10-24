@@ -22,18 +22,26 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
   </head>
   <body>
     <?php require('../navbar.php');?>
-
     <div class="container">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#books">Books</a>
+          <a class="nav-link active text-success" data-toggle="tab" href="#books">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#journals">Journals</a>
+          <a class="nav-link text-info" data-toggle="tab" href="#journals">Journals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#proceedings">Proceedings</a>
+          <a class="nav-link text-primary" data-toggle="tab" href="#proceedings">Proceedings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-success" data-toggle="tab" href="#scholarship_book">ขอทุนการเขียนตำรา</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-info" data-toggle="tab" href="#scholarship_journal">ขอทุนวารสารทางวิชาการ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-primary" data-toggle="tab" href="#scholarship_proceeding">ขอทุนตีพิมพ์เอกสารการประชุมวิชาการ</a>
         </li>
       </ul>
 
@@ -59,6 +67,27 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <a href="create_proceedings.php" class="btn btn-primary">Create</a>
           </h3>
           <?php require('admin_proceedings.php');?>
+        </div>
+        <div id="scholarship_book" class="container tab-pane fade"><br>
+          <h3>
+            ขอทุนวิจัยการเขียนตำรา
+            <a href="scholarship_book.php" class="btn btn-success">Create</a>
+          </h3>
+          <?php require('admin_scholarship_book.php');?>
+        </div>
+        <div id="scholarship_journal" class="container tab-pane fade"><br>
+          <h3>
+            ขอทุนวิจัยการตีพิมพ์ในวารสารทางวิชาการ
+            <a href="scholarship_journal.php" class="btn btn-info">Create</a>
+          </h3>
+          <?php require('admin_scholarship_journal.php');?>
+        </div>
+        <div id="scholarship_proceeding" class="container tab-pane fade"><br>
+          <h3>
+            ขอทุนวิจัยการตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการ
+            <a href="scholarship_proceeding.php" class="btn btn-primary">Create</a>
+          </h3>
+          <?php require('admin_scholarship_proceeding.php');?>
         </div>
       </div>
     </div>

@@ -268,7 +268,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
-            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/scholarship_menu  .php'</script>";
+            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }

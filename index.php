@@ -55,18 +55,19 @@
           if  ($type=='all')
           {
             $sql = "select titleTH , titleEN, author, date, type, id
-                    from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+                    from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     UNION
                     select titleTH , titleEN, author, date, type, id
-                    from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+                    from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     UNION
                     select titleTH , titleEN, author, date, type, id
-                    from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'
+                    from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
+                    order by titleEN
                     ";
           }
           else
           {
-            $sql = "select * from ".$type." where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%'";
+            $sql = "select * from ".$type." where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%' order by titleEN";
           }
            // echo $sql."<br />";
 

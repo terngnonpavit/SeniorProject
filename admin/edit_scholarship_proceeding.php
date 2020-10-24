@@ -46,8 +46,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
       $conference_name=$row['conference_name'];
-      $place=$row['place'];
-      $date=$row['date'];
+      $place_and_date=$row['place_and_date'];
       $type_of_document=$row['type_of_document'];
       $type_of_publication=$row['type_of_publication'];
       $approval=$row['approval'];
@@ -89,12 +88,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อการประชุมวิชาการ" name="conference_name" value="<?php echo $conference_name; ?>">
             </div>
             <div class="form-group">
-              <label for="place">สถานที่</label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกสถานที่" name="place" value="<?php echo $place; ?>">
-            </div>
-            <div class="form-group">
-              <label for="date">วัน/เดือน/ปี</label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
+              <label for="place_and_date">สถานที่ วันเดือนปี ที่จัด</label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกสถานที่ วันเดือนปี ที่จัด" name="place_and_date" value="<?php echo $place_and_date; ?>">
             </div>
             <div class="form-group">
               <label for="type_of_document">ประเภทของผลงาน</label>
@@ -191,8 +186,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $conference_name=$_POST['conference_name'];
-          $place=$_POST['place'];
-          $date=$_POST['date'];
+          $place_and_date=$_POST['place_and_date'];
           $type_of_document=$_POST['type_of_document'];
           $type_of_publication=$_POST['type_of_publication'];
           $approval=$_POST['approval'];
@@ -212,14 +206,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           }
           $form_document_str .= $other;
 
-          $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place`='$place', `date`='$date', `type_of_document`='$type_of_document'
+          $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place_and_date`='$place_and_date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
           , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `certification`='$certification', `amount`='$amount', `amount_text`='$amount_text' WHERE `scholarship_proceeding`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
-            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/scholarship_menu.php'</script>";
+            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }
