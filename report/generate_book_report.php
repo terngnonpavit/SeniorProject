@@ -219,6 +219,7 @@ if ($conn->connect_error) {
 }
 
 $id=$_GET['id'];
+$save=$_GET['save'];
 $sql = "select * from scholarship_book where id=$id";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -254,6 +255,7 @@ if ($result->num_rows > 0) {
     $applicant=$row['applicant'];
     $head_of_department=$row['head_of_department'];
     $department_name=$row['department_name'];
+    $id=$row['id'];
   }
 }
 
@@ -486,7 +488,26 @@ $npdf->WriteHTML("
 $section9_1.....$department_name.....<br>
 ");
 
-
-$npdf->Output();
+if(isset($_GET['save']) && $_GET['save']=='true'){
+  $npdf->Output("./save_generate_pdf/$id.pdf",'F');
+  echo "
+  <!DOCTYPE html>
+  <html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='https://printjs-4de6.kxcdn.com/print.min.js'></script>
+  </head>
+  <body>
+    <script>
+      printJS('./seniorproject/report/save_generate_pdf/$id.pdf')
+    </script>
+  </body>
+  </html>
+  ";
+}
+else{
+  $npdf->Output();
+}
 
 ?>
