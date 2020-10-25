@@ -96,45 +96,53 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="page_amount">ปริมาณเนื้อหา(จำนวนหน้า)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุจำนวนหน้า" name="page_amount">
           </div>
+          <br>
+          <hr>
           <div class="form-group">
-            <label for="chapter_no_1">บทที่</label>
+            <label for="chapter_no_1">บทที่(1)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_1">
           </div>
           <div class="form-group">
-            <label for="chapter_name_1">ชื่อบท</label>
+            <label for="chapter_name_1">ชื่อบท(1)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_1">
           </div>
           <div class="form-group">
-            <label for="content_1">เนื้อหา</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" name="content_1">
+            <label for="content_1">เนื้อหา(1)</label>
+            <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_1"></textarea>
           </div>
+          <br>
+          <hr>
           <div class="form-group">
-            <label for="chapter_no_2">บทที่</label>
+            <label for="chapter_no_2">บทที่(2)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_2">
           </div>
           <div class="form-group">
-            <label for="chapter_name_2">ชื่อบท</label>
+            <label for="chapter_name_2">ชื่อบท(2)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_2">
           </div>
           <div class="form-group">
-            <label for="content_2">เนื้อหา</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" name="content_2">
+            <label for="content_2">เนื้อหา(2)</label>
+            <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_2"></textarea>
           </div>
+          <br>
+          <hr>
           <div class="form-group">
-            <label for="chapter_no_3">บทที่</label>
+            <label for="chapter_no_3">บทที่(3)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_3">
           </div>
           <div class="form-group">
-            <label for="chapter_name_3">ชื่อบท</label>
+            <label for="chapter_name_3">ชื่อบท(3)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_3">
           </div>
           <div class="form-group">
-            <label for="content_3">เนื้อหา</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" name="content_3">
+            <label for="content_3">เนื้อหา(3)</label>
+            <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_3"></textarea>
           </div>
+          <br>
+          <hr>
           <div class="form-group">
             <label for="teaching_history">ประวัติการสอน(โดยสังเขป)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุประวัติการสอน(โดยสังเขป)" name="teaching_history">
+            <textarea type="text" class="form-control" placeholder="กรุณาระบุประวัติการสอน(โดยสังเขป)" rows="5" name="teaching_history"></textarea>
           </div>
           <div class="form-group">
             <label for="applicant">ลงชื่อ(ผู้ขอรับทุน)</label>
@@ -209,7 +217,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/scholarship_menu.php'</script>";
+            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }

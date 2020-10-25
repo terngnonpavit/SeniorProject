@@ -20,16 +20,20 @@
       $id=$row['id'];
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
+      $author=$row['author'];
+      $conference_name=$row['conference_name'];
 
       $no++;
 
       echo "
       <div class='card'>
         <div class='card-header'>
-          <a class='text-primary' href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=false'><h4> $no.  $titleTH </h4></a>
+          <a class='text-primary' href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=false'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
-          <p><strong>title(EN):</strong> $titleEN </p>
+          <p><strong>title(TH):</strong> $titleTH </p>
+          <p><strong>Author:</strong> $author </p>
+          <p><strong>Conference:</strong> $conference_name </p>
         </div>
         <div class='card-footer'>
           <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-outline-danger'>Delete</a>

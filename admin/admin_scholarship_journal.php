@@ -20,16 +20,18 @@
       $id=$row['id'];
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
+      $author=$row['author'];
 
       $no++;
 
       echo "
       <div class='card'>
         <div class='card-header'>
-          <a class='text-info' href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=false'><h4> $no.  $titleTH </h4></a>
+          <a class='text-info' href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=false'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
-          <p><strong>title(EN):</strong> $titleEN </p>
+          <p><strong>title(TH):</strong> $titleTH </p>
+          <p><strong>Author:</strong> $author </p>
         </div>
         <div class='card-footer'>
           <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_journal' class='btn btn-outline-danger'>Delete</a>

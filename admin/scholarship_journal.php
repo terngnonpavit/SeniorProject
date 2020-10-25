@@ -42,15 +42,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group">
             <label for="journal_name">ชื่อวารสารที่ตีพิมพ์</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ" name="journal_name">
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ์" name="journal_name">
           </div>
           <div class="form-group">
             <label for="year">ปีที่ ฉบับที่ เลขหน้า</label>
             <input type="text" class="form-control" placeholder="กรุณากรอกปีที่ ฉบับที่ เลขหน้า" name="year">
           </div>
           <div class="form-group">
-            <label for="date">วัน/เดือน/ปี</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี" name="date">
+            <label for="date">วัน/เดือน/ปี ที่ตีพิมพ์</label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี ที่ตีพิมพ์" name="date">
           </div>
           <div class="form-group">
             <label for="type_of_document">ประเภทของผลงาน</label>
@@ -150,7 +150,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/scholarship_menu.php'</script>";
+            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }

@@ -255,10 +255,10 @@ $journal_name=$npdf->conv($journal_name);
 $year=$npdf->conv($year);
 $date=$npdf->conv($date);
 $type_of_document=$npdf->conv($type_of_document);
-$type_of_publication=$npdf->conv($type_of_publication);
+// $type_of_publication=$npdf->conv($type_of_publication);
 $database_name=$npdf->conv($database_name);
-$approval=$npdf->conv($approval);
-$participation=$npdf->conv($participation);
+// $approval=$npdf->conv($approval);
+// $participation=$npdf->conv($participation);
 $amount=$npdf->conv($amount);
 $amount_text=$npdf->conv($amount_text);
 $applicant=$npdf->conv($applicant);
@@ -336,7 +336,7 @@ $section2=$npdf->conv('ประเภทของผลงาน');
 $npdf->WriteHTML("<br><br><b>    $section2</b>");
 //1
 $npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(17,87);
+$npdf->SetXY(17,97);
 if($type_of_document=="research_article"){
   $npdf->write(6.5,'3');
 }

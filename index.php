@@ -54,13 +54,13 @@
           $sql='';
           if  ($type=='all')
           {
-            $sql = "select titleTH , titleEN, author, date, type, id
+            $sql = "select titleTH , titleEN, author, date, type, id, file_path
                     from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     UNION
-                    select titleTH , titleEN, author, date, type, id
+                    select titleTH , titleEN, author, date, type, id, file_path
                     from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     UNION
-                    select titleTH , titleEN, author, date, type, id
+                    select titleTH , titleEN, author, date, type, id, file_path
                     from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     order by titleEN
                     ";
@@ -72,7 +72,8 @@
            // echo $sql."<br />";
 
           $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
+
+          if (isset($result->num_rows) && $result->num_rows > 0) {
             //output data of each row
             $no = 0;
             echo "<h4>Showing results for $search</h4>";
