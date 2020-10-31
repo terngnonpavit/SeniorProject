@@ -52,7 +52,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $approval=$row['approval'];
       $participation=$row['participation'];
       $form_document=$row['form_document'];
-      $certification=$row['certification'];
+      // $certification=$row['certification'];
       $amount=$row['amount'];
       $amount_text=$row['amount_text'];
       $applicant=$row['applicant'];
@@ -193,7 +193,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $participation=$_POST['participation'];
           $form_document=$_POST['form_document'];
           $other=$_POST['other'];
-          $certification=$_POST['certification'];
+          // $certification=$_POST['certification'];
           $amount=$_POST['amount'];
           $amount_text=$_POST['amount_text'];
           $applicant=$_POST['applicant'];
@@ -208,7 +208,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place_and_date`='$place_and_date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
-          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `certification`='$certification', `amount`='$amount', `amount_text`='$amount_text' WHERE `scholarship_proceeding`.`id` = $id;";
+          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text' WHERE `scholarship_proceeding`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

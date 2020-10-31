@@ -25,7 +25,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <div class="container">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active text-success" data-toggle="tab" href="#books">Books</a>
         </li>
         <li class="nav-item">
@@ -33,58 +33,58 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         </li>
         <li class="nav-item">
           <a class="nav-link text-primary" data-toggle="tab" href="#proceedings">Proceedings</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link active text-success" data-toggle="tab" href="#scholarship_book">ตำรา(Book)</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-success" data-toggle="tab" href="#scholarship_book">ขอทุนการเขียนตำรา</a>
+          <a class="nav-link text-info" data-toggle="tab" href="#scholarship_journal">วารสารทางวิชาการ(Journal)</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-info" data-toggle="tab" href="#scholarship_journal">ขอทุนวารสารทางวิชาการ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-primary" data-toggle="tab" href="#scholarship_proceeding">ขอทุนตีพิมพ์เอกสารการประชุมวิชาการ</a>
+          <a class="nav-link text-primary" data-toggle="tab" href="#scholarship_proceeding">เอกสารจากการประชุมวิชาการ(Proceeding)</a>
         </li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div id="books" class="container tab-pane active"><br>
+        <!-- <div id="books" class="container tab-pane active"><br>
           <h3>
             Books
             <a href="create_books.php" class="btn btn-success">Create</a>
           </h3>
-          <?php require('admin_books.php');?>
+          <?php //require('admin_books.php');?>
         </div>
         <div id="journals" class="container tab-pane fade"><br>
           <h3>
             Journals
             <a href="create_journals.php" class="btn btn-info">Create</a>
           </h3>
-          <?php require('admin_journals.php');?>
+          <?php //require('admin_journals.php');?>
         </div>
         <div id="proceedings" class="container tab-pane fade"><br>
           <h3>
             Proceedings
             <a href="create_proceedings.php" class="btn btn-primary">Create</a>
           </h3>
-          <?php require('admin_proceedings.php');?>
-        </div>
-        <div id="scholarship_book" class="container tab-pane fade"><br>
+          <?php //require('admin_proceedings.php');?>
+        </div> -->
+        <div id="scholarship_book" class="container tab-pane active"><br>
           <h3>
-            ขอทุนวิจัยการเขียนตำรา
+            ตำรา(Book)
             <a href="scholarship_book.php" class="btn btn-success">Create</a>
           </h3>
           <?php require('admin_scholarship_book.php');?>
         </div>
         <div id="scholarship_journal" class="container tab-pane fade"><br>
           <h3>
-            ขอทุนวิจัยการตีพิมพ์ในวารสารทางวิชาการ
+            วารสารทางวิชาการ(Journal)
             <a href="scholarship_journal.php" class="btn btn-info">Create</a>
           </h3>
           <?php require('admin_scholarship_journal.php');?>
         </div>
         <div id="scholarship_proceeding" class="container tab-pane fade"><br>
           <h3>
-            ขอทุนวิจัยการตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการ
+            เอกสารจากการประชุมวิชาการ(Proceeding)
             <a href="scholarship_proceeding.php" class="btn btn-primary">Create</a>
           </h3>
           <?php require('admin_scholarship_proceeding.php');?>

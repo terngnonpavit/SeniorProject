@@ -78,8 +78,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         <div class="container">
           <form action='<?php echo "http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id"?>' method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="year">ปีงบประมาณ</label>
-                <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ" name="year" value="<?php echo $year; ?>">
+                <label for="year">ปีงบประมาณ(พ.ศ.)</label>
+                <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ(พ.ศ.)" name="year" value="<?php echo $year; ?>">
               </div>
               <div class="form-group">
                 <label for="titleTH">ชื่อตำรา(ไทย)</label>
@@ -259,7 +259,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department_name=$_POST['department_name'];
 
           $sql = "UPDATE `scholarship_book` SET `year`='$year', `titleTH`='$titleTH', `titleEN`='$titleEN', `writer_name`='$writer_name', `writer_department`='$writer_department', `write_ratio`='$write_ratio', `co_writer_name`='$co_writer_name', `co_writer_department`='$co_writer_department'
-          , `co_write_ratio`='$co_writer_ratio'
+          , `co_write_ratio`='$co_write_ratio'
           , `keywordTH`='$keywordTH', `keywordEN`='$keywordEN', `amount`='$amount', `amount_text`='$amount_text', `subject_no`='$subject_no', `subject`='$subject', `for_student`='$for_student', `student_year`='$student_year', `page_amount`='$page_amount', `chapter_no_1`='$chapter_no_1'
           , `chapter_name_1`='$chapter_name_1'
           , `content_1`='$content_1', `chapter_no_2`='$chapter_no_2', `chapter_name_2`='$chapter_name_2', `content_2`='$content_2', `chapter_no_3`='$chapter_no_3', `chapter_name_3`='$chapter_name_3', `content_3`='$content_3', `teaching_history`='$teaching_history'

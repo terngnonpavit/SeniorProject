@@ -235,7 +235,7 @@ if ($result->num_rows > 0) {
     $approval=$row['approval'];
     $participation=$row['participation'];
     $form_document=$row['form_document'];
-    $certification=$row['certification'];
+    // $certification=$row['certification'];
     $amount=$row['amount'];
     $amount_text=$row['amount_text'];
     $applicant=$row['applicant'];
@@ -438,7 +438,7 @@ $npdf->SetXY(45,155);
 $npdf->write(6.5,"$section4_2");
 //2
 $npdf->SetFont('ZapfDingbats','', 13);
-$npdf->SetXY(35,163);
+$npdf->SetXY(40,163);
 if($approval=="กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)"){
   $npdf->write(6.5,'3');
 }

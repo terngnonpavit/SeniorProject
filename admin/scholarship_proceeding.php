@@ -70,7 +70,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group">
             <label for="approval">การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์</label>
             <select class="form-control" name="approval">
-                <option value="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)ิ">กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)</option>
+                <option value="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)">กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)</option>
                 <option value="กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)">กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)</option>
             </select>
           </div>
@@ -150,7 +150,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $participation=$_POST['participation'];
           $form_document=$_POST['form_document'];
           $other=$_POST['other'];
-          $certification=$_POST['certification'];
+          // $certification=$_POST['certification'];
           $amount=$_POST['amount'];
           $amount_text=$_POST['amount_text'];
           $applicant=$_POST['applicant'];
@@ -163,7 +163,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           }
           $form_document_str .= $other;
 
-          $sql = "INSERT INTO `scholarship_proceeding` (`author`, `department`, `titleTH`, `titleEN`, `conference_name`, `place_and_date`, `type_of_document`, `type_of_publication`, `approval`, `participation`, `form_document`, `certification`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$conference_name', '$place_and_date', '$type_of_document', '$type_of_publication', '$approval', '$participation', '$form_document_str', '$certification', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
+          $sql = "INSERT INTO `scholarship_proceeding` (`author`, `department`, `titleTH`, `titleEN`, `conference_name`, `place_and_date`, `type_of_document`, `type_of_publication`, `approval`, `participation`, `form_document`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$conference_name', '$place_and_date', '$type_of_document', '$type_of_publication', '$approval', '$participation', '$form_document_str', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

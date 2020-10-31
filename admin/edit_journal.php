@@ -66,7 +66,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="Enter author" name="author" value="<?php echo $author; ?>">
           </div>
           <div class="form-group">
-            <label for="publishedin">published in</label>
+            <label for="publishedin">journal name</label>
             <input type="text" class="form-control" placeholder="Enter published in" name="publishedin" value="<?php echo $publishedin; ?>">
           </div>
           <div class="form-group">

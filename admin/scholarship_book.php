@@ -25,8 +25,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <div class="container">
       <form action="scholarship_book.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="year">ปีงบประมาณ</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ" name="year">
+            <label for="year">ปีงบประมาณ(พ.ศ.)</label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ(พ.ศ.)" name="year">
           </div>
           <div class="form-group">
             <label for="titleTH">ชื่อตำรา(ไทย)</label>
@@ -156,6 +156,18 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น คอมพิวเตอร์)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name">
           </div>
+          <div class="form-group">
+            <label for="publisher">สำนักพิมพ์(publisher)</label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุสำนักพิมพ์" name="publisher">
+          </div>
+          <div class="form-group">
+            <label for="date">วัน/เดือน/ปี</label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุวัน/เดือน/ปี" name="date">
+          </div>
+          <div class="form-group">
+            <label for="book_file">file</label>
+            <input type="file" class="form-control" placeholder="Upload file" name="book_file">
+          </div>
           <button type="submit" class="btn btn-success">Done</button>
       </form>
     </div>
@@ -179,41 +191,57 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['year']) && $_POST['year'] != '')
          {
-          $year=$_POST['year'];
-          $titleTH=$_POST['titleTH'];
-          $titleEN=$_POST['titleEN'];
-          $writer_name=$_POST['writer_name'];
-          $writer_department=$_POST['writer_department'];
-          $write_ratio=$_POST['write_ratio'];
-          $co_writer_name=$_POST['co_writer_name'];
-          $co_writer_department=$_POST['co_writer_department'];
-          $co_write_ratio=$_POST['co_write_ratio'];
-          $keywordTH=$_POST['keywordTH'];
-          $keywordEN=$_POST['keywordEN'];
-          $amount=$_POST['amount'];
-          $amount_text=$_POST['amount_text'];
-          $subject_no=$_POST['subject_no'];
-          $subject=$_POST['subject'];
-          $for_student=$_POST['for_student'];
-          $student_year=$_POST['student_year'];
-          $page_amount=$_POST['page_amount'];
-          $chapter_no_1=$_POST['chapter_no_1'];
-          $chapter_no_2=$_POST['chapter_no_2'];
-          $chapter_no_3=$_POST['chapter_no_3'];
-          $chapter_name_1=$_POST['chapter_name_1'];
-          $chapter_name_2=$_POST['chapter_name_2'];
-          $chapter_name_3=$_POST['chapter_name_3'];
-          $content_1=$_POST['content_1'];
-          $content_2=$_POST['content_2'];
-          $content_3=$_POST['content_3'];
-          $teaching_history=$_POST['teaching_history'];
-          $applicant=$_POST['applicant'];
-          $head_of_department=$_POST['head_of_department'];
-          $department_name=$_POST['department_name'];
+              $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+              $targetfolder = $targetfolder . basename( $_FILES['book_file']['name']) ;
+
+              if(move_uploaded_file($_FILES['book_file']['tmp_name'], $targetfolder))
+              {
+               echo "The file " . basename($_FILES['book_file']['name']) . " is uploaded";
+              }
+              else
+              {
+               echo "Problem uploading file" . basename($_FILES['book_file']['name']);
+              }
+
+              $year=$_POST['year'];
+              $titleTH=$_POST['titleTH'];
+              $titleEN=$_POST['titleEN'];
+              $writer_name=$_POST['writer_name'];
+              $writer_department=$_POST['writer_department'];
+              $write_ratio=$_POST['write_ratio'];
+              $co_writer_name=$_POST['co_writer_name'];
+              $co_writer_department=$_POST['co_writer_department'];
+              $co_write_ratio=$_POST['co_write_ratio'];
+              $keywordTH=$_POST['keywordTH'];
+              $keywordEN=$_POST['keywordEN'];
+              $amount=$_POST['amount'];
+              $amount_text=$_POST['amount_text'];
+              $subject_no=$_POST['subject_no'];
+              $subject=$_POST['subject'];
+              $for_student=$_POST['for_student'];
+              $student_year=$_POST['student_year'];
+              $page_amount=$_POST['page_amount'];
+              $chapter_no_1=$_POST['chapter_no_1'];
+              $chapter_no_2=$_POST['chapter_no_2'];
+              $chapter_no_3=$_POST['chapter_no_3'];
+              $chapter_name_1=$_POST['chapter_name_1'];
+              $chapter_name_2=$_POST['chapter_name_2'];
+              $chapter_name_3=$_POST['chapter_name_3'];
+              $content_1=$_POST['content_1'];
+              $content_2=$_POST['content_2'];
+              $content_3=$_POST['content_3'];
+              $teaching_history=$_POST['teaching_history'];
+              $applicant=$_POST['applicant'];
+              $head_of_department=$_POST['head_of_department'];
+              $department_name=$_POST['department_name'];
+              $date=$_POST['date'];
+              $publisher=$_POST['publisher'];
+              $type="books";
+              $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
 
           $sql = "INSERT INTO `scholarship_book` (`year`, `titleTH`, `titleEN`, `writer_name`, `writer_department`, `write_ratio`, `co_writer_name`, `co_writer_department`, `co_write_ratio`, `keywordTH`, `keywordEN`, `amount`, `amount_text`, `subject_no`, `subject`, `for_student`, `student_year`, `page_amount`
-          , `chapter_no_1`, `chapter_name_1`, `content_1`, `chapter_no_2`, `chapter_name_2`, `content_2`, `chapter_no_3`, `chapter_name_3`, `content_3`, `teaching_history`, `applicant`, `head_of_department`, `department_name`) VALUES ('$year', '$titleTH', '$titleEN', '$writer_name', '$writer_department', '$write_ratio'
-          , '$co_writer_name', '$co_writer_department', '$co_write_ratio', '$keywordTH', '$keywordEN', '$amount', '$amount_text', '$subject_no', '$subject', '$for_student', '$student_year', '$page_amount', '$chapter_no_1', '$chapter_name_1', '$content_1', '$chapter_no_2', '$chapter_name_2', '$content_2', '$chapter_no_3', '$chapter_name_3', '$content_3', '$teaching_history', '$applicant', '$head_of_department', '$department_name')";
+          , `chapter_no_1`, `chapter_name_1`, `content_1`, `chapter_no_2`, `chapter_name_2`, `content_2`, `chapter_no_3`, `chapter_name_3`, `content_3`, `teaching_history`, `applicant`, `head_of_department`, `department_name`, `date`, `publisher`, `file_path`, `type`) VALUES ('$year', '$titleTH', '$titleEN', '$writer_name', '$writer_department', '$write_ratio'
+          , '$co_writer_name', '$co_writer_department', '$co_write_ratio', '$keywordTH', '$keywordEN', '$amount', '$amount_text', '$subject_no', '$subject', '$for_student', '$student_year', '$page_amount', '$chapter_no_1', '$chapter_name_1', '$content_1', '$chapter_no_2', '$chapter_name_2', '$content_2', '$chapter_no_3', '$chapter_name_3', '$content_3', '$teaching_history', '$applicant', '$head_of_department', '$department_name', '$date', '$publisher', '$file_path', '$type')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

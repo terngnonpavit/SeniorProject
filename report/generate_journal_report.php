@@ -401,7 +401,7 @@ $npdf->write(6.5,"$section3_2");
 //2
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(14,121);
-if($type_of_publication=="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาทิ"){
+if($type_of_publication=="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(14,121);
@@ -411,7 +411,7 @@ $npdf->SetXY(19,121);
 $npdf->write(6.5,"$section3_3");
 $npdf->SetXY(19,128);
 $npdf->write(6.5,"$section3_4");
-$npdf->SetXY(19,127);
+$npdf->SetXY(52,127);
 $npdf->write(6.5,"$database_name");
 $npdf->SetXY(50,128);
 $npdf->write(6.5,".............................");
@@ -447,7 +447,7 @@ $npdf->WriteHTML("<br><br><b>    $section4</b>");
 //1
 $npdf->SetFont('ZapfDingbats','', 13);
 $npdf->SetXY(35,159);
-if($approval=="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)ิ"){
+if($approval=="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)"){
   $npdf->write(6.5,'3');
 }
 $npdf->SetXY(35,159);
