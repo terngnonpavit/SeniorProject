@@ -46,7 +46,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
       $conference_name=$row['conference_name'];
-      $place_and_date=$row['place_and_date'];
+      $place=$row['place'];
+      $date=$row['date'];
       $type_of_document=$row['type_of_document'];
       $type_of_publication=$row['type_of_publication'];
       $approval=$row['approval'];
@@ -88,8 +89,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อการประชุมวิชาการ" name="conference_name" value="<?php echo $conference_name; ?>">
             </div>
             <div class="form-group">
-              <label for="place_and_date">สถานที่ วันเดือนปี ที่จัด</label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกสถานที่ วันเดือนปี ที่จัด" name="place_and_date" value="<?php echo $place_and_date; ?>">
+              <label for="place">สถานที่จัด</label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกสถานที่่จัด" name="place" value="<?php echo $place; ?>">
+            </div>
+            <div class="form-group">
+              <label for="date">วันเดือนปี ที่จัด</label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกวันเดือนปี ที่จัด" name="date" value="<?php echo $date; ?>">
             </div>
             <div class="form-group">
               <label for="type_of_document">ประเภทของผลงาน</label>
@@ -152,6 +157,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น คอมพิวเตอร์)</label>
               <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name" value="<?php echo $department_name; ?>">
             </div>
+            <div class="form-group">
+              <label for="proceeding_file">file</label>
+              <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
+            </div>
             <button type="submit" class="btn btn-success">Done</button>
         </form>
       </div>
@@ -181,12 +190,25 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         {
           $id=$_GET['id'];
 
+          $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+          $targetfolder = $targetfolder . basename( $_FILES['proceeding_file']['name']) ;
+
+          if(move_uploaded_file($_FILES['proceeding_file']['tmp_name'], $targetfolder))
+          {
+            echo "The file " . basename($_FILES['proceeding_file']['name']) . " is uploaded";
+          }
+          else
+          {
+            echo "Problem uploading file" . basename($_FILES['proceeding_file']['name']);
+          }
+
           $author=$_POST['author'];
           $department=$_POST['department'];
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $conference_name=$_POST['conference_name'];
-          $place_and_date=$_POST['place_and_date'];
+          $place=$_POST['place'];
+          $date=$_POST['date'];
           $type_of_document=$_POST['type_of_document'];
           $type_of_publication=$_POST['type_of_publication'];
           $approval=$_POST['approval'];
@@ -199,6 +221,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $applicant=$_POST['applicant'];
           $head_of_department=$_POST['head_of_department'];
           $department_name=$_POST['department_name'];
+          $type="scholarship_proceeding";
+          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
 
           $form_document_str='';
           foreach($form_document as $document){
@@ -206,9 +230,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           }
           $form_document_str .= $other;
 
-          $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place_and_date`='$place_and_date', `type_of_document`='$type_of_document'
+          $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place`='$place', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
-          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text' WHERE `scholarship_proceeding`.`id` = $id;";
+          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text', `type`='$type', `file_path`='$file_path' WHERE `scholarship_proceeding`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

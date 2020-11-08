@@ -2,9 +2,9 @@
   <div class="col-md-4">
     <select class="form-control" name="type">
         <option value="all">ทุกประเภท(All)</option>
-        <option value="books">หนังสือ(Books)</option>
-        <option value="journals">วารสารทางวิชาการ(Journals)</option>
-        <option value="proceedings">เอกสารจากการประชุมวิชาการ(Proceedings)</option>
+        <option value="scholarship_book">หนังสือ(Books)</option>
+        <option value="scholarship_journal">วารสารทางวิชาการ(Journals)</option>
+        <option value="scholarship_proceeding">เอกสารจากการประชุมวิชาการ(Proceedings)</option>
     </select>
   </div>
   <div class="col-md-6">

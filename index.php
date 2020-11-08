@@ -55,13 +55,13 @@
           if  ($type=='all')
           {
             $sql = "select titleTH , titleEN, author, date, type, id, file_path
-                    from proceedings where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
+                    from scholarship_proceeding where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     UNION
                     select titleTH , titleEN, author, date, type, id, file_path
-                    from books where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
+                    from scholarship_book where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     UNION
                     select titleTH , titleEN, author, date, type, id, file_path
-                    from journals where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
+                    from scholarship_journal where titleTH like '%".$search."%' or titleEN like '%".$search."%' or author like '%".$search."%' or date like '%".$search."%'
                     order by titleEN
                     ";
           }
@@ -96,7 +96,7 @@
               // $author <br />
               // .................................................<br />
               // ";
-              if($type=='books'){
+              if($type=='scholarship_book'){
                 echo "
                 <div class='card'>
                   <div class='card-header'>
@@ -115,7 +115,7 @@
                 <br />
                 ";
               }
-              else if($type=='journals'){
+              else if($type=='scholarship_journal'){
                 echo "
                 <div class='card'>
                   <div class='card-header'>
@@ -134,7 +134,7 @@
                 <br />
                 ";
               }
-              else if($type=='proceedings'){
+              else if($type=='scholarship_proceeding'){
                 echo "
                 <div class='card'>
                   <div class='card-header'>

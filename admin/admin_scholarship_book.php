@@ -22,12 +22,13 @@
       $titleEN=$row['titleEN'];
       $writer_name=$row['writer_name'];
       $file_path=$row['file_path'];
+      $type=$row['type'];
       $no++;
 
       echo "
       <div class='card'>
         <div class='card-header'>
-          <a class='text-success' href=''><h4> $no.  $titleEN </h4></a>
+          <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
           <p><strong>title(TH):</strong> $titleTH </p>

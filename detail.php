@@ -59,18 +59,18 @@
             $date=$row['date'];
             $type=$row['type'];
 
-            if($type=='books'){
-                $page=$row['page'];
+            if($type=='scholarship_book'){
+                $page_amount=$row['page_amount'];
                 $publisher=$row['publisher'];
                 $date=$row['date'];
 
               echo "
               <div class='card'>
                 <div class='card-body'>
-                  <p><strong>title(TH):</strong> $titleTH </p>
-                  <p><strong>title(EN):</strong> $titleEN </p>
+                  <h3><strong></strong> $titleTH </h3>
+                  <h4><strong></strong> $titleEN </h4><hr>
                   <p><strong>author:</strong> $author </p>
-                  <p><strong>page:</strong> $page </p>
+                  <p><strong>page:</strong> $page_amount </p>
                   <p><strong>publisher:</strong> $publisher </p>
                   <p><strong>date:</strong> $date </p>
 
@@ -82,22 +82,20 @@
               ";
 
             }
-            else if($type=='journals'){
-              $publishedin=$row['publishedin'];
-              $volume=$row['volume'];
-              $number=$row['number'];
+            else if($type=='scholarship_journal'){
+              $journal_name=$row['journal_name'];
+              $year=$row['year'];
               $page=$row['page'];
               $date=$row['date'];
 
               echo "
               <div class='card'>
                 <div class='card-body'>
-                  <p><strong>title(TH):</strong> $titleTH </p>
-                  <p><strong>title(EN):</strong> $titleEN </p>
+                  <h3><strong></strong> $titleTH </h3>
+                  <h4><strong></strong> $titleEN </h4><hr>
                   <p><strong>author:</strong> $author </p>
-                  <p><strong>published in:</strong> $publishedin </p>
-                  <p><strong>volume:</strong> $volume </p>
-                  <p><strong>number</strong> $number </p>
+                  <p><strong>journal name:</strong> $journal_name </p>
+                  <p><strong>year:</strong> $year </p>
                   <p><strong>page:</strong> $page </p>
                   <p><strong>date:</strong> $date </p>
                   <span class='badge badge-info'>Journals</span>
@@ -107,18 +105,18 @@
               <br/>
               ";
             }
-            else if($type=='proceedings'){
-              $titleConference=$row['titleConference'];
+            else if($type=='scholarship_proceeding'){
+              $conference_name=$row['conference_name'];
               $date=$row['date'];
               $place=$row['place'];
 
               echo "
               <div class='card'>
                 <div class='card-body'>
-                  <p><strong>title(TH):</strong> $titleTH </p>
-                  <p><strong>title(EN):</strong> $titleEN </p>
+                  <h3><strong></strong> $titleTH </h3>
+                  <h4><strong></strong> $titleEN </h4><hr>
                   <p><strong>author:</strong> $author </p>
-                  <p><strong>titleConference:</strong> $titleConference </p>
+                  <p><strong>conference name:</strong> $conference_name </p>
                   <p><strong>date:</strong> $date </p>
                   <p><strong>place:</strong> $place </p>
 

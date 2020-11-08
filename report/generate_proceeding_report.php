@@ -229,7 +229,8 @@ if ($result->num_rows > 0) {
     $titleTH=$row['titleTH'];
     $titleEN=$row['titleEN'];
     $conference_name=$row['conference_name'];
-    $place_and_date=$row['place_and_date'];
+    $place=$row['place'];
+    $date=$row['date'];
     $type_of_document=$row['type_of_document'];
     $type_of_publication=$row['type_of_publication'];
     $approval=$row['approval'];
@@ -252,7 +253,8 @@ $department=$npdf->conv($department);
 $titleTH=$npdf->conv($titleTH);
 $titleEN=$npdf->conv($titleEN);
 $conference_name=$npdf->conv($conference_name);
-$place_and_date=$npdf->conv($place_and_date);
+$place=$npdf->conv($place);
+$date=$npdf->conv($date);
 // $type_of_document=$npdf->conv($type_of_document);
 // $type_of_publication=$npdf->conv($type_of_publication);
 // $approval=$npdf->conv($approval);
@@ -326,7 +328,7 @@ $npdf->write(6.5,"..............................................................
 $npdf->SetXY(15,74);
 $npdf->write(6.5,"$section1_5");
 $npdf->SetXY(51,73);
-$npdf->write(6.5,"$place_and_date");
+$npdf->write(6.5,"$place $date");
 $npdf->SetXY(50,74);
 $npdf->write(6.5,".................................................................................................................................................................");
 

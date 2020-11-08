@@ -106,6 +106,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น คอมพิวเตอร์)</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name">
           </div>
+          <div class="form-group">
+            <label for="page">page</label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page">
+          </div>
+          <div class="form-group">
+            <label for="journal_file">file</label>
+            <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
+          </div>
           <button type="submit" class="btn btn-success">Done</button>
       </form>
     </div>
@@ -128,6 +136,18 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '')
          {
+           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+           $targetfolder = $targetfolder . basename( $_FILES['journal_file']['name']) ;
+
+           if(move_uploaded_file($_FILES['journal_file']['tmp_name'], $targetfolder))
+           {
+             echo "The file " . basename($_FILES['journal_file']['name']) . " is uploaded";
+           }
+           else
+           {
+             echo "Problem uploading file" . basename($_FILES['journal_file']['name']);
+           }
+
           $author=$_POST['author'];
           $department=$_POST['department'];
           $titleTH=$_POST['titleTH'];
@@ -145,8 +165,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $applicant=$_POST['applicant'];
           $head_of_department=$_POST['head_of_department'];
           $department_name=$_POST['department_name'];
+          $page=$_POST['page'];
+          $type="scholarship_journal";
+          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
-          $sql = "INSERT INTO `scholarship_journal` (`author`, `department`, `titleTH`, `titleEN`, `journal_name`, `year`, `date`, `type_of_document`, `type_of_publication`, `database_name`, `approval`, `participation`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$journal_name', '$year', '$date', '$type_of_document', '$type_of_publication', '$database_name', '$approval', '$participation', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name')";
+          $sql = "INSERT INTO `scholarship_journal` (`author`, `department`, `titleTH`, `titleEN`, `journal_name`, `year`, `date`, `type_of_document`, `type_of_publication`, `database_name`, `approval`, `participation`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`, `page`, `type`, `file_path`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$journal_name', '$year', '$date', '$type_of_document', '$type_of_publication', '$database_name', '$approval', '$participation', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name', '$page', '$type', '$file_path')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

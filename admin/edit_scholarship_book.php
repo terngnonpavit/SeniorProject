@@ -71,6 +71,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $applicant=$row['applicant'];
       $head_of_department=$row['head_of_department'];
       $department_name=$row['department_name'];
+      $publisher=$row['publisher'];
+      $date=$row['date'];
 
       $conn->close();
     ?>
@@ -201,6 +203,18 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น ภาควิชาคอมพิวเตอร์)</label>
                 <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name" value="<?php echo $department_name; ?>">
               </div>
+              <div class="form-group">
+                <label for="publisher">สำนักพิมพ์(publisher)</label>
+                <input type="text" class="form-control" placeholder="กรุณาระบุสำนักพิมพ์" name="publisher" value="<?php echo $publisher; ?>">
+              </div>
+              <div class="form-group">
+                <label for="date">วัน/เดือน/ปี</label>
+                <input type="text" class="form-control" placeholder="กรุณาระบุวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
+              </div>
+              <div class="form-group">
+                <label for="book_file">file</label>
+                <input type="file" class="form-control" placeholder="Upload file" name="book_file">
+              </div>
               <button type="submit" class="btn btn-success">Done</button>
           </form>
         </div>
@@ -224,12 +238,25 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['year']) && $_POST['year'] != '')
         {
+          $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+          $targetfolder = $targetfolder . basename( $_FILES['book_file']['name']) ;
+
+          if(move_uploaded_file($_FILES['book_file']['tmp_name'], $targetfolder))
+          {
+           echo "The file " . basename($_FILES['book_file']['name']) . " is uploaded";
+          }
+          else
+          {
+           echo "Problem uploading file" . basename($_FILES['book_file']['name']);
+          }
+
           $id=$_GET['id'];
 
           $year=$_POST['year'];
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $writer_name=$_POST['writer_name'];
+          $author=$writer_name;
           $writer_department=$_POST['writer_department'];
           $write_ratio=$_POST['write_ratio'];
           $co_writer_name=$_POST['co_writer_name'];
@@ -257,13 +284,17 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $applicant=$_POST['applicant'];
           $head_of_department=$_POST['head_of_department'];
           $department_name=$_POST['department_name'];
+          $date=$_POST['date'];
+          $publisher=$_POST['publisher'];
+          $type="scholarship_book";
+          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
 
-          $sql = "UPDATE `scholarship_book` SET `year`='$year', `titleTH`='$titleTH', `titleEN`='$titleEN', `writer_name`='$writer_name', `writer_department`='$writer_department', `write_ratio`='$write_ratio', `co_writer_name`='$co_writer_name', `co_writer_department`='$co_writer_department'
+          $sql = "UPDATE `scholarship_book` SET `year`='$year', `titleTH`='$titleTH', `titleEN`='$titleEN', `writer_name`='$writer_name', `author`='$author', `writer_department`='$writer_department', `write_ratio`='$write_ratio', `co_writer_name`='$co_writer_name', `co_writer_department`='$co_writer_department'
           , `co_write_ratio`='$co_write_ratio'
           , `keywordTH`='$keywordTH', `keywordEN`='$keywordEN', `amount`='$amount', `amount_text`='$amount_text', `subject_no`='$subject_no', `subject`='$subject', `for_student`='$for_student', `student_year`='$student_year', `page_amount`='$page_amount', `chapter_no_1`='$chapter_no_1'
           , `chapter_name_1`='$chapter_name_1'
           , `content_1`='$content_1', `chapter_no_2`='$chapter_no_2', `chapter_name_2`='$chapter_name_2', `content_2`='$content_2', `chapter_no_3`='$chapter_no_3', `chapter_name_3`='$chapter_name_3', `content_3`='$content_3', `teaching_history`='$teaching_history'
-          , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name' WHERE `scholarship_book`.`id` = $id;";
+          , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `date`='$date', `publisher`='$publisher', `file_path`='$file_path', `type`='$type' WHERE `scholarship_book`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

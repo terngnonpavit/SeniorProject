@@ -207,6 +207,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               $titleTH=$_POST['titleTH'];
               $titleEN=$_POST['titleEN'];
               $writer_name=$_POST['writer_name'];
+              $author=$writer_name;
               $writer_department=$_POST['writer_department'];
               $write_ratio=$_POST['write_ratio'];
               $co_writer_name=$_POST['co_writer_name'];
@@ -236,11 +237,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               $department_name=$_POST['department_name'];
               $date=$_POST['date'];
               $publisher=$_POST['publisher'];
-              $type="books";
+              $type="scholarship_book";
               $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
 
-          $sql = "INSERT INTO `scholarship_book` (`year`, `titleTH`, `titleEN`, `writer_name`, `writer_department`, `write_ratio`, `co_writer_name`, `co_writer_department`, `co_write_ratio`, `keywordTH`, `keywordEN`, `amount`, `amount_text`, `subject_no`, `subject`, `for_student`, `student_year`, `page_amount`
-          , `chapter_no_1`, `chapter_name_1`, `content_1`, `chapter_no_2`, `chapter_name_2`, `content_2`, `chapter_no_3`, `chapter_name_3`, `content_3`, `teaching_history`, `applicant`, `head_of_department`, `department_name`, `date`, `publisher`, `file_path`, `type`) VALUES ('$year', '$titleTH', '$titleEN', '$writer_name', '$writer_department', '$write_ratio'
+          $sql = "INSERT INTO `scholarship_book` (`year`, `titleTH`, `titleEN`, `writer_name`, `author`, `writer_department`, `write_ratio`, `co_writer_name`, `co_writer_department`, `co_write_ratio`, `keywordTH`, `keywordEN`, `amount`, `amount_text`, `subject_no`, `subject`, `for_student`, `student_year`, `page_amount`
+          , `chapter_no_1`, `chapter_name_1`, `content_1`, `chapter_no_2`, `chapter_name_2`, `content_2`, `chapter_no_3`, `chapter_name_3`, `content_3`, `teaching_history`, `applicant`, `head_of_department`, `department_name`, `date`, `publisher`, `file_path`, `type`) VALUES ('$year', '$titleTH', '$titleEN', '$writer_name', '$author', '$writer_department', '$write_ratio'
           , '$co_writer_name', '$co_writer_department', '$co_write_ratio', '$keywordTH', '$keywordEN', '$amount', '$amount_text', '$subject_no', '$subject', '$for_student', '$student_year', '$page_amount', '$chapter_no_1', '$chapter_name_1', '$content_1', '$chapter_no_2', '$chapter_name_2', '$content_2', '$chapter_no_3', '$chapter_name_3', '$content_3', '$teaching_history', '$applicant', '$head_of_department', '$department_name', '$date', '$publisher', '$file_path', '$type')";
 
           if ($conn->query($sql) === TRUE) {
