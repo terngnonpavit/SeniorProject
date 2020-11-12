@@ -43,6 +43,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         <li class="nav-item">
           <a class="nav-link text-primary" data-toggle="tab" href="#scholarship_proceeding">เอกสารจากการประชุมวิชาการ(Proceeding)</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" data-toggle="tab" href="#teacher">อาจารย์(Teacher)</a>
+        </li>
       </ul>
 
       <!-- Tab panes -->
@@ -88,6 +91,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <a href="scholarship_proceeding.php" class="btn btn-primary">Create</a>
           </h3>
           <?php require('admin_scholarship_proceeding.php');?>
+        </div>
+        <div id="teacher" class="container tab-pane fade"><br>
+          <h3>
+            อาจารย์(Teacher)
+            <a href="create_teacher.php" class="btn btn-dark">Create</a>
+          </h3>
+          <?php require('admin_teacher.php');?>
         </div>
       </div>
     </div>
