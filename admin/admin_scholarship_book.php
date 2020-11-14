@@ -23,29 +23,54 @@
       $writer_name=$row['writer_name'];
       $file_path=$row['file_path'];
       $type=$row['type'];
-      $no++;
+      $check_scholarship=$row['check_scholarship'];
 
-      echo "
-      <div class='card'>
-        <div class='card-header'>
-          <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
+      $no++;
+      if($check_scholarship=='true'){
+        echo "
+        <div class='card'>
+          <div class='card-header'>
+            <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
+          </div>
+          <div class='card-body'>
+            <p><strong>title(TH):</strong> $titleTH </p>
+            <p><strong>Writer Name:</strong> $writer_name </p>
+            <a class='text-success' href='$file_path' target='_blank'>
+                <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+            </a>
+          </div>
+          <div class='card-footer'>
+            <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_book' class='btn btn-danger'>Delete</a>
+            <a href='http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/report/generate_book_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
+            <a href='http://localhost/seniorproject/report/generate_book_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
+          </div>
         </div>
-        <div class='card-body'>
-          <p><strong>title(TH):</strong> $titleTH </p>
-          <p><strong>Writer Name:</strong> $writer_name </p>
-          <a class='text-success' href='$file_path' target='_blank'>
-              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
+        <br />
+        ";
+      }
+      else{
+        echo "
+        <div class='card'>
+          <div class='card-header'>
+            <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
+          </div>
+          <div class='card-body'>
+            <p><strong>title(TH):</strong> $titleTH </p>
+            <p><strong>Writer Name:</strong> $writer_name </p>
+            <a class='text-success' href='$file_path' target='_blank'>
+                <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+            </a>
+          </div>
+          <div class='card-footer'>
+            <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_book' class='btn btn-danger'>Delete</a>
+            <a href='http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/admin/scholarship_book.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
+          </div>
         </div>
-        <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_book' class='btn btn-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id' class='btn btn-warning'>Edit</a>
-          <a href='http://localhost/seniorproject/report/generate_book_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
-          <a href='http://localhost/seniorproject/report/generate_book_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
-        </div>
-      </div>
-      <br />
-      ";
+        <br />
+        ";
+      }
     }
   }
   else {

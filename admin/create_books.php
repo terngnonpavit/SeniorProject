@@ -97,10 +97,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $page=$_POST['page'];
           $publisher=$_POST['publisher'];
           $date=$_POST['date'];
-          $type="books";
+          $type="scholarship_book";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
+          $check_scholarship="false";
 
-          $sql = "INSERT INTO `books` (`author`, `date`, `titleTH`, `publisher`, `id`, `page`, `titleEN`, `type`, `file_path`) VALUES ('$author', '$date', '$titleTH', '$publisher', NULL, '$page', '$titleEN', '$type', '$file_path')";
+          $sql = "INSERT INTO `scholarship_book` (`author`, `date`, `titleTH`, `publisher`, `page_amount`, `titleEN`, `type`, `file_path`, `check_scholarship`) VALUES ('$author', '$date', '$titleTH', '$publisher', '$page', '$titleEN', '$type', '$file_path', '$check_scholarship')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

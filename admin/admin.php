@@ -74,7 +74,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         <div id="scholarship_book" class="container tab-pane active"><br>
           <h3>
             ตำรา(Book)
-            <a href="scholarship_book.php" class="btn btn-success">Create</a>
+            <a href="create_books.php" class="btn btn-success">Create</a>
           </h3>
           <?php require('admin_scholarship_book.php');?>
         </div>
