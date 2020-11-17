@@ -28,6 +28,7 @@
       $no++;
       if($check_scholarship=='true'){
         echo "
+        <div class='col-md-6'>
         <div class='card'>
           <div class='card-header'>
             <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
@@ -46,11 +47,12 @@
             <a href='http://localhost/seniorproject/report/generate_book_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
           </div>
         </div>
-        <br />
+        </div>
         ";
       }
       else{
         echo "
+        <div class='col-md-6'>
         <div class='card'>
           <div class='card-header'>
             <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
@@ -68,7 +70,7 @@
             <a href='http://localhost/seniorproject/admin/scholarship_book.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
           </div>
         </div>
-        <br />
+        </div>
         ";
       }
     }

@@ -95,10 +95,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <div class="form-group">
               <label for="type_of_document">ประเภทของผลงาน</label>
               <select class="form-control" name="type_of_document" value="<?php echo $type_of_document; ?>">
-                  <option value="research_article" <?php if($type_of_document=="research_article") echo 'selected'?>>Research Article</option>
-                  <option value="review_article" <?php if($type_of_document=="review_article") echo 'selected'?>>Review Article</option>
-                  <option value="book" <?php if($type_of_document=="book") echo 'selected'?>>Book</option>
-                  <option value="book_chapter" <?php if($type_of_document=="book_chapter") echo 'selected'?>>Book Chapter</option>
+                  <option value="research_article" <?php if($type_of_document=="research_article") echo 'selected';?>>Research Article</option>
+                  <option value="review_article" <?php if($type_of_document=="review_article") echo 'selected';?>>Review Article</option>
+                  <option value="book" <?php if($type_of_document=="book") echo 'selected';?>>Book</option>
+                  <option value="book_chapter" <?php if($type_of_document=="book_chapter") echo 'selected';?>>Book Chapter</option>
               </select>
             </div>
             <div class="form-group">

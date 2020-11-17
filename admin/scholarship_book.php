@@ -46,155 +46,218 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $publisher=$row['publisher'];
       $date=$row['date'];
 
+      $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $head_of_department=$row['name'];
+
+      $active="Active";
+      $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        $teacher_name=[];
+        while($row = $result->fetch_assoc())  {
+          array_push($teacher_name,$row['name']);
+        }
+      }
+
       $conn->close();
     ?>
     <div class="container">
       <form action="scholarship_book.php/?id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data">
+
           <div class="form-group">
-            <label for="year">ปีงบประมาณ(พ.ศ.)</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ(พ.ศ.)" name="year">
-          </div>
-          <div class="form-group">
-            <label for="titleTH">ชื่อตำรา(ไทย)</label>
+            <label for="titleTH"><strong>ชื่อตำรา(ไทย)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อตำรา(ไทย)" name="titleTH" value="<?php echo $titleTH; ?>">
           </div>
           <div class="form-group">
-            <label for="titleEN">ชื่อตำรา(english)</label>
+            <label for="titleEN"><strong>ชื่อตำรา(english)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อตำรา(english)" name="titleEN" value="<?php echo $titleEN; ?>">
           </div>
-          <div class="form-group">
-            <label for="writer_name">ชื่อ-สกุลหัวหน้าโครงการ</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-สกุลหัวหน้าโครงการ" name="writer_name" value="<?php echo $writer_name; ?>">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="writer_name"><strong>ชื่อ-สกุลหัวหน้าโครงการ</strong></label>
+              <select class="form-control" name="writer_name">
+                  <?php
+                    foreach ($teacher_name as $name) {
+                      if($writer_name==$name){
+                        echo "<option value='$name' selected>$name</option>";
+                      }
+                      else{
+                        echo "<option value='$name'>$name</option>";
+                      }
+                    }
+                  ?>
+              </select>
+              <!-- <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-สกุลหัวหน้าโครงการ" name="writer_name" value="<?php echo $writer_name; ?>"> -->
+            </div>
+            <div class="form-group col-md-3">
+              <label for="write_ratio"><strong>สัดส่วนของการเขียนตำรา(%)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกสัดส่วนของการเขียนตำรา(%)" name="write_ratio">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="writer_department"><strong>ภาควิชา</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกภาควิชา" name="writer_department" value="คอมพิวเตอร์">
+            </div>
           </div>
           <div class="form-group">
-            <label for="writer_department">ภาควิชา</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกภาควิชา" name="writer_department">
+            <label for="publisher"><strong>สำนักพิมพ์(publisher)</strong></label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุสำนักพิมพ์" name="publisher" value="<?php echo $publisher; ?>">
+          </div>
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="page_amount"><strong>ปริมาณเนื้อหา(จำนวนหน้า)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุจำนวนหน้า" name="page_amount" value="<?php echo $page_amount; ?>">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="date"><strong>วัน/เดือน/ปีที่ตีพิมพ</strong>์</label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
+            </div>
+          </div>
+          <br>
+          <br>
+          <hr>
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="co_writer_name"><strong>ชื่อ-สกุลผู้ร่วมโครงการ</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-สกุลผู้ร่วมโครงการ" name="co_writer_name">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="co_write_ratio"><strong>สัดส่วนของการเขียนตำรา(%)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกสัดส่วนของการเขียนตำรา(เปอร์เซ็นต์)" name="co_write_ratio">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="co_writer_department"><strong>ภาควิชา</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกภาควิชา" name="co_writer_department" value="คอมพิวเตอร์">
+            </div>
           </div>
           <div class="form-group">
-            <label for="write_ratio">สัดส่วนของการเขียนตำรา(เปอร์เซ็นต์)</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกสัดส่วนของการเขียนตำรา(เปอร์เซ็นต์)" name="write_ratio">
-          </div>
-          <div class="form-group">
-            <label for="co_writer_name">ชื่อ-สกุลผู้ร่วมโครงการ</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-สกุลผู้ร่วมโครงการ" name="co_writer_name">
-          </div>
-          <div class="form-group">
-            <label for="co_writer_department">ภาควิชา</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกภาควิชา" name="co_writer_department">
-          </div>
-          <div class="form-group">
-            <label for="co_write_ratio">สัดส่วนของการเขียนตำรา(เปอร์เซ็นต์)</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกสัดส่วนของการเขียนตำรา(เปอร์เซ็นต์)" name="co_write_ratio">
-          </div>
-          <div class="form-group">
-            <label for="keywordTH">คำสำคัญ(ไทย)</label>
+            <label for="keywordTH"><strong>คำสำคัญ(ไทย)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณาระบุคำสำคัญ(ไทย)" name="keywordTH">
           </div>
           <div class="form-group">
-            <label for="keywordEN">คำสำคัญ(english)</label>
+            <label for="keywordEN"><strong>คำสำคัญ(english)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณาระบุคำสำคัญ(english)" name="keywordEN">
           </div>
-          <div class="form-group">
-            <label for="amount">จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 2,000)</label>
-            <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 2,000)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นข้อความ เช่น สองพัน)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount_text">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="amount_text">จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นข้อความ เช่น สองพัน)</label>
-            <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount_text">
+          <div class='row'>
+            <div class="form-group col-md-4">
+              <label for="subject_no"><strong>รายวิชา</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุรายวิชา" name="subject_no">
+            </div>
+            <div class="form-group col-md-8">
+              <label for="subject"><strong>ชื่อวิชา</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อวิชา" name="subject">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="subject_no">รายวิชา</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุรายวิชา" name="subject_no">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="for_student"><strong>สำหรับนักศึกษาระดับ</strong></label>
+              <select class="form-control" name="for_student">
+                  <option value="ปริญญาตรี">ปริญญาตรี</option>
+                  <option value="ปริญญาโท">ปริญญาโท</option>
+                  <option value="ปริญญาเอก">ปริญญาเอก</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="student_year"><strong>ชั้นปีที่</strong></label>
+              <select class="form-control" name="student_year">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="subject">ชื่อวิชา</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อวิชา" name="subject">
-          </div>
-          <div class="form-group">
-            <label for="for_student">สำหรับนักศึกษาระดับ(เช่น ปริญญาตรี)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุระดับนักศึกษา" name="for_student">
-          </div>
-          <div class="form-group">
-            <label for="student_year">ชั้นปีที่</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชั้นปี" name="student_year">
-          </div>
-          <div class="form-group">
-            <label for="page_amount">ปริมาณเนื้อหา(จำนวนหน้า)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุจำนวนหน้า" name="page_amount" value="<?php echo $page_amount; ?>">
-          </div>
+
           <br>
           <hr>
-          <div class="form-group">
-            <label for="chapter_no_1">บทที่(1)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_1">
+          <div class='row'>
+          <div class="form-group col-md-6">
+              <label for="chapter_no_1"><strong>บทที่(1)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_1">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="chapter_name_1"><strong>ชื่อบท(1)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_1">
+            </div>
           </div>
           <div class="form-group">
-            <label for="chapter_name_1">ชื่อบท(1)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_1">
-          </div>
-          <div class="form-group">
-            <label for="content_1">เนื้อหา(1)</label>
+            <label for="content_1"><strong>เนื้อหา(1)</strong></label>
             <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_1"></textarea>
           </div>
           <br>
           <hr>
-          <div class="form-group">
-            <label for="chapter_no_2">บทที่(2)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_2">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="chapter_no_2"><strong>บทที่(2)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_2">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="chapter_name_2"><strong>ชื่อบท(2)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_2">
+            </div>
           </div>
           <div class="form-group">
-            <label for="chapter_name_2">ชื่อบท(2)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_2">
-          </div>
-          <div class="form-group">
-            <label for="content_2">เนื้อหา(2)</label>
+            <label for="content_2"><strong>เนื้อหา(2)</strong></label>
             <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_2"></textarea>
           </div>
           <br>
           <hr>
-          <div class="form-group">
-            <label for="chapter_no_3">บทที่(3)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_3">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="chapter_no_3"><strong>บทที่(3)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_3">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="chapter_name_3"><strong>ชื่อบท(3)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_3">
+            </div>
           </div>
           <div class="form-group">
-            <label for="chapter_name_3">ชื่อบท(3)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_3">
-          </div>
-          <div class="form-group">
-            <label for="content_3">เนื้อหา(3)</label>
+            <label for="content_3"><strong>เนื้อหา(3)</strong></label>
             <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_3"></textarea>
           </div>
           <br>
           <hr>
           <div class="form-group">
-            <label for="teaching_history">ประวัติการสอน(โดยสังเขป)</label>
+            <label for="teaching_history"><strong>ประวัติการสอน(โดยสังเขป)</strong></label>
             <textarea type="text" class="form-control" placeholder="กรุณาระบุประวัติการสอน(โดยสังเขป)" rows="5" name="teaching_history"></textarea>
           </div>
-          <div class="form-group">
-            <label for="applicant">ลงชื่อ(ผู้ขอรับทุน)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อผู้ขอรับทุน" name="applicant">
+          <div class='row'>
+            <div class="form-group col-md-3">
+              <label for="applicant"><strong>ลงชื่อ(ผู้ขอรับทุน)</strong></label>
+              <select class="form-control" name="applicant">
+                  <?php
+                    foreach ($teacher_name as $name) {
+                      echo "<option value='$name'>$name</option>";
+                    }
+                  ?>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="head_of_department"><strong>ลงชื่อ(หัวหน้าภาควิชา)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อหัวหน้าภาควิชา" name="head_of_department" value="<?php echo $head_of_department; ?>">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="department_name"><strong>สังกัดของหัวหน้าภาควิชา</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name" value="คอมพิวเตอร์">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="year"><strong>ปีงบประมาณ(พ.ศ.)</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ(พ.ศ.)" name="year">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="head_of_department">ลงชื่อ(หัวหน้าภาควิชา)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อหัวหน้าภาควิชา" name="head_of_department">
-          </div>
-          <div class="form-group">
-            <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น คอมพิวเตอร์)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name">
-          </div>
-          <div class="form-group">
-            <label for="publisher">สำนักพิมพ์(publisher)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสำนักพิมพ์" name="publisher" value="<?php echo $publisher; ?>">
-          </div>
-          <div class="form-group">
-            <label for="date">วัน/เดือน/ปี</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
-          </div>
-          <div class="form-group">
-            <label for="book_file">file</label>
-            <input type="file" class="form-control" placeholder="Upload file" name="book_file">
-          </div>
-          <button type="submit" class="btn btn-success">Done</button>
+          <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
     </div>
 

@@ -31,6 +31,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="กรุณากรอกรหัสอาจารย์" name="teacher_code">
           </div>
           <div class="form-group">
+            <label for="title">คำนำหน้าชื่อ</label>
+            <select class="form-control" name="title">
+              <option value="อ.">อ.</option>
+              <option value="อ.ดร.">อ.ดร.</option>
+              <option value="ผศ.">ผศ.</option>
+              <option value="ผศ.ดร.">ผศ.ดร.</option>
+              <option value="รศ.">รศ.</option>
+              <option value="รศ.ดร.">รศ.ดร.</option>
+              <option value="ศ.">ศ.</option>
+              <option value="ศ.ดร.">ศ.ดร.</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label for="name">ชื่อ-นามสกุล</label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-นามสกุล" name="name">
           </div>
@@ -44,8 +57,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group">
             <label for="position">ตำแหน่ง</label>
             <select class="form-control" name="position">
-                <option value="หัวหน้าภาค">หัวหน้าภาค</option>
                 <option value="อาจารย์">อาจารย์</option>
+                <option value="หัวหน้าภาควิชา">หัวหน้าภาควิชา</option>
             </select>
           </div>
           <button type="submit" class="btn btn-success">Done</button>
@@ -71,12 +84,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['teacher_code']) && $_POST['teacher_code'] != '')
          {
 
+          $title=$_POST['title'];
           $name=$_POST['name'];
           $teacher_code=$_POST['teacher_code'];
           $status=$_POST['status'];
           $position=$_POST['position'];
 
-          $sql = "INSERT INTO `teacher` (`name`, `teacher_code`, `status`, `position`) VALUES ('$name', '$teacher_code', '$status', '$position')";
+          $sql = "INSERT INTO `teacher` (`name`, `teacher_code`, `status`, `position`, `title`) VALUES ('$name', '$teacher_code', '$status', '$position', '$title')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

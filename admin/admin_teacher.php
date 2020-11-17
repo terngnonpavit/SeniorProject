@@ -22,13 +22,14 @@
       $teacher_code=$row['teacher_code'];
       $status=$row['status'];
       $position=$row['position'];
+      $title=$row['title'];
 
       $no++;
 
       echo "
       <div class='card'>
         <div class='card-header'>
-          <h4> $no.  $name </h4>
+          <h4> $no. $title$name </h4>
         </div>
         <div class='card-body'>
           <p><strong>Code:</strong> $teacher_code </p>

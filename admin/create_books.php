@@ -22,38 +22,81 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
   <body>
     <?php require('../navbar.php');?>
 
+    <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "test";
+
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
+      // Check connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      $active="Active";
+      $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        $teacher_name=[];
+        while($row = $result->fetch_assoc())  {
+          array_push($teacher_name,$row['name']);
+        }
+      }
+
+      $conn->close();
+    ?>
+
     <div class="container">
-      <form action="create_books.php" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="titleTH">title(TH)</label>
-            <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
-          </div>
-          <div class="form-group">
-            <label for="titleEN">title(EN)</label>
-            <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
-          </div>
-          <div class="form-group">
-            <label for="author">author</label>
-            <input type="text" class="form-control" placeholder="Enter author" name="author">
-          </div>
-          <div class="form-group">
-            <label for="page">page</label>
-            <input type="text" class="form-control" placeholder="Enter page" name="page">
-          </div>
-          <div class="form-group">
-            <label for="publisher">publisher</label>
-            <input type="text" class="form-control" placeholder="Enter publisher" name="publisher">
-          </div>
-          <div class="form-group">
-            <label for="date">date</label>
-            <input type="text" class="form-control" placeholder="Enter date" name="date">
-          </div>
-          <div class="form-group">
-            <label for="book_file">file</label>
-            <input type="file" class="form-control" placeholder="Upload file" name="book_file">
-          </div>
-          <button type="submit" class="btn btn-success">Done</button>
-      </form>
+      <br>
+      <div>
+        <form action="create_books.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="titleTH"><strong>ชื่อผลงาน(ไทย)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(ไทย)" name="titleTH">
+            </div>
+            <div class="form-group">
+              <label for="titleEN"><strong>ชื่อผลงาน(อังกฤษ)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(อังกฤษ)" name="titleEN">
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="author"><strong>ผู้เขียน</strong></label>
+                <select class="form-control" name="author">
+                    <?php
+                      foreach ($teacher_name as $name) {
+                        echo "<option value='$name'>$name</option>";
+                      }
+                    ?>
+                </select>
+              </div>
+              <!-- <div class="form-group col-md-6">
+                <label for="author"><strong>ผู้เขียน</strong></label>
+                <input type="text" class="form-control" placeholder="ระบุชื่อผู้เขียน" name="author">
+              </div> -->
+              <div class="form-group col-md-6">
+                <label for="page"><strong>จำนวนหน้า</strong></label>
+                <input type="text" class="form-control" placeholder="ระบุจำนวนหน้า" name="page">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="publisher"><strong>สำนักพิมพ</strong>์</label>
+              <input type="text" class="form-control" placeholder="ระบุสำนักพิมพ์" name="publisher">
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="date"><strong>วัน/เดือน/ปีที่ตีพิมพ์</strong></label>
+                <input type="text" class="form-control" placeholder="ระบุวัน/เดือน/ปีที่ตีพิมพ์" name="date">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="book_file"><strong>อัพโหลดไฟล์</strong></label>
+                <input type="file" class="form-control" placeholder="อัพโหลดไฟล์" name="book_file">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
+        </form>
+      </div>
     </div>
 
     <?php

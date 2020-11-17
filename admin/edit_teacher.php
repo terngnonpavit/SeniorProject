@@ -44,6 +44,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $teacher_code=$row['teacher_code'];
       $status=$row['status'];
       $position=$row['position'];
+      $title=$row['title'];
 
 
       $conn->close();
@@ -54,6 +55,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <div class="form-group">
               <label for="teacher_code">รหัสอาจารย์</label>
               <input type="text" class="form-control" placeholder="กรุณากรอกรหัสอาจารย์" name="teacher_code" value="<?php echo $teacher_code; ?>">
+            </div>
+            <div class="form-group">
+              <label for="title">คำนำหน้าชื่อ</label>
+              <select class="form-control" name="title">
+                  <option value="อ." <?php if($title=="อ.") echo 'selected';?>>อ.</option>
+                  <option value="อ.ดร." <?php if($title=="อ.ดร.") echo 'selected';?>>อ.ดร.</option>
+                  <option value="ผศ." <?php if($title=="ผศ.") echo 'selected';?>>ผศ.</option>
+                  <option value="ผศ.ดร." <?php if($title=="ผศ.ดร.") echo 'selected';?>>ผศ.ดร.</option>
+                  <option value="รศ." <?php if($title=="รศ.") echo 'selected';?>>รศ.</option>
+                  <option value="รศ.ดร." <?php if($title=="รศ.ดร.") echo 'selected';?>>รศ.ดร.</option>
+                  <option value="ศ." <?php if($title=="ศ.") echo 'selected';?>>ศ.</option>
+                  <option value="ศ.ดร." <?php if($title=="ศ.ดร.") echo 'selected';?>>ศ.ดร.</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="name">ชื่อ-นามสกุล</label>
@@ -102,8 +116,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $teacher_code=$_POST['teacher_code'];
           $status=$_POST['status'];
           $position=$_POST['position'];
+          $title=$_POST['title'];
 
-          $sql = "UPDATE `teacher` SET `name`='$name', `teacher_code`='$teacher_code', `status`='$status', `position`='$position' WHERE `teacher`.`id` = $id;";
+          $sql = "UPDATE `teacher` SET `name`='$name', `teacher_code`='$teacher_code', `status`='$status', `position`='$position', `title`='$title'  WHERE `teacher`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
