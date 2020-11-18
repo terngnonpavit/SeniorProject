@@ -44,8 +44,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department=$row['department'];
           $titleTH=$row['titleTH'];
           $titleEN=$row['titleEN'];
+          $volume=$row['volume'];
+          $number=$row['number'];
           $journal_name=$row['journal_name'];
-          $year=$row['year'];
+          // $year=$row['year'];
           $date=$row['date'];
           $type_of_document=$row['type_of_document'];
           $type_of_publication=$row['type_of_publication'];
@@ -85,9 +87,17 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ" name="journal_name" value="<?php echo $journal_name; ?>">
             </div>
             <div class="form-group">
-              <label for="year">ปีที่ ฉบับที่ เลขหน้า</label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกปีที่ ฉบับที่ เลขหน้า" name="year" value="<?php echo $year; ?>">
+              <label for="volume">volume</label>
+              <input type="text" class="form-control" placeholder="Enter volume" name="volume" value="<?php echo $volume; ?>">
             </div>
+            <div class="form-group">
+              <label for="number">number</label>
+              <input type="text" class="form-control" placeholder="Enter number" name="number" value="<?php echo $number; ?>">
+            </div>
+            <!-- <div class="form-group">
+              <label for="year">ปีที่</label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกปีที่" name="year" value="<?php echo $year; ?>">
+            </div> -->
             <div class="form-group">
               <label for="date">วัน/เดือน/ปี</label>
               <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
@@ -194,8 +204,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department=$_POST['department'];
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
+          $volume=$_POST['volume'];
+          $number=$_POST['number'];
           $journal_name=$_POST['journal_name'];
-          $year=$_POST['year'];
+          // $year=$_POST['year'];
           $date=$_POST['date'];
           $type_of_document=$_POST['type_of_document'];
           $type_of_publication=$_POST['type_of_publication'];
@@ -211,9 +223,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $type="scholarship_journal";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
-          $sql = "UPDATE `scholarship_journal` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `journal_name`='$journal_name', `year`='$year', `date`='$date', `type_of_document`='$type_of_document'
+          $sql = "UPDATE `scholarship_journal` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `journal_name`='$journal_name', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
-          , `database_name`='$database_name', `approval`='$approval', `participation`='$participation', `amount`='$amount', `amount_text`='$amount_text', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `page`='$page', `type`='$type', `file_path`='$file_path' WHERE `scholarship_journal`.`id` = $id;";
+          , `database_name`='$database_name', `approval`='$approval', `participation`='$participation', `amount`='$amount', `amount_text`='$amount_text', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `page`='$page', `type`='$type', `file_path`='$file_path', `volume`='$volume', `number`='$number' WHERE `scholarship_journal`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

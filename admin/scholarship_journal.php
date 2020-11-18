@@ -21,12 +21,56 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
   </head>
   <body>
     <?php require('../navbar.php');?>
+    <?php
+
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "test";
+
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
+      // Check connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      $id=$_GET['id'];
+      $sql = "SELECT * FROM `scholarship_journal` WHERE `id`=$id";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $titleTH=$row['titleTH'];
+      $titleEN=$row['titleEN'];
+      $author=$row['author'];
+      $journal_name=$row['journal_name'];
+      $volume=$row['volume'];
+      $number=$row['number'];
+      $page=$row['page'];
+      $date=$row['date'];
+
+      // $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
+      // $result = $conn->query($sql);
+      // $row = $result->fetch_assoc();
+      // $head_of_department=$row['name'];
+      //
+      // $active="Active";
+      // $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      // $result = $conn->query($sql);
+      // if ($result->num_rows > 0) {
+      //   $teacher_name=[];
+      //   while($row = $result->fetch_assoc())  {
+      //     array_push($teacher_name,$row['name']);
+      //   }
+      // }
+
+      $conn->close();
+    ?>
 
     <div class="container">
-      <form action="scholarship_journal.php" method="post" enctype="multipart/form-data">
+      <form action="scholarship_journal.php/?id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="author">ชื่อผู้ขอรับการสนับสนุน</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้ขอรับการสนับสนุน" name="author">
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้ขอรับการสนับสนุน" name="author" value="<?php echo $author; ?>">
           </div>
           <div class="form-group">
             <label for="department">สังกัด</label>
@@ -34,23 +78,31 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group">
             <label for="titleEN">ชื่อผลงานวิจัย(english)</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN">
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN" value="<?php echo $titleEN; ?>">
           </div>
           <div class="form-group">
             <label for="titleTH">ชื่อผลงานวิจัย(ไทย)</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(ไทย)" name="titleTH">
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(ไทย)" name="titleTH" value="<?php echo $titleTH; ?>">
           </div>
           <div class="form-group">
             <label for="journal_name">ชื่อวารสารที่ตีพิมพ์</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ์" name="journal_name">
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ์" name="journal_name" value="<?php echo $journal_name; ?>">
           </div>
           <div class="form-group">
-            <label for="year">ปีที่ ฉบับที่ เลขหน้า</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกปีที่ ฉบับที่ เลขหน้า" name="year">
+            <label for="volume">volume</label>
+            <input type="text" class="form-control" placeholder="Enter volume" name="volume" value="<?php echo $volume; ?>">
           </div>
+          <div class="form-group">
+            <label for="number">number</label>
+            <input type="text" class="form-control" placeholder="Enter number" name="number" value="<?php echo $number; ?>">
+          </div>
+          <!-- <div class="form-group">
+            <label for="year">ปีที่</label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกปีที่" name="year">
+          </div> -->
           <div class="form-group">
             <label for="date">วัน/เดือน/ปี ที่ตีพิมพ์</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี ที่ตีพิมพ์" name="date">
+            <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี ที่ตีพิมพ์" name="date" value="<?php echo $date; ?>">
           </div>
           <div class="form-group">
             <label for="type_of_document">ประเภทของผลงาน</label>
@@ -108,7 +160,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group">
             <label for="page">page</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page">
+            <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
           </div>
           <div class="form-group">
             <label for="journal_file">file</label>
@@ -152,8 +204,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department=$_POST['department'];
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
+          $volume=$_POST['volume'];
+          $number=$_POST['number'];
           $journal_name=$_POST['journal_name'];
-          $year=$_POST['year'];
+          // $year=$_POST['year'];
           $date=$_POST['date'];
           $type_of_document=$_POST['type_of_document'];
           $type_of_publication=$_POST['type_of_publication'];
@@ -169,7 +223,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $type="scholarship_journal";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
-          $sql = "INSERT INTO `scholarship_journal` (`author`, `department`, `titleTH`, `titleEN`, `journal_name`, `year`, `date`, `type_of_document`, `type_of_publication`, `database_name`, `approval`, `participation`, `amount`, `amount_text`, `applicant`, `head_of_department`, `department_name`, `page`, `type`, `file_path`) VALUES ('$author', '$department', '$titleTH', '$titleEN', '$journal_name', '$year', '$date', '$type_of_document', '$type_of_publication', '$database_name', '$approval', '$participation', '$amount', '$amount_text', '$applicant', '$head_of_department', '$department_name', '$page', '$type', '$file_path')";
+          $sql = "UPDATE `scholarship_journal` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `journal_name`='$journal_name', `date`='$date', `type_of_document`='$type_of_document'
+          , `type_of_publication`='$type_of_publication'
+          , `database_name`='$database_name', `approval`='$approval', `participation`='$participation', `amount`='$amount', `amount_text`='$amount_text', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `page`='$page', `type`='$type'
+          , `file_path`='$file_path', `volume`='$volume', `number`='$number' WHERE `scholarship_journal`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

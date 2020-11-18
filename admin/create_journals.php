@@ -37,8 +37,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="Enter author" name="author">
           </div>
           <div class="form-group">
-            <label for="publishedin">journal name</label>
-            <input type="text" class="form-control" placeholder="Enter published in" name="publishedin">
+            <label for="journal_name">journal name</label>
+            <input type="text" class="form-control" placeholder="Enter journal name" name="journal_name">
           </div>
           <div class="form-group">
             <label for="volume">volume</label>
@@ -82,7 +82,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '' &&
-         isset($_POST['publishedin']) && $_POST['publishedin'] != '' &&
+         isset($_POST['journal_name']) && $_POST['journal_name'] != '' &&
          isset($_POST['volume']) && $_POST['volume'] != '' &&
          isset($_POST['number']) && $_POST['number'] != '' &&
          isset($_POST['page']) && $_POST['page'] != '' &&
@@ -103,7 +103,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
-          $publishedin=$_POST['publishedin'];
+          $journal_name=$_POST['journal_name'];
           $volume=$_POST['volume'];
           $number=$_POST['number'];
           $page=$_POST['page'];
@@ -111,8 +111,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $type="journals";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
-          $sql = "INSERT INTO `journals` (`author`, `date`, `publishedin`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`, `file_path`)
-                  VALUES ('$author', '$date', '$publishedin', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type','$file_path')";
+          $sql = "INSERT INTO `scholarship_journal` (`author`, `date`, `journal_name`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`, `file_path`)
+                  VALUES ('$author', '$date', '$journal_name', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type','$file_path')";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             header('Location: http://localhost/seniorproject/admin/admin.php');

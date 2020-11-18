@@ -43,6 +43,7 @@
           <a href='http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id' class='btn btn-warning'>Edit</a>
           <a href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
           <a href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
+          <a href='http://localhost/seniorproject/admin/scholarship_journal.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
         </div>
       </div>
       <br />

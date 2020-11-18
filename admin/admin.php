@@ -83,7 +83,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         <div id="scholarship_journal" class="container tab-pane fade"><br>
           <h3>
             วารสารทางวิชาการ(Journal)
-            <a href="scholarship_journal.php" class="btn btn-info">Create</a>
+            <a href="create_journals.php" class="btn btn-info">Create</a>
           </h3>
           <?php require('admin_scholarship_journal.php');?>
         </div>
