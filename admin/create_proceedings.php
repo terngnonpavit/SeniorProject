@@ -22,38 +22,67 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
   <body>
     <?php require('../navbar.php');?>
 
+    <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "test";
+
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
+      // Check connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      $active="Active";
+      $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        $teacher_name=[];
+        while($row = $result->fetch_assoc())  {
+          array_push($teacher_name,$row['name']);
+        }
+      }
+
+      $conn->close();
+    ?>
+
     <div class="container">
-      <form action="create_proceedings.php" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="titleTH">title(TH)</label>
-            <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
-          </div>
-          <div class="form-group">
-            <label for="titleEN">title(EN)</label>
-            <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
-          </div>
-          <div class="form-group">
-            <label for="author">author</label>
-            <input type="text" class="form-control" placeholder="Enter author" name="author">
-          </div>
-          <div class="form-group">
-            <label for="titleConference">titleConference</label>
-            <input type="text" class="form-control" placeholder="Enter titleConference" name="titleConference">
-          </div>
-          <div class="form-group">
-            <label for="date">date</label>
-            <input type="text" class="form-control" placeholder="Enter date" name="date">
-          </div>
-          <div class="form-group">
-            <label for="place">place</label>
-            <input type="text" class="form-control" placeholder="Enter place" name="place">
-          </div>
-          <div class="form-group">
-            <label for="proceeding_file">file</label>
-            <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
-          </div>
-          <button type="submit" class="btn btn-success">Done</button>
-      </form>
+      <br>
+      <div>
+        <form action="create_proceedings.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="titleTH">title(TH)</label>
+              <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
+            </div>
+            <div class="form-group">
+              <label for="titleEN">title(EN)</label>
+              <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
+            </div>
+            <div class="form-group">
+              <label for="author">author</label>
+              <input type="text" class="form-control" placeholder="Enter author" name="author">
+            </div>
+            <div class="form-group">
+              <label for="conference_name">conference name</label>
+              <input type="text" class="form-control" placeholder="Enter conference name" name="conference_name">
+            </div>
+            <div class="form-group">
+              <label for="date">date</label>
+              <input type="text" class="form-control" placeholder="Enter date" name="date">
+            </div>
+            <div class="form-group">
+              <label for="place">place</label>
+              <input type="text" class="form-control" placeholder="Enter place" name="place">
+            </div>
+            <div class="form-group">
+              <label for="proceeding_file">file</label>
+              <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
+            </div>
+            <button type="submit" class="btn btn-success">Done</button>
+        </form>
+      </div>
     </div>
 
     <?php
@@ -74,7 +103,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleTH']) && $_POST['titleTH'] != '' &&
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '' &&
-         isset($_POST['titleConference']) && $_POST['titleConference'] != '' &&
+         isset($_POST['conference_name']) && $_POST['conference_name'] != '' &&
          isset($_POST['date']) && $_POST['date'] != '' &&
          isset($_POST['place']) && $_POST['place'] != '')
         {
@@ -94,14 +123,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $titleTH=$_POST['titleTH'];
           $titleEN=$_POST['titleEN'];
           $author=$_POST['author'];
-          $titleConference=$_POST['titleConference'];
+          $conference_name=$_POST['conference_name'];
           $date=$_POST['date'];
           $place=$_POST['place'];
           $type="proceedings";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
+          $check_scholarship="false";
 
-          $sql = "INSERT INTO `proceedings` (`titleEN`, `author`, `id`, `type`, `titleTH`, `date`, `place`, `titleConference`, `file_path`)
-                  VALUES ('$titleEN', '$author', NULL, '$type', '$titleTH', '$date', '$place', '$titleConference', '$file_path')";
+          $sql = "INSERT INTO `scholarship_proceeding` (`titleEN`, `author`, `id`, `type`, `titleTH`, `date`, `place`, `conference_name`, `file_path`, `check_scholarship`)
+                  VALUES ('$titleEN', '$author', NULL, '$type', '$titleTH', '$date', '$place', '$conference_name', '$file_path', '$check_scholarship')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

@@ -48,24 +48,23 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $page=$row['page'];
       $date=$row['date'];
 
-      // $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
-      // $result = $conn->query($sql);
-      // $row = $result->fetch_assoc();
-      // $head_of_department=$row['name'];
-      //
-      // $active="Active";
-      // $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
-      // $result = $conn->query($sql);
-      // if ($result->num_rows > 0) {
-      //   $teacher_name=[];
-      //   while($row = $result->fetch_assoc())  {
-      //     array_push($teacher_name,$row['name']);
-      //   }
-      // }
+      $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
+      $head_of_department=$row['name'];
+
+      $active="Active";
+      $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        $teacher_name=[];
+        while($row = $result->fetch_assoc())  {
+          array_push($teacher_name,$row['name']);
+        }
+      }
 
       $conn->close();
     ?>
-
     <div class="container">
       <form action="scholarship_journal.php/?id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
@@ -188,17 +187,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '')
          {
-           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
-           $targetfolder = $targetfolder . basename( $_FILES['journal_file']['name']) ;
-
-           if(move_uploaded_file($_FILES['journal_file']['tmp_name'], $targetfolder))
-           {
-             echo "The file " . basename($_FILES['journal_file']['name']) . " is uploaded";
-           }
-           else
-           {
-             echo "Problem uploading file" . basename($_FILES['journal_file']['name']);
-           }
+          $id=$_GET['id'];
 
           $author=$_POST['author'];
           $department=$_POST['department'];
@@ -221,12 +210,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department_name=$_POST['department_name'];
           $page=$_POST['page'];
           $type="scholarship_journal";
-          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
+          $check_scholarship="true";
 
           $sql = "UPDATE `scholarship_journal` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `journal_name`='$journal_name', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
           , `database_name`='$database_name', `approval`='$approval', `participation`='$participation', `amount`='$amount', `amount_text`='$amount_text', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `page`='$page', `type`='$type'
-          , `file_path`='$file_path', `volume`='$volume', `number`='$number' WHERE `scholarship_journal`.`id` = $id;";
+          , `file_path`='$file_path', `volume`='$volume', `number`='$number', `check_scholarship`='$check_scholarship' WHERE `scholarship_journal`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

@@ -84,7 +84,8 @@
             }
             else if($type=='scholarship_journal'){
               $journal_name=$row['journal_name'];
-              $year=$row['year'];
+              $number=$row['number'];
+              $volume=$row['volume'];
               $page=$row['page'];
               $date=$row['date'];
 
@@ -95,7 +96,8 @@
                   <h4><strong></strong> $titleEN </h4><hr>
                   <p><strong>author:</strong> $author </p>
                   <p><strong>journal name:</strong> $journal_name </p>
-                  <p><strong>year:</strong> $year </p>
+                  <p><strong>number:</strong> $number </p>
+                  <p><strong>volume:</strong> $volume </p>
                   <p><strong>page:</strong> $page </p>
                   <p><strong>date:</strong> $date </p>
                   <span class='badge badge-info'>Journals</span>

@@ -24,10 +24,12 @@
       $conference_name=$row['conference_name'];
       $type=$row['type'];
       $file_path=$row['file_path'];
+      $check_scholarship=$row['check_scholarship'];
 
       $no++;
-
+      if($check_scholarship=='true'){
       echo "
+      <div class='col-md-6' style='margin-bottom: 20px'>
       <div class='card'>
         <div class='card-header'>
           <a class='text-primary' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
@@ -47,10 +49,35 @@
           <a href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
         </div>
       </div>
-      <br />
+      </div>
+      ";
+    }
+    else{
+      echo "
+      <div class='col-md-6' style='margin-bottom: 20px'>
+      <div class='card'>
+        <div class='card-header'>
+          <a class='text-primary' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
+        </div>
+        <div class='card-body'>
+          <p><strong>title(TH):</strong> $titleTH </p>
+          <p><strong>Author:</strong> $author </p>
+          <p><strong>Conference:</strong> $conference_name </p>
+          <a class='text-success' href='$file_path' target='_blank'>
+              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+          </a>
+        </div>
+        <div class='card-footer'>
+          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-danger'>Delete</a>
+          <a href='http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id' class='btn btn-warning'>Edit</a>
+          <a href='http://localhost/seniorproject/admin/scholarship_proceeding.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
+        </div>
+      </div>
+      </div>
       ";
     }
   }
+}
   else {
     echo "No Results";
   }

@@ -27,6 +27,7 @@
       $no++;
 
       echo "
+      <div class='col-md-4' style='margin-bottom: 20px'>
       <div class='card'>
         <div class='card-header'>
           <h4> $no. $title$name </h4>
@@ -41,7 +42,7 @@
           <a href='http://localhost/seniorproject/admin/edit_teacher.php/?id=$id' class='btn btn-warning'>Edit</a>
         </div>
       </div>
-      <br />
+      </div>
       ";
     }
   }

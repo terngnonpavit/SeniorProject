@@ -85,21 +85,27 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             วารสารทางวิชาการ(Journal)
             <a href="create_journals.php" class="btn btn-info">Create</a>
           </h3>
-          <?php require('admin_scholarship_journal.php');?>
+          <div class='row row-cols-2'>
+            <?php require('admin_scholarship_journal.php');?>
+          </div>
         </div>
         <div id="scholarship_proceeding" class="container tab-pane fade"><br>
           <h3>
             เอกสารจากการประชุมวิชาการ(Proceeding)
-            <a href="scholarship_proceeding.php" class="btn btn-primary">Create</a>
+            <a href="create_proceedings.php" class="btn btn-primary">Create</a>
           </h3>
-          <?php require('admin_scholarship_proceeding.php');?>
+          <div class='row row-cols-2'>
+            <?php require('admin_scholarship_proceeding.php');?>
+          </div>
         </div>
         <div id="teacher" class="container tab-pane fade"><br>
           <h3>
             อาจารย์(Teacher)
             <a href="create_teacher.php" class="btn btn-dark">Create</a>
           </h3>
-          <?php require('admin_teacher.php');?>
+          <div class='row row-cols-3'>
+            <?php require('admin_teacher.php');?>
+          </div>
         </div>
       </div>
     </div>

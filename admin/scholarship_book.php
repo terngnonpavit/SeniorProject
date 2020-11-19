@@ -65,7 +65,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     ?>
     <div class="container">
       <form action="scholarship_book.php/?id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data">
-
           <div class="form-group">
             <label for="titleTH"><strong>ชื่อตำรา(ไทย)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อตำรา(ไทย)" name="titleTH" value="<?php echo $titleTH; ?>">
@@ -89,7 +88,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                     }
                   ?>
               </select>
-              <!-- <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-สกุลหัวหน้าโครงการ" name="writer_name" value="<?php echo $writer_name; ?>"> -->
             </div>
             <div class="form-group col-md-3">
               <label for="write_ratio"><strong>สัดส่วนของการเขียนตำรา(%)</strong></label>
@@ -110,7 +108,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณาระบุจำนวนหน้า" name="page_amount" value="<?php echo $page_amount; ?>">
             </div>
             <div class="form-group col-md-6">
-              <label for="date"><strong>วัน/เดือน/ปีที่ตีพิมพ</strong>์</label>
+              <label for="date"><strong>วัน/เดือน/ปีที่ตีพิมพ์</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
             </div>
           </div>

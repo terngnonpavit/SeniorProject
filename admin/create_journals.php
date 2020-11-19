@@ -22,48 +22,77 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
   <body>
     <?php require('../navbar.php');?>
 
-    <div class="container">
-      <form action="create_journals.php" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="titleTH">title(TH)</label>
-            <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
-          </div>
-          <div class="form-group">
-            <label for="titleEN">title(EN)</label>
-            <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
-          </div>
-          <div class="form-group">
-            <label for="author">author</label>
-            <input type="text" class="form-control" placeholder="Enter author" name="author">
-          </div>
-          <div class="form-group">
-            <label for="journal_name">journal name</label>
-            <input type="text" class="form-control" placeholder="Enter journal name" name="journal_name">
-          </div>
-          <div class="form-group">
-            <label for="volume">volume</label>
-            <input type="text" class="form-control" placeholder="Enter volume" name="volume">
-          </div>
-          <div class="form-group">
-            <label for="number">number</label>
-            <input type="text" class="form-control" placeholder="Enter number" name="number">
-          </div>
-          <div class="form-group">
-            <label for="page">page</label>
-            <input type="text" class="form-control" placeholder="Enter page" name="page">
-          </div>
-          <div class="form-group">
-            <label for="date">date</label>
-            <input type="text" class="form-control" placeholder="Enter date" name="date">
-          </div>
-          <div class="form-group">
-            <label for="journal_file">file</label>
-            <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
-          </div>
-          <button type="submit" class="btn btn-success">Done</button>
-      </form>
-    </div>
+    <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "test";
 
+      // Create connection
+      $conn = new mysqli($servername, $username, $password, $dbname);
+
+      // Check connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      $active="Active";
+      $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        $teacher_name=[];
+        while($row = $result->fetch_assoc())  {
+          array_push($teacher_name,$row['name']);
+        }
+      }
+
+      $conn->close();
+    ?>
+
+    <div class="container">
+      <br>
+      <div>
+        <form action="create_journals.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="titleTH">title(TH)</label>
+              <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
+            </div>
+            <div class="form-group">
+              <label for="titleEN">title(EN)</label>
+              <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
+            </div>
+            <div class="form-group">
+              <label for="author">author</label>
+              <input type="text" class="form-control" placeholder="Enter author" name="author">
+            </div>
+            <div class="form-group">
+              <label for="journal_name">journal name</label>
+              <input type="text" class="form-control" placeholder="Enter journal name" name="journal_name">
+            </div>
+            <div class="form-group">
+              <label for="volume">volume</label>
+              <input type="text" class="form-control" placeholder="Enter volume" name="volume">
+            </div>
+            <div class="form-group">
+              <label for="number">number</label>
+              <input type="text" class="form-control" placeholder="Enter number" name="number">
+            </div>
+            <div class="form-group">
+              <label for="page">page</label>
+              <input type="text" class="form-control" placeholder="Enter page" name="page">
+            </div>
+            <div class="form-group">
+              <label for="date">date</label>
+              <input type="text" class="form-control" placeholder="Enter date" name="date">
+            </div>
+            <div class="form-group">
+              <label for="journal_file">file</label>
+              <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
+            </div>
+            <button type="submit" class="btn btn-success">Done</button>
+        </form>
+      </div>
+    </div>
+    
     <?php
 
       $servername = "localhost";
@@ -110,9 +139,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $date=$_POST['date'];
           $type="journals";
           $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
+          $check_scholarship="false";
 
-          $sql = "INSERT INTO `scholarship_journal` (`author`, `date`, `journal_name`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`, `file_path`)
-                  VALUES ('$author', '$date', '$journal_name', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type','$file_path')";
+          $sql = "INSERT INTO `scholarship_journal` (`author`, `date`, `journal_name`, `titleTH`, `volume`, `page`, `id`, `titleEN`,`number`, `type`, `file_path`, `check_scholarship`)
+                  VALUES ('$author', '$date', '$journal_name', '$titleTH', '$volume', '$page', NULL, '$titleEN', '$number', '$type', '$file_path', '$check_scholarship')";
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             header('Location: http://localhost/seniorproject/admin/admin.php');

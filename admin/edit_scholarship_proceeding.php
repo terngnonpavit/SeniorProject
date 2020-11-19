@@ -232,7 +232,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place`='$place', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
-          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text', `type`='$type', `file_path`='$file_path' WHERE `scholarship_proceeding`.`id` = $id;";
+          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text', `type`='$type', `file_path`='$file_path', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name' WHERE `scholarship_proceeding`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
