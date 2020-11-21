@@ -53,34 +53,44 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       <div>
         <form action="create_proceedings.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="titleTH">title(TH)</label>
-              <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
+              <label for="titleTH"><strong>ชื่อผลงาน(ไทย)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(ไทย)" name="titleTH">
             </div>
             <div class="form-group">
-              <label for="titleEN">title(EN)</label>
-              <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
+              <label for="titleEN"><strong>ชื่อผลงาน(อังกฤษ)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(อังกฤษ)" name="titleEN">
             </div>
-            <div class="form-group">
-              <label for="author">author</label>
-              <input type="text" class="form-control" placeholder="Enter author" name="author">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="author"><strong>ผู้เขียน</strong></label>
+              <select class="form-control" name="author">
+                  <?php
+                    foreach ($teacher_name as $name) {
+                      echo "<option value='$name'>$name</option>";
+                    }
+                  ?>
+              </select>
             </div>
-            <div class="form-group">
-              <label for="conference_name">conference name</label>
-              <input type="text" class="form-control" placeholder="Enter conference name" name="conference_name">
+            <div class="form-group col-md-6">
+              <label for="conference_name"><strong>ชื่อการประชุมวิชาการ</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อการประชุมวิชาการ" name="conference_name">
             </div>
-            <div class="form-group">
-              <label for="date">date</label>
-              <input type="text" class="form-control" placeholder="Enter date" name="date">
+          </div>
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="place"><strong>สถานที่จัด</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุสถานที่จัด" name="place">
             </div>
-            <div class="form-group">
-              <label for="place">place</label>
-              <input type="text" class="form-control" placeholder="Enter place" name="place">
+            <div class="form-group col-md-6">
+              <label for="date"><strong>วัน/เดือน/ปี ที่จัด</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุวัน/เดือน/ปี ที่จัด" name="date">
             </div>
+          </div>
             <div class="form-group">
-              <label for="proceeding_file">file</label>
+              <label for="proceeding_file">อัพโหลดไฟล์</label>
               <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
             </div>
-            <button type="submit" class="btn btn-success">Done</button>
+            <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
         </form>
       </div>
     </div>

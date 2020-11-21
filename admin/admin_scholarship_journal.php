@@ -65,7 +65,7 @@
           </a>
         </div>
         <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_book' class='btn btn-danger'>Delete</a>
+          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_journal' class='btn btn-danger'>Delete</a>
           <a href='http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id' class='btn btn-warning'>Edit</a>
           <a href='http://localhost/seniorproject/admin/scholarship_journal.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
         </div>

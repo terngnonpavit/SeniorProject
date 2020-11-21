@@ -79,12 +79,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <select class="form-control" name="writer_name">
                   <?php
                     foreach ($teacher_name as $name) {
-                      if($writer_name==$name){
-                        echo "<option value='$name' selected>$name</option>";
-                      }
-                      else{
                         echo "<option value='$name'>$name</option>";
-                      }
                     }
                   ?>
               </select>
@@ -118,7 +113,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class='row'>
             <div class="form-group col-md-6">
               <label for="co_writer_name"><strong>ชื่อ-สกุลผู้ร่วมโครงการ</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ-สกุลผู้ร่วมโครงการ" name="co_writer_name">
+              <select class="form-control" name="co_writer_name">
+                <?php
+                  foreach ($teacher_name as $name) {
+                      echo "<option value='$name'>$name</option>";
+                  }
+                ?>
+              </select>
             </div>
             <div class="form-group col-md-3">
               <label for="co_write_ratio"><strong>สัดส่วนของการเขียนตำรา(%)</strong></label>
@@ -233,7 +234,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class='row'>
             <div class="form-group col-md-3">
-              <label for="applicant"><strong>ลงชื่อ(ผู้ขอรับทุน)</strong></label>
+              <label for="applicant"><strong>ลงชื่อผู้ขอรับทุน</strong></label>
               <select class="form-control" name="applicant">
                   <?php
                     foreach ($teacher_name as $name) {
@@ -243,7 +244,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="head_of_department"><strong>ลงชื่อ(หัวหน้าภาควิชา)</strong></label>
+              <label for="head_of_department"><strong>ลงชื่อหัวหน้าภาควิชา</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุชื่อหัวหน้าภาควิชา" name="head_of_department" value="<?php echo $head_of_department; ?>">
             </div>
             <div class="form-group col-md-3">

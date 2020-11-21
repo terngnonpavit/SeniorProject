@@ -53,46 +53,57 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       <div>
         <form action="create_journals.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="titleTH">title(TH)</label>
-              <input type="text" class="form-control" placeholder="Enter title(TH)" name="titleTH">
+              <label for="titleTH"><strong>ชื่อผลงาน(ไทย)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(ไทย)" name="titleTH">
             </div>
             <div class="form-group">
-              <label for="titleEN">title(EN)</label>
-              <input type="text" class="form-control" placeholder="Enter title(EN)" name="titleEN">
+              <label for="titleEN"><strong>ชื่อผลงาน(อังกฤษ)</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(อังกฤษ)" name="titleEN">
             </div>
-            <div class="form-group">
-              <label for="author">author</label>
-              <input type="text" class="form-control" placeholder="Enter author" name="author">
+          <div class='row'>
+            <div class="form-group col-md-6">
+              <label for="author"><strong>ผู้เขียน</strong></label>
+              <select class="form-control" name="author">
+                  <?php
+                    foreach ($teacher_name as $name) {
+                      echo "<option value='$name'>$name</option>";
+                    }
+                  ?>
+              </select>
             </div>
-            <div class="form-group">
-              <label for="journal_name">journal name</label>
-              <input type="text" class="form-control" placeholder="Enter journal name" name="journal_name">
+            <div class="form-group col-md-6">
+              <label for="journal_name"><strong>ชื่อวารสาร</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุชื่อวารสาร" name="journal_name">
             </div>
-            <div class="form-group">
-              <label for="volume">volume</label>
-              <input type="text" class="form-control" placeholder="Enter volume" name="volume">
+          </div>
+          <div class='row'>
+            <div class="form-group col-md-4">
+              <label for="volume"><strong>ปีที่</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุปีที่" name="volume">
             </div>
-            <div class="form-group">
-              <label for="number">number</label>
-              <input type="text" class="form-control" placeholder="Enter number" name="number">
+            <div class="form-group col-md-4">
+              <label for="number"><strong>ฉบับที่</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุฉบับที่" name="number">
             </div>
-            <div class="form-group">
-              <label for="page">page</label>
-              <input type="text" class="form-control" placeholder="Enter page" name="page">
+            <div class="form-group col-md-4">
+              <label for="page"><strong>เลขหน้า</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุเลขหน้า" name="page">
             </div>
-            <div class="form-group">
-              <label for="date">date</label>
-              <input type="text" class="form-control" placeholder="Enter date" name="date">
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="date"><strong>วัน/เดือน/ปี ที่ตีพิมพ์</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุวัน/เดือน/ปี ที่ตีพิมพ์" name="date">
             </div>
-            <div class="form-group">
-              <label for="journal_file">file</label>
+            <div class="form-group col-md-6">
+              <label for="journal_file"><strong>อัพโหลดไฟล์</strong></label>
               <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
             </div>
-            <button type="submit" class="btn btn-success">Done</button>
+            <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
         </form>
       </div>
     </div>
-    
+
     <?php
 
       $servername = "localhost";

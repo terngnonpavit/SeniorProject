@@ -81,7 +81,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               </div>
             </div>
             <div class="form-group">
-              <label for="publisher"><strong>สำนักพิมพ</strong>์</label>
+              <label for="publisher"><strong>สำนักพิมพ์</strong></label>
               <input type="text" class="form-control" placeholder="ระบุสำนักพิมพ์" name="publisher">
             </div>
             <div class="row">

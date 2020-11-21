@@ -67,44 +67,54 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     ?>
     <div class="container">
       <form action="scholarship_journal.php/?id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="author">ชื่อผู้ขอรับการสนับสนุน</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้ขอรับการสนับสนุน" name="author" value="<?php echo $author; ?>">
+        <div class='row'>
+          <div class="form-group col-md-6">
+            <label for="author"><strong>ชื่อผู้ขอรับการสนับสนุน</strong></label>
+            <select class="form-control" name="author">
+              <?php
+                foreach ($teacher_name as $name) {
+                    echo "<option value='$name'>$name</option>";
+                }
+              ?>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="department">สังกัด</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department">
+          <div class="form-group col-md-6">
+            <label for="department"><strong>สังกัด</strong></label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="คอมพิวเตอร์">
           </div>
+        </div>
           <div class="form-group">
-            <label for="titleEN">ชื่อผลงานวิจัย(english)</label>
+            <label for="titleEN"><strong>ชื่อผลงานวิจัย(english)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN" value="<?php echo $titleEN; ?>">
           </div>
           <div class="form-group">
-            <label for="titleTH">ชื่อผลงานวิจัย(ไทย)</label>
+            <label for="titleTH"><strong>ชื่อผลงานวิจัย(ไทย)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(ไทย)" name="titleTH" value="<?php echo $titleTH; ?>">
           </div>
           <div class="form-group">
-            <label for="journal_name">ชื่อวารสารที่ตีพิมพ์</label>
+            <label for="journal_name"><strong>ชื่อวารสารที่ตีพิมพ์</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ์" name="journal_name" value="<?php echo $journal_name; ?>">
           </div>
-          <div class="form-group">
-            <label for="volume">volume</label>
+        <div class='row'>
+          <div class="form-group col-md-4">
+            <label for="volume"><strong>ปีที่</strong></label>
             <input type="text" class="form-control" placeholder="Enter volume" name="volume" value="<?php echo $volume; ?>">
           </div>
-          <div class="form-group">
-            <label for="number">number</label>
+          <div class="form-group col-md-4">
+            <label for="number"><strong>ฉบับที่</strong></label>
             <input type="text" class="form-control" placeholder="Enter number" name="number" value="<?php echo $number; ?>">
           </div>
-          <!-- <div class="form-group">
-            <label for="year">ปีที่</label>
-            <input type="text" class="form-control" placeholder="กรุณากรอกปีที่" name="year">
-          </div> -->
-          <div class="form-group">
-            <label for="date">วัน/เดือน/ปี ที่ตีพิมพ์</label>
+          <div class="form-group col-md-4">
+            <label for="date"><strong>วัน/เดือน/ปี ที่ตีพิมพ์</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี ที่ตีพิมพ์" name="date" value="<?php echo $date; ?>">
           </div>
-          <div class="form-group">
-            <label for="type_of_document">ประเภทของผลงาน</label>
+        </div>
+          <br>
+          <br>
+          <hr>
+        <div class='row'>
+          <div class="form-group col-md-6">
+            <label for="type_of_document"><strong>ประเภทของผลงาน</strong></label>
             <select class="form-control" name="type_of_document">
                 <option value="research_article">Research Article</option>
                 <option value="review_article">Review Article</option>
@@ -112,8 +122,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 <option value="book_chapter">Book Chapter</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="type_of_publication">ประเภทของวารสารที่ตีพิมพ์(เลือกเพียง 1 ประเภท)</label>
+          <div class="form-group col-md-6">
+            <label for="type_of_publication"><strong>ประเภทของวารสารที่ตีพิมพ์(เลือกเพียง 1 ประเภท)</strong></label>
             <select class="form-control" name="type_of_publication">
                 <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท">วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท</option>
                 <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท">วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท</option>
@@ -122,50 +132,69 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             </select>
               <input type="text" class="form-control" placeholder="กรณีที่เลือกวารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. โปรดระบุชื่อฐานข้อมูล" name="database_name">
           </div>
-          <div class="form-group">
-            <label for="approval">การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์</label>
+        </div>
+        <div class='row'>
+          <div class="form-group  col-md-8">
+            <label for="approval"><strong>การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์</strong></label>
             <select class="form-control" name="approval">
                 <option value="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)ิ">กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)</option>
                 <option value="กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)">กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="participation">การมีส่วนร่วมในผลงาน</label>
+          <div class="form-group  col-md-4">
+            <label for="participation"><strong>การมีส่วนร่วมในผลงาน</strong></label>
             <select class="form-control" name="participation">
                 <option value="กรณีที่ 1 First Author">กรณีที่ 1 First Author (ได้รับการสนับสนุนเต็มจำนวน)</option>
                 <option value="กรณีที่ 1 Corresponding Author">กรณีที่ 1 Corresponding Author (ได้รับการสนับสนุนเต็มจำนวน)</option>
                 <option value="กรณีที่ 2 เป็นผู้ร่วมเขียน">กรณีที่ 2 เป็นผู้ร่วมเขียน (ได้รับการสนับสนุนกึ่งหนึ่งของเงินรางวัลที่ได้รับจากหัวข้อก่อนหน้า)</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="amount">จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 3,000)</label>
-            <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount">
+        </div>
+        <div class='row'>
+          <div class="form-group col-md-6">
+            <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ตัวเลข)</strong></label>
+            <select class="form-control" name="amount">
+                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท">30,000 บาท</option>
+                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท">10,000 บาท</option>
+                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท">6,000 บาท</option>
+                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท">4,000 บาท</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="amount_text">จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นข้อความ เช่น สามพันบาทถ้วน)</label>
-            <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount_text">
+          <div class="form-group col-md-6">
+            <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ข้อความ)</strong></label>
+            <select class="form-control" name="amount_text">
+                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท">สามหมื่นบาทถ้วน</option>
+                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท">หนึ่งหมื่นบาทถ้วน</option>
+                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท">หกพันบาทถ้วน</option>
+                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท">สี่พันบาทถ้วน</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="applicant">ลงชื่อผู้ขอรับการสนับสนุน</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อผู้ขอรับการสนับสนุน" name="applicant">
+        </div>
+        <div class='row'>
+          <div class="form-group col-md-4">
+            <label for="applicant"><strong>ลงชื่อผู้ขอรับการสนับสนุน</strong></label>
+            <select class="form-control" name="applicant">
+              <?php
+                foreach ($teacher_name as $name) {
+                    echo "<option value='$name'>$name</option>";
+                }
+              ?>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="head_of_department">ลงชื่อหัวหน้าภาควิชา</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อหัวหน้าภาควิชา" name="head_of_department">
+          <div class="form-group col-md-4">
+            <label for="head_of_department"><strong>ลงชื่อหัวหน้าภาควิชา</strong></label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุชื่อหัวหน้าภาควิชา" name="head_of_department" value="<?php echo $head_of_department; ?>">
           </div>
-          <div class="form-group">
-            <label for="department_name">สังกัดของหัวหน้าภาควิชา(เช่น คอมพิวเตอร์)</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name">
+          <div class="form-group col-md-4">
+            <label for="department_name"><strong>สังกัดของหัวหน้าภาควิชา</strong></label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกภาควิชา" name="department_name" value="คอมพิวเตอร์">
           </div>
-          <div class="form-group">
+        </div>
+          <!-- <div class="form-group">
             <label for="page">page</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
-          </div>
-          <div class="form-group">
-            <label for="journal_file">file</label>
-            <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
-          </div>
-          <button type="submit" class="btn btn-success">Done</button>
+          </div> -->
+          <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
     </div>
 
