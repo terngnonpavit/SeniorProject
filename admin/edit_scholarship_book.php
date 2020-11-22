@@ -294,6 +294,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                   <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ(พ.ศ.)" name="year"  value="<?php echo $year; ?>">
                 </div>
               </div>
+              <div class="form-group">
+                <label for="book_file"><strong>อัพโหลดไฟล์</strong></label>
+                <input type="file" class="form-control" placeholder="อัพโหลดไฟล์" name="book_file">
+              </div>
               <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
           </form>
         </div>
@@ -319,14 +323,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         {
           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
           $targetfolder = $targetfolder . basename( $_FILES['book_file']['name']) ;
-
+          $file_path = '';
           if(move_uploaded_file($_FILES['book_file']['tmp_name'], $targetfolder))
           {
-           echo "The file " . basename($_FILES['book_file']['name']) . " is uploaded";
-          }
-          else
-          {
-           echo "Problem uploading file" . basename($_FILES['book_file']['name']);
+            echo "The file " . basename($_FILES['book_file']['name']) . " is uploaded";
+            $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
           }
 
           $id=$_GET['id'];
@@ -366,7 +367,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $date=$_POST['date'];
           $publisher=$_POST['publisher'];
           $type="scholarship_book";
-          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
 
           $sql = "UPDATE `scholarship_book` SET `year`='$year', `titleTH`='$titleTH', `titleEN`='$titleEN', `writer_name`='$writer_name', `author`='$author', `writer_department`='$writer_department', `write_ratio`='$write_ratio', `co_writer_name`='$co_writer_name', `co_writer_department`='$co_writer_department'
           , `co_write_ratio`='$co_write_ratio'
@@ -377,10 +377,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขตำราเสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขตำราไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

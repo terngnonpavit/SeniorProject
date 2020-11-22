@@ -83,7 +83,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <div class="form-group">
               <label for="position">ตำแหน่ง</label>
               <select class="form-control" name="position">
-                  <option value="หัวหน้าภาค"  <?php if($position=="หัวหน้าภาค") echo 'selected'?>>หัวหน้าภาค</option>
+                  <option value="หัวหน้าภาควิชา"  <?php if($position=="หัวหน้าภาควิชา") echo 'selected'?>>หัวหน้าภาควิชา</option>
                   <option value="อาจารย์"  <?php if($position=="อาจารย์") echo 'selected'?>>อาจารย์</option>
               </select>
             </div>

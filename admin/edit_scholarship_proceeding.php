@@ -212,10 +212,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <label for="department_name"><strong>สังกัดของหัวหน้าภาควิชา</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name" value="คอมพิวเตอร์">
             </div>
+            <div class="form-group">
+              <label for="proceeding_file">อัพโหลดไฟล์</label>
+              <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
+            </div>
             <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
         </form>
       </div>
-      
+
       <script>
         $(document).ready(function(){
           $('#selectpicker').selectpicker();
@@ -244,14 +248,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
           $targetfolder = $targetfolder . basename( $_FILES['proceeding_file']['name']) ;
-
+          $file_path='';
           if(move_uploaded_file($_FILES['proceeding_file']['tmp_name'], $targetfolder))
           {
             echo "The file " . basename($_FILES['proceeding_file']['name']) . " is uploaded";
-          }
-          else
-          {
-            echo "Problem uploading file" . basename($_FILES['proceeding_file']['name']);
+            $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
           }
 
           $author=$_POST['author'];
@@ -274,7 +275,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $head_of_department=$_POST['head_of_department'];
           $department_name=$_POST['department_name'];
           $type="scholarship_proceeding";
-          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
 
           $form_document_str='';
           foreach($form_document as $document){
@@ -288,10 +288,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขเอกสารจาการประชุมวิชาการเสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไข proceeding ไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

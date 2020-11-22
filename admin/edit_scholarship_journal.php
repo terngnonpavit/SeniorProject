@@ -213,6 +213,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <label for="page">page</label>
               <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
             </div> -->
+            <div class="form-group">
+              <label for="journal_file"><strong>อัพโหลดไฟล์</strong></label>
+              <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
+            </div>
             <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
         </form>
       </div>
@@ -237,14 +241,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         {
           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
           $targetfolder = $targetfolder . basename( $_FILES['journal_file']['name']) ;
-
+          $file_path = '';
           if(move_uploaded_file($_FILES['journal_file']['tmp_name'], $targetfolder))
           {
             echo "The file " . basename($_FILES['journal_file']['name']) . " is uploaded";
-          }
-          else
-          {
-            echo "Problem uploading file" . basename($_FILES['journal_file']['name']);
+            $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
           }
 
           $id=$_GET['id'];
@@ -270,7 +271,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $department_name=$_POST['department_name'];
           $page=$_POST['page'];
           $type="scholarship_journal";
-          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
 
           $sql = "UPDATE `scholarship_journal` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `journal_name`='$journal_name', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
@@ -278,10 +278,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขวารสารเสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขวารสารไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

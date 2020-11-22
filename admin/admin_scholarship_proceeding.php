@@ -29,7 +29,7 @@
       $no++;
       if($check_scholarship=='true'){
       echo "
-      <div class='col-md-6' style='margin-bottom: 20px'>
+      <div class='col-md-12' style='margin-bottom: 20px'>
       <div class='card'>
         <div class='card-header'>
           <a class='text-primary' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
@@ -54,7 +54,7 @@
     }
     else{
       echo "
-      <div class='col-md-6' style='margin-bottom: 20px'>
+      <div class='col-md-12' style='margin-bottom: 20px'>
       <div class='card'>
         <div class='card-header'>
           <a class='text-primary' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>

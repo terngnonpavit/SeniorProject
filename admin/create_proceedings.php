@@ -17,6 +17,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../fm.tagator.jquery.css">
+    <script src="../fm.tagator.jquery.js"></script>
 
   </head>
   <body>
@@ -36,12 +38,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         die("Connection failed: " . $conn->connect_error);
       }
       $active="Active";
-      $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
+      $sql = "SELECT * FROM teacher WHERE `status`='$active'";
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
         $teacher_name=[];
         while($row = $result->fetch_assoc())  {
-          array_push($teacher_name,$row['name']);
+          array_push($teacher_name,$row['title'].$row['name']);
         }
       }
 
@@ -61,15 +63,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="ระบุชื่อผลงาน(อังกฤษ)" name="titleEN">
             </div>
           <div class='row'>
-            <div class="form-group col-md-6">
+            <!-- <div class="form-group col-md-6">
               <label for="author"><strong>ผู้เขียน</strong></label>
               <select class="form-control" name="author">
                   <?php
-                    foreach ($teacher_name as $name) {
-                      echo "<option value='$name'>$name</option>";
-                    }
+                    // foreach ($teacher_name as $name) {
+                    //   echo "<option value='$name'>$name</option>";
+                    // }
                   ?>
               </select>
+            </div> -->
+            <div class="form-group col-md-6">
+              <label for="author"><strong>ผู้เขียน</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุผู้เขียน" name="author" id="author_tag">
             </div>
             <div class="form-group col-md-6">
               <label for="conference_name"><strong>ชื่อการประชุมวิชาการ</strong></label>
@@ -95,6 +101,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       </div>
     </div>
 
+    <script type="text/javascript">
+     $('#author_tag').tagator({
+        // autocomplete: ['first', 'second', 'third', 'jQuery', 'Script', 'Net'],
+        autocomplete: [<?php foreach ($teacher_name as $name) {
+          echo "'$name',";
+        }?>],
+        useDimmer: false,
+        prefix: 'tagator_',
+        height: 'auto',
+        showAllOptionsOnFocus: true,
+      });
+    </script>
+
     <?php
 
       $servername = "localhost";
@@ -117,17 +136,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['date']) && $_POST['date'] != '' &&
          isset($_POST['place']) && $_POST['place'] != '')
         {
-
           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
           $targetfolder = $targetfolder . basename( $_FILES['proceeding_file']['name']) ;
-
+          $file_path='';
           if(move_uploaded_file($_FILES['proceeding_file']['tmp_name'], $targetfolder))
           {
             echo "The file " . basename($_FILES['proceeding_file']['name']) . " is uploaded";
-          }
-          else
-          {
-            echo "Problem uploading file" . basename($_FILES['proceeding_file']['name']);
+            $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
           }
 
           $titleTH=$_POST['titleTH'];
@@ -137,15 +152,17 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $date=$_POST['date'];
           $place=$_POST['place'];
           $type="proceedings";
-          $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
           $check_scholarship="false";
 
-          $sql = "INSERT INTO `scholarship_proceeding` (`titleEN`, `author`, `id`, `type`, `titleTH`, `date`, `place`, `conference_name`, `file_path`, `check_scholarship`)
+          $sql = "INSERT INTO scholarship_proceeding (titleEN, author, id, type, titleTH, date, place, conference_name, file_path, check_scholarship)
                   VALUES ('$titleEN', '$author', NULL, '$type', '$titleTH', '$date', '$place', '$conference_name', '$file_path', '$check_scholarship')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
-            header('Location: http://localhost/seniorproject/admin/admin.php');
+            echo '<script language="javascript">';
+            echo 'alert("สร้างเอกสารสืบเนื่องจากการประชุมวิชาการเสร็จสมบูรณ์")';
+            echo '</script>';
+            echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
           }

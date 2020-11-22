@@ -51,7 +51,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
-      $head_of_department=$row['name'];
+      $head_of_department=$row['title'].$row['name'];
 
       $active="Active";
       $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
@@ -59,7 +59,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if ($result->num_rows > 0) {
         $teacher_name=[];
         while($row = $result->fetch_assoc())  {
-          array_push($teacher_name,$row['name']);
+          array_push($teacher_name,$row['title'].$row['name']);
         }
       }
 
@@ -80,7 +80,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group col-md-6">
             <label for="department"><strong>สังกัด</strong></label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="คอมพิวเตอร์">
+            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department" value='ภาควิชาคอมพิวเตอร์'>
           </div>
         </div>
           <div class="form-group">
@@ -190,7 +190,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group col-md-4">
             <label for="department_name"><strong>สังกัดของหัวหน้าภาควิชา</strong></label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="คอมพิวเตอร์">
+            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name" value="ภาควิชาคอมพิวเตอร์">
+          </div>
+        </div>
+          <div class="form-group">
+            <label for="proceeding_file"><strong>อัพโหลดไฟล์</strong></label>
+            <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
           </div>
           <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
@@ -214,6 +219,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '')
          {
+           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+           $targetfolder = $targetfolder . basename( $_FILES['proceeding_file']['name']) ;
+           $file_path='';
+           if(move_uploaded_file($_FILES['proceeding_file']['tmp_name'], $targetfolder))
+           {
+             echo "The file " . basename($_FILES['proceeding_file']['name']) . " is uploaded";
+             $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['proceeding_file']['name']);
+           }
+
           $id=$_GET['id'];
 
           $author=$_POST['author'];
@@ -246,13 +260,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
           $sql = "UPDATE `scholarship_proceeding` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `conference_name`='$conference_name', `place`='$place', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
-          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text', `type`='$type', `check_scholarship`='$check_scholarship', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name' WHERE `scholarship_proceeding`.`id` = $id;";
+          , `approval`='$approval', `participation`='$participation', `form_document`='$form_document_str', `amount`='$amount', `amount_text`='$amount_text', `type`='$type', `check_scholarship`='$check_scholarship', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `file_path`='$file_path' WHERE `scholarship_proceeding`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
+            echo '<script language="javascript">';
+            echo 'alert("สร้างฟอร์มขอทุนเอกสารจาการประชุมวิชาการเสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("สร้างฟอร์มขอทุนเอกสารจาการประชุมวิชาการไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

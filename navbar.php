@@ -2,7 +2,7 @@
   <!-- Brand -->
   <a class="navbar-brand" href="http://localhost/seniorproject/index.php">
     <!-- <img src="http://localhost/seniorproject/images/SC-SU-Logo-ENG.png" style="height:30px; width:20px"> -->
-    CPSU
+    CPSU <i class="fas fa-search"></i> 
   </a>
     <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

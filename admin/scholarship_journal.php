@@ -51,7 +51,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
-      $head_of_department=$row['name'];
+      $head_of_department=$row['title'].$row['name'];
 
       $active="Active";
       $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
@@ -59,7 +59,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if ($result->num_rows > 0) {
         $teacher_name=[];
         while($row = $result->fetch_assoc())  {
-          array_push($teacher_name,$row['name']);
+          array_push($teacher_name,$row['title'].$row['name']);
         }
       }
 
@@ -80,7 +80,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class="form-group col-md-6">
             <label for="department"><strong>สังกัด</strong></label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="คอมพิวเตอร์">
+            <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department" value="ภาควิชาคอมพิวเตอร์">
           </div>
         </div>
           <div class="form-group">
@@ -137,7 +137,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group  col-md-8">
             <label for="approval"><strong>การเป็นผลงานที่ใช้ขออนุมัติสิ้นสุดสัญญาโครงการที่ได้รับทุนอุดหนุนการวิจัยจากคณะวิทยาศาสตร์</strong></label>
             <select class="form-control" name="approval">
-                <option value="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)ิ">กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)</option>
+                <option value="กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)">กรณีที่ 1 ไม่เป็น (ได้รับการสนับสนุนเต็มจำนวน)</option>
                 <option value="กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)">กรณีที่ 2 เป็น (ได้รับการสนับสนุน 20% ของเงินรางวัลที่กำหนด)</option>
             </select>
           </div>
@@ -194,6 +194,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="page">page</label>
             <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
           </div> -->
+          <div class="form-group">
+            <label for="journal_file"><strong>อัพโหลดไฟล์</strong></label>
+            <input type="file" class="form-control" placeholder="Upload file" name="journal_file">
+          </div>
           <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
     </div>
@@ -216,6 +220,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if(isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['author']) && $_POST['author'] != '')
          {
+           $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+           $targetfolder = $targetfolder . basename( $_FILES['journal_file']['name']) ;
+           $file_path = '';
+           if(move_uploaded_file($_FILES['journal_file']['tmp_name'], $targetfolder))
+           {
+             echo "The file " . basename($_FILES['journal_file']['name']) . " is uploaded";
+             $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['journal_file']['name']);
+           }
+
           $id=$_GET['id'];
 
           $author=$_POST['author'];
@@ -244,13 +257,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $sql = "UPDATE `scholarship_journal` SET `author`='$author', `department`='$department', `titleEN`='$titleEN', `titleTH`='$titleTH', `journal_name`='$journal_name', `date`='$date', `type_of_document`='$type_of_document'
           , `type_of_publication`='$type_of_publication'
           , `database_name`='$database_name', `approval`='$approval', `participation`='$participation', `amount`='$amount', `amount_text`='$amount_text', `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `page`='$page', `type`='$type'
-          , `file_path`='$file_path', `volume`='$volume', `number`='$number', `check_scholarship`='$check_scholarship' WHERE `scholarship_journal`.`id` = $id;";
+          , `file_path`='$file_path', `volume`='$volume', `number`='$number', `check_scholarship`='$check_scholarship', `file_path`='$file_path' WHERE `scholarship_journal`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
+            echo '<script language="javascript">';
+            echo 'alert("สร้างฟอร์มขอทุนวารสารเสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("สร้างฟอร์มขอทุนวารสารไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

@@ -90,10 +90,13 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           $status=$_POST['status'];
           $position=$_POST['position'];
 
-          $sql = "INSERT INTO `teacher` (`name`, `teacher_code`, `status`, `position`, `title`) VALUES ('$name', '$teacher_code', '$status', '$position', '$title')";
+          $sql = "INSERT INTO teacher (name, teacher_code, status, position, title) VALUES ('$name', '$teacher_code', '$status', '$position', '$title')";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
+            echo '<script language="javascript">';
+            echo 'alert("สร้างอาจารย์เสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo "Error: " . $sql . "<br>" . $conn->error;

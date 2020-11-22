@@ -24,26 +24,52 @@
       $position=$row['position'];
       $title=$row['title'];
 
+      if ($position == 'หัวหน้าภาควิชา') {
+        $position = "*".$position;
+      }
       $no++;
 
-      echo "
-      <div class='col-md-4' style='margin-bottom: 20px'>
-      <div class='card'>
-        <div class='card-header'>
-          <h4> $no. $title$name </h4>
+      if ($status == 'Active') {
+        echo "
+        <div class='col-md-6' style='margin-bottom: 20px'>
+        <div class='card'>
+          <div class='card-header'>
+            <h4><a href='http://localhost/seniorproject/admin/detail_teacher.php/?id=$id'> $no. $title$name </a></h4>
+          </div>
+          <div class='card-body'>
+            <p><strong>Code:</strong> $teacher_code </p>
+            <p><strong>Position:</strong> $position </p>
+            <span class='badge badge-success'>$status</span>
+          </div>
+          <div class='card-footer'>
+
+            <a href='http://localhost/seniorproject/admin/edit_teacher.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/admin/inactive_teacher.php/?id=$id&status=Inactive' class='btn btn-danger'>Inactive</a>
+          </div>
         </div>
-        <div class='card-body'>
-          <p><strong>Code:</strong> $teacher_code </p>
-          <p><strong>Status:</strong> $status</p>
-          <p><strong>Position:</strong> $position </p>
         </div>
-        <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=teacher' class='btn btn-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/edit_teacher.php/?id=$id' class='btn btn-warning'>Edit</a>
+        ";
+      } else {
+        echo "
+        <div class='col-md-6' style='margin-bottom: 20px'>
+        <div class='card'>
+          <div class='card-header'>
+            <h4> $no. $title$name </h4>
+          </div>
+          <div class='card-body'>
+            <p><strong>Code:</strong> $teacher_code </p>
+            <p><strong>Position:</strong> $position </p>
+            <span class='badge badge-danger'>$status</span>
+          </div>
+          <div class='card-footer'>
+
+            <a href='http://localhost/seniorproject/admin/edit_teacher.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/admin/inactive_teacher.php/?id=$id&status=Active' class='btn btn-success'>Active</a>
+          </div>
         </div>
-      </div>
-      </div>
-      ";
+        </div>
+        ";
+      }
     }
   }
   else {

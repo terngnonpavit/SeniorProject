@@ -49,7 +49,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $sql = "SELECT * FROM `teacher` WHERE `position`='หัวหน้าภาควิชา'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
-      $head_of_department=$row['name'];
+      $head_of_department=$row['title'].$row['name'];
 
       $active="Active";
       $sql = "SELECT * FROM `teacher` WHERE `status`='$active'";
@@ -57,7 +57,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       if ($result->num_rows > 0) {
         $teacher_name=[];
         while($row = $result->fetch_assoc())  {
-          array_push($teacher_name,$row['name']);
+          array_push($teacher_name,$row['title'].$row['name']);
         }
       }
 
@@ -256,6 +256,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณากรอกปีงบประมาณ(พ.ศ.)" name="year">
             </div>
           </div>
+          <div class="form-group">
+            <label for="book_file"><strong>อัพโหลดไฟล์</strong></label>
+            <input type="file" class="form-control" placeholder="อัพโหลดไฟล์" name="book_file">
+          </div>
           <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
     </div>
@@ -279,6 +283,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
          isset($_POST['titleEN']) && $_POST['titleEN'] != '' &&
          isset($_POST['year']) && $_POST['year'] != '')
          {
+             $targetfolder = "C:\\xampp\\htdocs\\SeniorProject\\uploads\\";
+             $targetfolder = $targetfolder . basename( $_FILES['book_file']['name']) ;
+             $file_path = '';
+             if(move_uploaded_file($_FILES['book_file']['tmp_name'], $targetfolder))
+             {
+               echo "The file " . basename($_FILES['book_file']['name']) . " is uploaded";
+               $file_path="http://localhost/seniorproject/uploads/". basename($_FILES['book_file']['name']);
+             }
 
               $id=$_GET['id'];
 
@@ -324,13 +336,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               , `keywordTH`='$keywordTH', `keywordEN`='$keywordEN', `amount`='$amount', `amount_text`='$amount_text', `subject_no`='$subject_no', `subject`='$subject', `for_student`='$for_student', `student_year`='$student_year', `page_amount`='$page_amount', `chapter_no_1`='$chapter_no_1'
               , `chapter_name_1`='$chapter_name_1'
               , `content_1`='$content_1', `chapter_no_2`='$chapter_no_2', `chapter_name_2`='$chapter_name_2', `content_2`='$content_2', `chapter_no_3`='$chapter_no_3', `chapter_name_3`='$chapter_name_3', `content_3`='$content_3', `teaching_history`='$teaching_history'
-              , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `date`='$date', `publisher`='$publisher', `type`='$type', `check_scholarship`='$check_scholarship' WHERE `scholarship_book`.`id` = $id;";
+              , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `date`='$date', `publisher`='$publisher', `type`='$type', `check_scholarship`='$check_scholarship', `file_path`='$file_path'  WHERE `scholarship_book`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
+            echo '<script language="javascript">';
+            echo 'alert("สร้างเอกสารขอทุนตำราเสร็จสมบูรณ์")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("สร้างเอกสารขอทุนตำราไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();
