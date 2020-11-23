@@ -56,9 +56,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <h4>$title$name </h4>
           </div>
           <div class='card-body'>
-            <p><strong>Code:</strong> $teacher_code </p>
-            <p><strong>Status:</strong> $status</p>
-            <p><strong>Position:</strong> $position </p>
+            <p><strong>รหัสอาจารย์:</strong> $teacher_code </p>
+            <p><strong>สถานะ:</strong> $status</p>
+            <p><strong>ตำแหน่ง:</strong> $position </p>
           </div>
           <div class='card-footer'>
           </div>
@@ -161,7 +161,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
             }
         } else {
-            echo "No Research";
+            echo "No Result";
         }
     ?>
 

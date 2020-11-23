@@ -92,7 +92,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="ระบุฉบับที่" name="number">
             </div>
             <div class="form-group col-md-4">
-              <label for="page"><strong>เลขหน้า</strong></label>
+              <label for="page"><strong>หน้าที่</strong></label>
               <input type="text" class="form-control" placeholder="ระบุเลขหน้า" name="page">
             </div>
           </div>
@@ -173,7 +173,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             echo '<script language="javascript">';
-            echo 'alert("สร้างวารสารทางวิชาการเสร็จสมบูรณ์")';
+            echo 'alert("กรอกข้อมูลสำเร็จแล้ว")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {

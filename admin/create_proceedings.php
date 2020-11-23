@@ -160,7 +160,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             echo '<script language="javascript">';
-            echo 'alert("สร้างเอกสารสืบเนื่องจากการประชุมวิชาการเสร็จสมบูรณ์")';
+            echo 'alert("กรอกข้อมูลสำเร็จแล้ว")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {

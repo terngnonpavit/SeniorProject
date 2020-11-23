@@ -34,22 +34,30 @@
           <a class='text-info' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
-          <p><strong>title(TH):</strong> $titleTH </p>
-          <p><strong>Author:</strong> $author </p>
-          <a class='text-success' href='$file_path' target='_blank'>
-              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
-        </div>
-        <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_journal' class='btn btn-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id' class='btn btn-warning'>Edit</a>
-          <a href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
-          <a href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
-        </div>
-      </div>
-      </div>
+          <p><strong>ชื่อผลงาน(ไทย):</strong> $titleTH </p>
+          <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
       ";
-    }
+
+        if($file_path != '') {
+          echo "
+          <a class='text-success' href='$file_path' target='_blank'>
+            <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+          </a>
+          ";
+        }
+
+        echo "
+        </div>
+          <div class='card-footer'>
+            <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_journal' class='btn btn-danger'>Delete</a>
+            <a href='http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
+            <a href='http://localhost/seniorproject/report/generate_journal_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
+          </div>
+        </div>
+        </div>
+        ";
+      }
     else{
       echo "
       <div class='col-md-12' style='margin-bottom: 20px'>
@@ -58,20 +66,28 @@
           <a class='text-info' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
-          <p><strong>title(TH):</strong> $titleTH </p>
-          <p><strong>Author:</strong> $author </p>
-          <a class='text-info' href='$file_path' target='_blank'>
-              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
-        </div>
-        <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_journal' class='btn btn-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id' class='btn btn-warning'>Edit</a>
-          <a href='http://localhost/seniorproject/admin/scholarship_journal.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
-        </div>
-      </div>
-      </div>
+          <p><strong>ชื่อผลงาน(ไทย):</strong> $titleTH </p>
+          <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
       ";
+
+      if ($file_path != '') {
+        echo "
+        <a class='text-success' href='$file_path' target='_blank'>
+          <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+        </a>
+        ";
+      }
+
+        echo "
+        </div>
+          <div class='card-footer'>
+            <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_journal' class='btn btn-danger'>Delete</a>
+            <a href='http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/admin/scholarship_journal.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
+          </div>
+        </div>
+        </div>
+        ";
     }
   }
 }

@@ -58,6 +58,7 @@
             $author=$row['author'];
             $date=$row['date'];
             $type=$row['type'];
+            $file_path=$row['file_path'];
 
             if($type=='scholarship_book'){
                 $page_amount=$row['page_amount'];
@@ -75,12 +76,16 @@
                   <p><strong>date:</strong> $date </p>
 
                   <span class='badge badge-success'>Books</span>
-                  <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
-                </div>
+              ";
+
+                if($file_path != '') {
+                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                }
+
+                echo "</div>
               </div>
               <br/>
               ";
-
             }
             else if($type=='scholarship_journal'){
               $journal_name=$row['journal_name'];
@@ -100,9 +105,15 @@
                   <p><strong>volume:</strong> $volume </p>
                   <p><strong>page:</strong> $page </p>
                   <p><strong>date:</strong> $date </p>
+
                   <span class='badge badge-info'>Journals</span>
-                  <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
-                </div>
+              ";
+
+                if($file_path != '') {
+                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                }
+
+                echo "</div>
               </div>
               <br/>
               ";
@@ -123,13 +134,17 @@
                   <p><strong>place:</strong> $place </p>
 
                   <span class='badge badge-primary'>Proceedings</span>
-                  <a class='btn btn-danger' href=''><i class='fa fa-file-pdf-o'></i> PDF</a>
-                </div>
+              ";
+
+              if($file_path != '') {
+                echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+              }
+
+              echo  "</div>
               </div>
               <br/>
               ";
             }
-
           }
         }
         else {

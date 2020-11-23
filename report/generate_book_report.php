@@ -242,15 +242,10 @@ if ($result->num_rows > 0) {
     $for_student=$row['for_student'];
     $student_year=$row['student_year'];
     $page_amount=$row['page_amount'];
-    $chapter_no_1=$row['chapter_no_1'];
-    $chapter_no_2=$row['chapter_no_2'];
-    $chapter_no_3=$row['chapter_no_3'];
-    $chapter_name_1=$row['chapter_name_1'];
-    $chapter_name_2=$row['chapter_name_2'];
-    $chapter_name_3=$row['chapter_name_3'];
-    $content_1=$row['content_1'];
-    $content_2=$row['content_2'];
-    $content_3=$row['content_3'];
+    $chapter_no=$row['chapter_no'];
+    $chapter_name=$row['chapter_name'];
+    $content=$row['content'];
+
     $teaching_history=$row['teaching_history'];
     $applicant=$row['applicant'];
     $head_of_department=$row['head_of_department'];

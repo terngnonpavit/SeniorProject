@@ -21,6 +21,7 @@
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
       $writer_name=$row['writer_name'];
+      $author=$row['author'];
       $file_path=$row['file_path'];
       $type=$row['type'];
       $check_scholarship=$row['check_scholarship'];
@@ -34,12 +35,20 @@
             <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
           </div>
           <div class='card-body'>
-            <p><strong>title(TH):</strong> $titleTH </p>
-            <p><strong>Writer Name:</strong> $writer_name </p>
-            <a class='text-success' href='$file_path' target='_blank'>
-                <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-            </a>
-          </div>
+            <p><strong>ชื่อตำรา(ไทย):</strong> $titleTH </p>
+            <p><strong>ชื่อผู้เขียน:</strong> $author </p>
+        ";
+
+        if($file_path != '') {
+          echo "
+          <a class='text-success' href='$file_path' target='_blank'>
+            <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+          </a>
+          ";
+        }
+
+        echo "
+        </div>
           <div class='card-footer'>
             <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_book' class='btn btn-danger'>Delete</a>
             <a href='http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id' class='btn btn-warning'>Edit</a>
@@ -58,12 +67,20 @@
             <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
           </div>
           <div class='card-body'>
-            <p><strong>title(TH):</strong> $titleTH </p>
-            <p><strong>Writer Name:</strong> $writer_name </p>
-            <a class='text-success' href='$file_path' target='_blank'>
-                <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-            </a>
-          </div>
+            <p><strong>ชื่อตำรา(ไทย):</strong> $titleTH </p>
+            <p><strong>ชื่อผู้เขียน:</strong> $author </p>
+        ";
+
+        if ($file_path != '') {
+          echo "
+          <a class='text-success' href='$file_path' target='_blank'>
+            <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+          </a>
+          ";
+        }
+
+        echo "
+        </div>
           <div class='card-footer'>
             <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_book' class='btn btn-danger'>Delete</a>
             <a href='http://localhost/seniorproject/admin/edit_scholarship_book.php/?id=$id' class='btn btn-warning'>Edit</a>

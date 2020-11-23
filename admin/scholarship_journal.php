@@ -154,19 +154,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group col-md-6">
             <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ตัวเลข)</strong></label>
             <select class="form-control" name="amount">
-                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท">30,000 บาท</option>
-                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท">10,000 บาท</option>
-                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท">6,000 บาท</option>
-                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท">4,000 บาท</option>
+                <option value="30,000">30,000 บาท</option>
+                <option value="10,000">10,000 บาท</option>
+                <option value="6,000">6,000 บาท</option>
+                <option value="4,000">4,000 บาท</option>
             </select>
           </div>
           <div class="form-group col-md-6">
             <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ข้อความ)</strong></label>
             <select class="form-control" name="amount_text">
-                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูล ISI/Scopus รางวัลละไม่เกิน 30,000 บาท">สามหมื่นบาทถ้วน</option>
-                <option value="วารสารระดับนานาชาติที่ปรากฏในฐานข้อมูลตามเกณฑ์ ก.พ.อ. รางวัลละไม่เกิน 10,000 บาท">หนึ่งหมื่นบาทถ้วน</option>
-                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 1 รางวัลละไม่เกิน 6,000 บาท">หกพันบาทถ้วน</option>
-                <option value="วารสารระดับชาติที่ปรากฏในฐานข้อมูล TCI กลุ่ม 2 รางวัลละไม่เกิน 4,000 บาท">สี่พันบาทถ้วน</option>
+                <option value="สามหมื่นบาทถ้วน">สามหมื่นบาทถ้วน</option>
+                <option value="หนึ่งหมื่นบาทถ้วน">หนึ่งหมื่นบาทถ้วน</option>
+                <option value="หกพันบาทถ้วน">หกพันบาทถ้วน</option>
+                <option value="สี่พันบาทถ้วน">สี่พันบาทถ้วน</option>
             </select>
           </div>
         </div>
@@ -262,12 +262,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             echo '<script language="javascript">';
-            echo 'alert("สร้างฟอร์มขอทุนวารสารเสร็จสมบูรณ์")';
+            echo 'alert("สร้างเอกสารขอทุนสำเร็จ")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo '<script language="javascript">';
-            echo 'alert("สร้างฟอร์มขอทุนวารสารไม่สำเร็จ")';
+            echo 'alert("สร้างเอกสารขอทุนไม่สำเร็จ")';
             echo '</script>';
             // echo "Error: " . $sql . "<br>" . $conn->error;
           }

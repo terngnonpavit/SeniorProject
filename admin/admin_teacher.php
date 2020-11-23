@@ -31,14 +31,14 @@
 
       if ($status == 'Active') {
         echo "
-        <div class='col-md-6' style='margin-bottom: 20px'>
+        <div class='col-md-12' style='margin-bottom: 20px'>
         <div class='card'>
           <div class='card-header'>
             <h4><a href='http://localhost/seniorproject/admin/detail_teacher.php/?id=$id'> $no. $title$name </a></h4>
           </div>
           <div class='card-body'>
-            <p><strong>Code:</strong> $teacher_code </p>
-            <p><strong>Position:</strong> $position </p>
+            <p><strong>รหัสอาจารย์:</strong> $teacher_code </p>
+            <p><strong>ตำแหน่ง:</strong> $position </p>
             <span class='badge badge-success'>$status</span>
           </div>
           <div class='card-footer'>
@@ -51,14 +51,14 @@
         ";
       } else {
         echo "
-        <div class='col-md-6' style='margin-bottom: 20px'>
+        <div class='col-md-12' style='margin-bottom: 20px'>
         <div class='card'>
           <div class='card-header'>
             <h4> $no. $title$name </h4>
           </div>
           <div class='card-body'>
-            <p><strong>Code:</strong> $teacher_code </p>
-            <p><strong>Position:</strong> $position </p>
+            <p><strong>รหัสอาจารย์:</strong> $teacher_code </p>
+            <p><strong>ตำแหน่ง:</strong> $position </p>
             <span class='badge badge-danger'>$status</span>
           </div>
           <div class='card-footer'>

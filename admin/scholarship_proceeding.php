@@ -157,19 +157,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group col-md-6">
             <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ตัวเลข)</strong></label>
             <select class="form-control" name="amount">
-                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ">3,000 บาท</option>
-                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ">2,000 บาท</option>
-                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ">1,500 บาท</option>
-                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ">1,000 บาท</option>
+                <option value="3,000">3,000 บาท</option>
+                <option value="2,000">2,000 บาท</option>
+                <option value="1,500">1,500 บาท</option>
+                <option value="1,000">1,000 บาท</option>
             </select>
           </div>
           <div class="form-group col-md-6">
             <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ข้อความ)</strong></label>
             <select class="form-control" name="amount_text">
-                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับนานาชาติ">สามพันบาทถ้วน</option>
-                <option value="Proceedings ตีพิมพ์ในเอกสารสืบเนื่องจาการประชุมวิชาการระดับชาติ">สองพันบาทถ้วน</option>
-                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ">หนึ่งพันห้าร้อยบาทถ้วน</option>
-                <option value="บทคัดย่อตีพิมพ์ในเอกสารสืบเนื่องจากการประชุมวิชาการระดับชาติ">หนึ่งพันบาทถ้วน</option>
+                <option value="สามพันบาทถ้วน">สามพันบาทถ้วน</option>
+                <option value="สองพันบาทถ้วน">สองพันบาทถ้วน</option>
+                <option value="หนึ่งพันห้าร้อยบาทถ้วน">หนึ่งพันห้าร้อยบาทถ้วน</option>
+                <option value="หนึ่งพันบาทถ้วน">หนึ่งพันบาทถ้วน</option>
             </select>
           </div>
         </div>
@@ -265,12 +265,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             echo '<script language="javascript">';
-            echo 'alert("สร้างฟอร์มขอทุนเอกสารจาการประชุมวิชาการเสร็จสมบูรณ์")';
+            echo 'alert("สร้างเอกสารขอทุนสำเร็จ")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo '<script language="javascript">';
-            echo 'alert("สร้างฟอร์มขอทุนเอกสารจาการประชุมวิชาการไม่สำเร็จ")';
+            echo 'alert("สร้างเอกสารขอทุนไม่สำเร็จ")';
             echo '</script>';
             // echo "Error: " . $sql . "<br>" . $conn->error;
           }

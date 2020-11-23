@@ -15,6 +15,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -94,7 +95,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             </div>
           </div>
           <div class="form-group">
-            <label for="publisher"><strong>สำนักพิมพ์(publisher)</strong></label>
+            <label for="publisher"><strong>สำนักพิมพ์</strong></label>
             <input type="text" class="form-control" placeholder="กรุณาระบุสำนักพิมพ์" name="publisher" value="<?php echo $publisher; ?>">
           </div>
           <div class='row'>
@@ -140,11 +141,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
           <div class='row'>
             <div class="form-group col-md-6">
-              <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 2,000)</strong></label>
+              <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ตัวเลข)</strong></label>
               <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount">
             </div>
             <div class="form-group col-md-6">
-              <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นข้อความ เช่น สองพัน)</strong></label>
+              <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ข้อความ)</strong></label>
               <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount_text">
             </div>
           </div>
@@ -178,9 +179,30 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             </div>
           </div>
 
-          <br>
-          <hr>
-          <div class='row'>
+          <div class="field_wrapper">
+            <div>
+              <div class='row'>
+                <div class="form-group col-md-6">
+                  <label for="chapter_no_3"><strong>บทที่</strong></label>
+                  <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no[]">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="chapter_name_3"><strong>ชื่อบท</strong></label>
+                  <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name[]">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="content_3"><strong>เนื้อหา</strong></label>
+                <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content[]"></textarea>
+              </div>
+              <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field">เพิ่ม</a>
+              <br>
+              <hr>
+            </div>
+          </div>
+          <!-- <br>
+          <hr> -->
+          <!-- <div class='row'>
           <div class="form-group col-md-6">
               <label for="chapter_no_1"><strong>บทที่(1)</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_1">
@@ -195,8 +217,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_1"></textarea>
           </div>
           <br>
-          <hr>
-          <div class='row'>
+          <hr> -->
+          <!-- <div class='row'>
             <div class="form-group col-md-6">
               <label for="chapter_no_2"><strong>บทที่(2)</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_2">
@@ -211,8 +233,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_2"></textarea>
           </div>
           <br>
-          <hr>
-          <div class='row'>
+          <hr> -->
+          <!-- <div class='row'>
             <div class="form-group col-md-6">
               <label for="chapter_no_3"><strong>บทที่(3)</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_3">
@@ -227,7 +249,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_3"></textarea>
           </div>
           <br>
-          <hr>
+          <hr> -->
           <div class="form-group">
             <label for="teaching_history"><strong>ประวัติการสอน(โดยสังเขป)</strong></label>
             <textarea type="text" class="form-control" placeholder="กรุณาระบุประวัติการสอน(โดยสังเขป)" rows="5" name="teaching_history"></textarea>
@@ -260,9 +282,45 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <label for="book_file"><strong>อัพโหลดไฟล์</strong></label>
             <input type="file" class="form-control" placeholder="อัพโหลดไฟล์" name="book_file">
           </div>
+
           <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
+
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+          var maxField = 10; //Input fields increment limitation
+          var addButton = $('.add_button'); //Add button selector
+          var wrapper = $('.field_wrapper'); //Input field wrapper
+          var fieldHTML0 = '<div>';
+          var fieldHTML1 = '<div class="row">';
+          var fieldHTML2 = '<div class="form-group col-md-6"><label for="chapter_no_3"><strong>บทที่</strong></label><input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no[]"></div>';
+          var fieldHTML3 = '<div class="form-group col-md-6"><label for="chapter_name_3"><strong>ชื่อบท</strong></label><input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name[]"></div>';
+          var fieldHTML4 = '</div>';
+          var fieldHTML5 = '<div class="form-group"><label for="content_3"><strong>เนื้อหา</strong></label><textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content[]"></textarea></div>';
+          var fieldHTML6 = '<a href="javascript:void(0);" class="remove_button btn btn-danger">ลบ</a>';
+          var fieldHTML7 = '</div><br><hr>';
+          var x = 1; //Initial field counter is 1
+
+          //Once add button is clicked
+          $(addButton).click(function(){
+              //Check maximum number of input fields
+              if(x < maxField){
+                  x++; //Increment field counter
+                  $(wrapper).append(fieldHTML0+fieldHTML1+fieldHTML2+fieldHTML3+fieldHTML4+fieldHTML5+fieldHTML6+fieldHTML7); //Add field html
+
+              }
+          });
+
+          //Once remove button is clicked
+          $(wrapper).on('click', '.remove_button', function(e){
+              e.preventDefault();
+              $(this).parent('div').remove(); //Remove field html
+              x--; //Decrement field counter
+          });
+      });
+      </script>
 
     <?php
 
@@ -313,15 +371,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               $for_student=$_POST['for_student'];
               $student_year=$_POST['student_year'];
               $page_amount=$_POST['page_amount'];
-              $chapter_no_1=$_POST['chapter_no_1'];
-              $chapter_no_2=$_POST['chapter_no_2'];
-              $chapter_no_3=$_POST['chapter_no_3'];
-              $chapter_name_1=$_POST['chapter_name_1'];
-              $chapter_name_2=$_POST['chapter_name_2'];
-              $chapter_name_3=$_POST['chapter_name_3'];
-              $content_1=$_POST['content_1'];
-              $content_2=$_POST['content_2'];
-              $content_3=$_POST['content_3'];
+              $chapter_no=$_POST['chapter_no'];
+              $chapter_name=$_POST['chapter_name'];
+              $content=$_POST['content'];
+
               $teaching_history=$_POST['teaching_history'];
               $applicant=$_POST['applicant'];
               $head_of_department=$_POST['head_of_department'];
@@ -331,22 +384,37 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               $type="scholarship_book";
               $check_scholarship="true";
 
+              $chapter_no_str = '';
+              foreach($chapter_no as $no){
+                $chapter_no_str = $chapter_no_str.'###'.$no;
+              }
+
+              $chapter_name_str = '';
+              foreach($chapter_name as $name){
+                $chapter_name_str = $chapter_name_str.'###'.$name;
+              }
+
+              $content_str = '';
+              foreach($content as $con){
+                $content_str = $content_str.'###'.$con;
+              }
+
               $sql = "UPDATE `scholarship_book` SET `year`='$year', `titleTH`='$titleTH', `titleEN`='$titleEN', `writer_name`='$writer_name', `author`='$author', `writer_department`='$writer_department', `write_ratio`='$write_ratio', `co_writer_name`='$co_writer_name', `co_writer_department`='$co_writer_department'
               , `co_write_ratio`='$co_write_ratio'
-              , `keywordTH`='$keywordTH', `keywordEN`='$keywordEN', `amount`='$amount', `amount_text`='$amount_text', `subject_no`='$subject_no', `subject`='$subject', `for_student`='$for_student', `student_year`='$student_year', `page_amount`='$page_amount', `chapter_no_1`='$chapter_no_1'
-              , `chapter_name_1`='$chapter_name_1'
-              , `content_1`='$content_1', `chapter_no_2`='$chapter_no_2', `chapter_name_2`='$chapter_name_2', `content_2`='$content_2', `chapter_no_3`='$chapter_no_3', `chapter_name_3`='$chapter_name_3', `content_3`='$content_3', `teaching_history`='$teaching_history'
+              , `keywordTH`='$keywordTH', `keywordEN`='$keywordEN', `amount`='$amount', `amount_text`='$amount_text', `subject_no`='$subject_no', `subject`='$subject', `for_student`='$for_student', `student_year`='$student_year', `page_amount`='$page_amount', `chapter_no`='$chapter_no_str'
+              , `chapter_name`='$chapter_name_str'
+              , `content`='$content_str', `teaching_history`='$teaching_history'
               , `applicant`='$applicant', `head_of_department`='$head_of_department', `department_name`='$department_name', `date`='$date', `publisher`='$publisher', `type`='$type', `check_scholarship`='$check_scholarship', `file_path`='$file_path'  WHERE `scholarship_book`.`id` = $id;";
 
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             echo '<script language="javascript">';
-            echo 'alert("สร้างเอกสารขอทุนตำราเสร็จสมบูรณ์")';
+            echo 'alert("สร้างเอกสารขอทุนสำเร็จ")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo '<script language="javascript">';
-            echo 'alert("สร้างเอกสารขอทุนตำราไม่สำเร็จ")';
+            echo 'alert("สร้างเอกสารขอทุนไม่สำเร็จ")';
             echo '</script>';
             // echo "Error: " . $sql . "<br>" . $conn->error;
           }

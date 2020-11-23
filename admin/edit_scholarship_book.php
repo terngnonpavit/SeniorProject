@@ -123,7 +123,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 </div>
               </div>
               <div class="form-group">
-                <label for="publisher"><strong>สำนักพิมพ์(publisher)</strong></label>
+                <label for="publisher"><strong>สำนักพิมพ์</strong></label>
                 <input type="text" class="form-control" placeholder="กรุณาระบุสำนักพิมพ์" name="publisher" value="<?php echo $publisher; ?>">
               </div>
               <div class='row'>
@@ -174,11 +174,11 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               </div>
               <div class='row'>
                 <div class="form-group col-md-6">
-                  <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นตัวเลข เช่น 2,000)</strong></label>
+                  <label for="amount"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ตัวเลข)</strong></label>
                   <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount" value="<?php echo $amount; ?>">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ระบุเป็นข้อความ เช่น สองพัน)</strong></label>
+                  <label for="amount_text"><strong>จำนวนเงินทุนที่ขอรับการสนับสนุน(ข้อความ)</strong></label>
                   <input type="text" class="form-control" placeholder="ระบุจำนวนเงินทุนที่ขอรับการสนับสนุน" name="amount_text" value="<?php echo $amount_text; ?>">
                 </div>
               </div>
@@ -378,12 +378,12 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             echo '<script language="javascript">';
-            echo 'alert("แก้ไขตำราเสร็จสมบูรณ์")';
+            echo 'alert("แก้ไขข้อมูลสำเร็จแล้ว")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
             echo '<script language="javascript">';
-            echo 'alert("แก้ไขตำราไม่สำเร็จ")';
+            echo 'alert("แก้ไขข้อมูลไม่สำเร็จ")';
             echo '</script>';
             // echo "Error: " . $sql . "<br>" . $conn->error;
           }

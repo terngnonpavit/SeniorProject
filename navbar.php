@@ -2,7 +2,7 @@
   <!-- Brand -->
   <a class="navbar-brand" href="http://localhost/seniorproject/index.php">
     <!-- <img src="http://localhost/seniorproject/images/SC-SU-Logo-ENG.png" style="height:30px; width:20px"> -->
-    CPSU <i class="fas fa-search"></i> 
+    CPSU <i class="fas fa-search"></i>
   </a>
     <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -20,7 +20,7 @@
         echo '
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/seniorproject/admin/admin.php">Dashboard</a>
+            <a class="nav-link" href="http://localhost/seniorproject/admin/admin.php">Admin</a>
           </li>
         </ul>
         ';

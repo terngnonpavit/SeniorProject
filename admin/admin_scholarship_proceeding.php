@@ -35,21 +35,29 @@
           <a class='text-primary' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
-          <p><strong>title(TH):</strong> $titleTH </p>
-          <p><strong>Author:</strong> $author </p>
-          <p><strong>Conference:</strong> $conference_name </p>
-          <a class='text-success' href='$file_path' target='_blank'>
-              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
+          <p><strong>ชื่อผลงาน(ไทย):</strong> $titleTH </p>
+          <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
+          <p><strong>ชื่อการประชุมวิชาการ:</strong> $conference_name </p>
+      ";
+
+      if($file_path != '') {
+        echo "
+        <a class='text-success' href='$file_path' target='_blank'>
+          <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+        </a>
+        ";
+      }
+
+        echo "
         </div>
-        <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id' class='btn btn-warning'>Edit</a>
-          <a href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
-          <a href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
+          <div class='card-footer'>
+            <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-danger'>Delete</a>
+            <a href='http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=true' class='btn btn-dark'><i class='fas fa-print'></i>พิมพ์เอกสารขอทุน</a>
+            <a href='http://localhost/seniorproject/report/generate_proceeding_report.php/?id=$id&save=false' class='btn btn-secondary'>ดูเอกสารขอทุน</a>
+          </div>
         </div>
-      </div>
-      </div>
+        </div>
       ";
     }
     else{
@@ -60,21 +68,29 @@
           <a class='text-primary' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
         </div>
         <div class='card-body'>
-          <p><strong>title(TH):</strong> $titleTH </p>
-          <p><strong>Author:</strong> $author </p>
-          <p><strong>Conference:</strong> $conference_name </p>
-          <a class='text-success' href='$file_path' target='_blank'>
-              <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
-        </div>
-        <div class='card-footer'>
-          <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-danger'>Delete</a>
-          <a href='http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id' class='btn btn-warning'>Edit</a>
-          <a href='http://localhost/seniorproject/admin/scholarship_proceeding.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
-        </div>
-      </div>
-      </div>
+          <p><strong>ชื่อผลงาน(ไทย):</strong> $titleTH </p>
+          <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
+          <p><strong>ชื่อการประชุมวิชาการ:</strong> $conference_name </p>
       ";
+
+      if ($file_path != '') {
+        echo "
+        <a class='text-success' href='$file_path' target='_blank'>
+          <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
+        </a>
+        ";
+      }
+
+        echo "
+        </div>
+          <div class='card-footer'>
+            <a href='http://localhost/seniorproject/admin/delete.php/?id=$id&type=scholarship_proceeding' class='btn btn-danger'>Delete</a>
+            <a href='http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id' class='btn btn-warning'>Edit</a>
+            <a href='http://localhost/seniorproject/admin/scholarship_proceeding.php/?id=$id' class='btn btn-secondary'>สร้างเอกสารขอทุน</a>
+          </div>
+        </div>
+        </div>
+        ";
     }
   }
 }

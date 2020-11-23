@@ -165,7 +165,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             echo "New record created successfully";
             // header('Location: http://localhost/seniorproject/admin/admin.php');
             echo '<script language="javascript">';
-            echo 'alert("สร้างตำราเสร็จสมบูรณ์")';
+            echo 'alert("กรอกข้อมูลสำเร็จแล้ว")';
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
