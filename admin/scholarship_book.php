@@ -356,7 +356,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               $titleTH=$_POST['titleTH'];
               $titleEN=$_POST['titleEN'];
               $writer_name=$_POST['writer_name'];
-              $author=$writer_name;
+              $author=$_POST['author'];
               $writer_department=$_POST['writer_department'];
               $write_ratio=$_POST['write_ratio'];
               $co_writer_name=$_POST['co_writer_name'];
@@ -386,17 +386,17 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
 
               $chapter_no_str = '';
               foreach($chapter_no as $no){
-                $chapter_no_str = $chapter_no_str.'###'.$no;
+                $chapter_no_str = $chapter_no_str.',,,'.$no;
               }
 
               $chapter_name_str = '';
               foreach($chapter_name as $name){
-                $chapter_name_str = $chapter_name_str.'###'.$name;
+                $chapter_name_str = $chapter_name_str.',,,'.$name;
               }
 
               $content_str = '';
               foreach($content as $con){
-                $content_str = $content_str.'###'.$con;
+                $content_str = $content_str.',,,'.$con;
               }
 
               $sql = "UPDATE `scholarship_book` SET `year`='$year', `titleTH`='$titleTH', `titleEN`='$titleEN', `writer_name`='$writer_name', `author`='$author', `writer_department`='$writer_department', `write_ratio`='$write_ratio', `co_writer_name`='$co_writer_name', `co_writer_department`='$co_writer_department'

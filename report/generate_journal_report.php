@@ -231,6 +231,7 @@ if ($result->num_rows > 0) {
     $journal_name=$row['journal_name'];
     $volume=$row['volume'];
     $number=$row['number'];
+    $page=$row['page'];
     $date=$row['date'];
     $type_of_document=$row['type_of_document'];
     $type_of_publication=$row['type_of_publication'];
@@ -254,6 +255,7 @@ $titleTH=$npdf->conv($titleTH);
 $titleEN=$npdf->conv($titleEN);
 $journal_name=$npdf->conv($journal_name);
 $volume=$npdf->conv($volume);
+$page=$npdf->conv($page);
 $number=$npdf->conv($number);
 $date=$npdf->conv($date);
 $type_of_document=$npdf->conv($type_of_document);
@@ -323,7 +325,7 @@ $npdf->write(6.5,"..............................................................
 $npdf->SetXY(15,80);
 $npdf->write(6.5,"$section1_5");
 $npdf->SetXY(51,79);
-$npdf->write(6.5,"$volume, $number");
+$npdf->write(6.5,"$volume, $number, $page");
 $npdf->SetXY(50,80);
 $npdf->write(6.5,".................................................................................");
 $npdf->SetXY(120,80);

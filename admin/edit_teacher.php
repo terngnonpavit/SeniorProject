@@ -87,7 +87,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                   <option value="อาจารย์"  <?php if($position=="อาจารย์") echo 'selected'?>>อาจารย์</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-success">Done</button>
+            <button type="submit" class="btn btn-success">ยืนยัน</button>
           </form>
         </div>
 
@@ -123,9 +123,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             // header('Location: http://localhost/seniorproject/admin/scholarship_menu.php');
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขข้อมูลสำเร็จแล้ว")';
+            echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("แก้ไขข้อมูลไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

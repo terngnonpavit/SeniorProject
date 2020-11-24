@@ -70,10 +70,10 @@
                 <div class='card-body'>
                   <h3><strong></strong> $titleTH </h3>
                   <h4><strong></strong> $titleEN </h4><hr>
-                  <p><strong>author:</strong> $author </p>
-                  <p><strong>page:</strong> $page_amount </p>
-                  <p><strong>publisher:</strong> $publisher </p>
-                  <p><strong>date:</strong> $date </p>
+                  <p><strong>ชื่อผู้แต่ง:</strong> $author </p>
+                  <p><strong>หน้า:</strong> $page_amount </p>
+                  <p><strong>สำนักพิมพ์:</strong> $publisher </p>
+                  <p><strong>วัน/เดือน/ปี ที่ตีพิมพ์:</strong> $date </p>
 
                   <span class='badge badge-success'>Books</span>
               ";
@@ -99,12 +99,12 @@
                 <div class='card-body'>
                   <h3><strong></strong> $titleTH </h3>
                   <h4><strong></strong> $titleEN </h4><hr>
-                  <p><strong>author:</strong> $author </p>
-                  <p><strong>journal name:</strong> $journal_name </p>
-                  <p><strong>number:</strong> $number </p>
-                  <p><strong>volume:</strong> $volume </p>
-                  <p><strong>page:</strong> $page </p>
-                  <p><strong>date:</strong> $date </p>
+                  <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
+                  <p><strong>ชื่อวารสารที่ตีพิมพ์:</strong> $journal_name </p>
+                  <p><strong>ฉบับที่:</strong> $number </p>
+                  <p><strong>ปีที่:</strong> $volume </p>
+                  <p><strong>หน้า:</strong> $page </p>
+                  <p><strong>วัน/เดือน/ปี ที่ตีพิมพ์:</strong> $date </p>
 
                   <span class='badge badge-info'>Journals</span>
               ";
@@ -128,10 +128,10 @@
                 <div class='card-body'>
                   <h3><strong></strong> $titleTH </h3>
                   <h4><strong></strong> $titleEN </h4><hr>
-                  <p><strong>author:</strong> $author </p>
-                  <p><strong>conference name:</strong> $conference_name </p>
-                  <p><strong>date:</strong> $date </p>
-                  <p><strong>place:</strong> $place </p>
+                  <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
+                  <p><strong>ชื่อการประชุมวิชาการ:</strong> $conference_name </p>
+                  <p><strong>วัน/เดือน/ปี ที่จัด:</strong> $date </p>
+                  <p><strong>สถานที่จัด:</strong> $place </p>
 
                   <span class='badge badge-primary'>Proceedings</span>
               ";

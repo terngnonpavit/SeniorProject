@@ -96,15 +96,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ์" name="journal_name" value="<?php echo $journal_name; ?>">
           </div>
         <div class='row'>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label for="volume"><strong>ปีที่</strong></label>
-            <input type="text" class="form-control" placeholder="Enter volume" name="volume" value="<?php echo $volume; ?>">
+            <input type="text" class="form-control" placeholder="กรุณาระบุปีที่" name="volume" value="<?php echo $volume; ?>">
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label for="number"><strong>ฉบับที่</strong></label>
-            <input type="text" class="form-control" placeholder="Enter number" name="number" value="<?php echo $number; ?>">
+            <input type="text" class="form-control" placeholder="กรุณาระบุฉบับที่" name="number" value="<?php echo $number; ?>">
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
+            <label for="page"><strong>หน้า</strong></label>
+            <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
+          </div>
+          <div class="form-group col-md-3">
             <label for="date"><strong>วัน/เดือน/ปี ที่ตีพิมพ์</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี ที่ตีพิมพ์" name="date" value="<?php echo $date; ?>">
           </div>
@@ -190,10 +194,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <input type="text" class="form-control" placeholder="กรุณากรอกภาควิชา" name="department_name" value="คอมพิวเตอร์">
           </div>
         </div>
-          <!-- <div class="form-group">
-            <label for="page">page</label>
-            <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
-          </div> -->
           <div class="form-group">
             <label for="journal_file"><strong>อัพโหลดไฟล์</strong></label>
             <input type="file" class="form-control" placeholder="Upload file" name="journal_file">

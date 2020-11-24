@@ -18,7 +18,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="http://localhost/seniorproject/fm.tagator.jquery.css">
+    <script src="http://localhost/seniorproject/fm.tagator.jquery.js"></script>
   </head>
   <body>
     <?php require('../navbar.php');?>
@@ -79,25 +80,15 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         <form action='<?php echo "http://localhost/seniorproject/admin/edit_scholarship_proceeding.php/?id=$id"?>' method="post" enctype="multipart/form-data">
           <div class='row'>
             <div class="form-group col-md-6">
-              <label for="author"><strong>ชื่อผู้ขอรับการสนับสนุน</strong></label>
-              <select class="form-control" name="author">
-                <?php
-                   foreach ($teacher_name as $name) {
-                   if($author==$name){
-                     echo "<option value='$name' selected>$name</option>";
-                   }
-                   else{
-                     echo "<option value='$name'>$name</option>";
-                   }
-                 }
-               ?>
-             </select>
+              <label for="author"><strong>ชื่อผู้เขียน</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้เขียน" name="author" id="author_tag" value="<?php echo $author; ?>">
             </div>
             <div class="form-group col-md-6">
               <label for="department"><strong>สังกัด</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department" value="<?php echo $department; ?>">
             </div>
           </div>
+
             <div class="form-group">
               <label for="titleEN"><strong>ชื่อผลงานวิจัย(english)</strong></label>
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN" value="<?php echo $titleEN; ?>">
@@ -115,7 +106,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <label for="place"><strong>สถานที่จัด</strong></label>
               <input type="text" class="form-control" placeholder="กรุณากรอกสถานที่่จัด" name="place" value="<?php echo $place; ?>">
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
               <label for="date"><strong>วัน/เดือน/ปี ที่จัด<strong></label>
               <input type="text" class="form-control" placeholder="กรุณากรอกวันเดือนปี ที่จัด" name="date" value="<?php echo $date; ?>">
             </div>
@@ -212,13 +203,27 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <label for="department_name"><strong>สังกัดของหัวหน้าภาควิชา</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุสังกัดภาควิชา" name="department_name" value="คอมพิวเตอร์">
             </div>
+          </div>
             <div class="form-group">
               <label for="proceeding_file">อัพโหลดไฟล์</label>
               <input type="file" class="form-control" placeholder="Upload file" name="proceeding_file">
-            </div>
+            </div>  
             <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
         </form>
       </div>
+
+      <script type="text/javascript">
+       $('#author_tag').tagator({
+          // autocomplete: ['first', 'second', 'third', 'jQuery', 'Script', 'Net'],
+          autocomplete: [<?php foreach ($teacher_name as $name) {
+            echo "'$name',";
+          }?>],
+          useDimmer: false,
+          prefix: 'tagator_',
+          height: 'auto',
+          showAllOptionsOnFocus: true,
+        });
+      </script>
 
       <script>
         $(document).ready(function(){

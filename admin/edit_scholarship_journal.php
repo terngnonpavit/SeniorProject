@@ -17,7 +17,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="http://localhost/seniorproject/fm.tagator.jquery.css">
+    <script src="http://localhost/seniorproject/fm.tagator.jquery.js"></script>
   </head>
   <body>
     <?php require('../navbar.php');?>
@@ -97,6 +98,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department" value="<?php echo $department; ?>">
             </div>
           </div>
+            <div class="form-group">
+              <label for="author"><strong>ชื่อผู้เขียน</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้เขียน" name="author" id="author_tag" value="<?php echo $author; ?>">
+            </div>
             <div class="form-group">
               <label for="titleEN"><strong>ชื่อผลงานวิจัย(english)</strong></label>
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN" value="<?php echo $titleEN; ?>"
@@ -220,6 +225,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
         </form>
       </div>
+
+      <script type="text/javascript">
+       $('#author_tag').tagator({
+          // autocomplete: ['first', 'second', 'third', 'jQuery', 'Script', 'Net'],
+          autocomplete: [<?php foreach ($teacher_name as $name) {
+            echo "'$name',";
+          }?>],
+          useDimmer: false,
+          prefix: 'tagator_',
+          height: 'auto',
+          showAllOptionsOnFocus: true,
+        });
+      </script>
 
       <?php
 

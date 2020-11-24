@@ -92,8 +92,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="ระบุฉบับที่" name="number">
             </div>
             <div class="form-group col-md-4">
-              <label for="page"><strong>หน้าที่</strong></label>
-              <input type="text" class="form-control" placeholder="ระบุเลขหน้า" name="page">
+              <label for="page"><strong>หน้า</strong></label>
+              <input type="text" class="form-control" placeholder="ระบุหน้า" name="page">
             </div>
           </div>
           <div class="row">
@@ -177,7 +177,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             echo '</script>';
             echo "<script type='text/javascript'>window.location.href='http://localhost/seniorproject/admin/admin.php'</script>";
           } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script language="javascript">';
+            echo 'alert("กรอกข้อมูลไม่สำเร็จ")';
+            echo '</script>';
+            // echo "Error: " . $sql . "<br>" . $conn->error;
           }
         }
         $conn->close();

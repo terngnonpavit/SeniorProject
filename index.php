@@ -100,62 +100,74 @@
                 echo "
                 <div class='card'>
                   <div class='card-header'>
-                    <a class='text-success' href='detail.php/?id=$id&type=$type'><h4> $no.  $titleTH </h4></a>
+                    <a class='text-success' href='detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
                   </div>
                   <div class='card-body'>
-                    <p><strong>title(EN):</strong> $titleEN </p>
-                    <p><strong>author:</strong> $author </p>
-                    <p><strong>date:</strong> $date </p>
+                    <p><strong>ชื่อตำรา(ไทย):</strong> $titleTH </p>
+                    <p><strong>ชื่อผู้แต่ง:</strong> $author </p>
+                    <p><strong>วัน/เดือน/ปี ที่ตีพิมพ์:</strong> $date </p>
+
                     <span class='badge badge-success'>Books</span>
-                    <a class='text-success' href='$file_path' target='_blank'>
-                        <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-                    </a>
-                  </div>
-                </div>
-                <br />
                 ";
-              }
+
+                if($file_path != '') {
+                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                }
+
+                echo "</div>
+              </div>
+              <br/>
+              ";
+            }
               else if($type=='scholarship_journal'){
                 echo "
                 <div class='card'>
                   <div class='card-header'>
-                    <a class='text-info' href='detail.php/?id=$id&type=$type'><h4> $no.  $titleTH </h4></a>
+                    <a class='text-info' href='detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
                   </div>
                   <div class='card-body'>
-                    <p><strong>title(EN):</strong> $titleEN </p>
-                    <p><strong>author:</strong> $author </p>
-                    <p><strong>date:</strong> $date </p>
+                    <p><strong>ชื่อผลงาน(ไทย):</strong> $titleTH </p>
+                    <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
+                    <p><strong>วัน/เดือน/ปี ที่ตีพิมพ์:</strong> $date </p>
+
                     <span class='badge badge-info'>Journals</span>
-                    <a class='text-success' href='$file_path' target='_blank'>
-                        <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-                    </a>
-                  </div>
-                </div>
-                <br />
                 ";
+
+                if($file_path != '') {
+                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                }
+
+                echo "</div>
+              </div>
+              <br/>
+              ";
               }
               else if($type=='scholarship_proceeding'){
                 echo "
                 <div class='card'>
                   <div class='card-header'>
-                    <a class='text-primary' href='detail.php/?id=$id&type=$type'><h4> $no.  $titleTH </h4></a>
+                    <a class='text-primary' href='detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
                   </div>
                   <div class='card-body'>
-                    <p><strong>title(EN):</strong> $titleEN </p>
-                    <p><strong>author:</strong> $author </p>
-                    <p><strong>date:</strong> $date </p>
+                    <p><strong>ชื่อผลงาน(ไทย):</strong> $titleTH </p>
+                    <p><strong>ชื่อเจ้าของผลงาน:</strong> $author </p>
+                    <p><strong>วัน/เดือน/ปี ที่ตีพิมพ์:</strong> $date </p>
+
                     <span class='badge badge-primary'>Proceedings</span>
-                    <a class='text-success' href='$file_path' target='_blank'>
-                        <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-                    </a>
-                  </div>
+                ";
+
+                if($file_path != '') {
+                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                }
+
+                echo  "</div>
                 </div>
-                <br />
+                <br/>
                 ";
               }
-
             }
-          } else {
+          }
+          else {
             echo "No Results";
           }
         }
