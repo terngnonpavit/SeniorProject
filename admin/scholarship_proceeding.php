@@ -18,7 +18,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="http://localhost/seniorproject/fm.tagator.jquery.css">
+    <script src="http://localhost/seniorproject/fm.tagator.jquery.js"></script>
 
   </head>
   <body>
@@ -69,14 +70,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       <form action="scholarship_proceeding.php/?id=<?php echo $_GET['id']; ?>" method="post" enctype="multipart/form-data">
         <div class='row'>
           <div class="form-group col-md-6">
-            <label for="author"><strong>ชื่อผู้ขอรับการสนับสนุน</strong></label>
-            <select class="form-control" name="author">
-                <?php
-                  foreach ($teacher_name as $name) {
-                      echo "<option value='$name'>$name</option>";
-                  }
-                ?>
-            </select>
+            <label for="author"><strong>ชื่อผู้เขียน</strong></label>
+            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้เขียน" name="author" id="author_tag" value="<?php echo $author; ?>">
           </div>
           <div class="form-group col-md-6">
             <label for="department"><strong>สังกัด</strong></label>
@@ -200,6 +195,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <button type="submit" class="btn btn-success btn-block">ยืนยัน</button>
       </form>
     </div>
+
+    <script type="text/javascript">
+     $('#author_tag').tagator({
+        // autocomplete: ['first', 'second', 'third', 'jQuery', 'Script', 'Net'],
+        autocomplete: [<?php foreach ($teacher_name as $name) {
+          echo "'$name',";
+        }?>],
+        useDimmer: false,
+        prefix: 'tagator_',
+        height: 'auto',
+        showAllOptionsOnFocus: true,
+      });
+    </script>
 
     <?php
 

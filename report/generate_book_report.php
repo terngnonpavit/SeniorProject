@@ -253,6 +253,13 @@ if ($result->num_rows > 0) {
     $id=$row['id'];
   }
 }
+$chapter_no_arr = explode(",,,", $chapter_no);
+$chapter_name_arr = explode(",,,", $chapter_name);
+$content_arr = explode(",,,", $content);
+
+array_shift($chapter_no_arr);
+array_shift($chapter_name_arr);
+array_shift($content_arr);
 
 $npdf=new PDF_HTML();
 $npdf->AddPage();
@@ -276,15 +283,7 @@ $subject=$npdf->conv($subject);
 $for_student=$npdf->conv($for_student);
 $student_year=$npdf->conv($student_year);
 $page_amount=$npdf->conv($page_amount);
-$chapter_no_1=$npdf->conv($chapter_no_1);
-$chapter_no_2=$npdf->conv($chapter_no_2);
-$chapter_no_3=$npdf->conv($chapter_no_3);
-$chapter_name_1=$npdf->conv($chapter_name_1);
-$chapter_name_2=$npdf->conv($chapter_name_2);
-$chapter_name_3=$npdf->conv($chapter_name_3);
-$content_1=$npdf->conv($content_1);
-$content_2=$npdf->conv($content_2);
-$content_3=$npdf->conv($content_3);
+
 $teaching_history=$npdf->conv($teaching_history);
 $applicant=$npdf->conv($applicant);
 $head_of_department=$npdf->conv($head_of_department);
@@ -517,86 +516,42 @@ $npdf->write(6.5,"............");
 $npdf->SetXY(100,17);
 $npdf->write(6.5,"$section6_2");
 //1
-$npdf->SetXY(18,24);
-$npdf->write(6.5,"$section6_3");
-$npdf->SetXY(26,24);
-$npdf->write(6.5,"............");
-$npdf->SetXY(27,23);
-$npdf->write(6.5,"$chapter_no_1");
-$npdf->SetXY(37,24);
-$npdf->write(6.5,"$section6_4");
-$npdf->SetXY(47,24);
-$npdf->write(6.5,"...................................................");
-$npdf->SetXY(49,23);
-$npdf->write(6.5,"$chapter_name_1");
+$content_height=65;
+for($i=0 ; $i<count($chapter_no_arr) ; $i++){
+  if($i==0){
+    $constant=0;
+  }
+  else{
+    $constant=30*$i;
+    $content_height+=30;
+  }
+  $npdf->SetXY(18,25+$constant);
+  $npdf->write(6.5,"$section6_3");
+  $npdf->SetXY(26,25+$constant);
+  $npdf->write(6.5,"............");
+  $npdf->SetXY(27,24.5+$constant);
+  $npdf->write(6.5,"$chapter_no_arr[$i]");
+  $npdf->SetXY(37,25+$constant);
+  $npdf->write(6.5,"$section6_4");
+  $npdf->SetXY(47,25+$constant);
+  $npdf->write(6.5,"...................................................");
+  $npdf->SetXY(49,24.5+$constant);
+  $npdf->write(6.5,"$chapter_name_arr[$i]");
 
-$section6_5=$npdf->conv('*เนื้อหา');
-$npdf->SetTextColor(255,0,0);
-$npdf->SetXY(26,31);
-$npdf->write(6.5,"$section6_5");
-$npdf->SetTextColor(0,0,0);
-$npdf->SetXY(40,30);
-$npdf->write(6.5,"$content_1");
-$npdf->SetXY(37,31);
-$npdf->write(6.5,"...................................................................................................................................................................................");
-$npdf->SetXY(18,38);
-$npdf->write(6.5,"..........................................................................................................................................................................................................");
-$npdf->SetXY(18,45);
-$npdf->write(6.5,"..........................................................................................................................................................................................................");
-//2
-$npdf->SetXY(18,60);
-$npdf->write(6.5,"$section6_3");
-$npdf->SetXY(26,60);
-$npdf->write(6.5,"............");
-$npdf->SetXY(27,59);
-$npdf->write(6.5,"$chapter_no_2");
-$npdf->SetXY(37,60);
-$npdf->write(6.5,"$section6_4");
-$npdf->SetXY(47,60);
-$npdf->write(6.5,"...................................................");
-$npdf->SetXY(49,59);
-$npdf->write(6.5,"$chapter_name_2");
-
-$section6_5=$npdf->conv('*เนื้อหา');
-$npdf->SetTextColor(255,0,0);
-$npdf->SetXY(26,67);
-$npdf->write(6.5,"$section6_5");
-$npdf->SetTextColor(0,0,0);
-$npdf->SetXY(40,66);
-$npdf->write(6.5,"$content_2");
-$npdf->SetXY(37,67);
-$npdf->write(6.5,"...................................................................................................................................................................................");
-$npdf->SetXY(18,74);
-$npdf->write(6.5,"..........................................................................................................................................................................................................");
-$npdf->SetXY(18,82);
-$npdf->write(6.5,"..........................................................................................................................................................................................................");
-//3
-$npdf->SetXY(18,98);
-$npdf->write(6.5,"$section6_3");
-$npdf->SetXY(26,98);
-$npdf->write(6.5,"............");
-$npdf->SetXY(27,97);
-$npdf->write(6.5,"$chapter_no_3");
-$npdf->SetXY(37,98);
-$npdf->write(6.5,"$section6_4");
-$npdf->SetXY(47,98);
-$npdf->write(6.5,"...................................................");
-$npdf->SetXY(49,97);
-$npdf->write(6.5,"$chapter_name_2");
-
-$section6_5=$npdf->conv('*เนื้อหา');
-$npdf->SetTextColor(255,0,0);
-$npdf->SetXY(26,105);
-$npdf->write(6.5,"$section6_5");
-$npdf->SetTextColor(0,0,0);
-$npdf->SetXY(40,104);
-$npdf->write(6.5,"$content_2");
-$npdf->SetXY(37,105);
-$npdf->write(6.5,"...................................................................................................................................................................................");
-$npdf->SetXY(18,112);
-$npdf->write(6.5,"..........................................................................................................................................................................................................");
-$npdf->SetXY(18,119);
-$npdf->write(6.5,"..........................................................................................................................................................................................................");
+  $section6_5=$npdf->conv('*เนื้อหา');
+  $npdf->SetTextColor(255,0,0);
+  $npdf->SetXY(26,32+$constant);
+  $npdf->write(6.5,"$section6_5");
+  $npdf->SetTextColor(0,0,0);
+  $npdf->SetXY(40,31+$constant);
+  $npdf->write(6.5,"$content_arr[$i]");
+  $npdf->SetXY(37,32+$constant);
+  $npdf->write(6.5,"...................................................................................................................................................................................");
+  $npdf->SetXY(18,39+$constant);
+  $npdf->write(6.5,"..........................................................................................................................................................................................................");
+  $npdf->SetXY(18,46+$constant);
+  $npdf->write(6.5,"..........................................................................................................................................................................................................");
+}
 
 $section7=$npdf->conv('7. ประวัติการสอน');
 $section7_1=$npdf->conv('(โดยสังเขป)');
@@ -606,53 +561,52 @@ $npdf->WriteHTML("
 ");
 $npdf->SetFont('THSarabunNew', '', '15');
 $npdf->WriteHTML("$section7_1<br>");
-$npdf->SetXY(22,138);
+$npdf->SetXY(22,$content_height);
 $npdf->write(6.5,"$teaching_history");
-$npdf->SetXY(19,139);
+$npdf->SetXY(19,$content_height+1);
 $npdf->write(6.5,".........................................................................................................................................................................................................");
-$npdf->SetXY(19,146);
+$npdf->SetXY(19,$content_height+8);
 $npdf->write(6.5,".........................................................................................................................................................................................................");
-$npdf->SetXY(19,153);
+$npdf->SetXY(19,$content_height+15);
 $npdf->write(6.5,".........................................................................................................................................................................................................");
 
 $section7_2=$npdf->conv('* หากมีอยู่แล้วสามารถแนบประวัติการสอนต่อท้ายข้อเสนอโครงการได้');
 $npdf->SetTextColor(255,0,0);
-$npdf->SetXY(19,159);
+$npdf->SetXY(19,$content_height+22);
 $npdf->write(6.5,"$section7_2");
 
 $section8=$npdf->conv('ลงชื่อ');
 $section8_1=$npdf->conv('ผู้ขอรับทุน');
 $npdf->SetTextColor(0,0,0);
-$npdf->SetXY(100,200);
+$npdf->SetXY(100,$content_height+45);
 $npdf->write(6.5,"$section8");
-$npdf->SetXY(108,200);
+$npdf->SetXY(108,$content_height+45);
 $npdf->write(6.5,"........................................................");
-$npdf->SetXY(110,206);
+$npdf->SetXY(110,$content_height+52);
 $npdf->write(6.5,"$applicant");
-$npdf->SetXY(100,207);
+$npdf->SetXY(100,$content_height+53);
 $npdf->write(6.5,"(.................................................................)");
-$npdf->SetXY(120,214);
+$npdf->SetXY(120,$content_height+60);
 $npdf->write(6.5,"$section8_1");
 
 $section9=$npdf->conv('ลงชื่อ');
 $section9_1=$npdf->conv('หัวหน้าภาควิชา');
 $npdf->SetTextColor(0,0,0);
-$npdf->SetXY(100,240);
+$npdf->SetXY(100,$content_height+85);
 $npdf->write(6.5,"$section9");
-$npdf->SetXY(108,240);
+$npdf->SetXY(108,$content_height+85);
 $npdf->write(6.5,"........................................................");
-$npdf->SetXY(110,246);
+$npdf->SetXY(110,$content_height+92);
 $npdf->write(6.5,"$head_of_department");
-$npdf->SetXY(100,247);
+$npdf->SetXY(100,$content_height+93);
 $npdf->write(6.5,"(.................................................................)");
-$npdf->SetXY(100,254);
+$npdf->SetXY(100,$content_height+100);
 $npdf->write(6.5,"$section9_1");
-$npdf->SetXY(122,254);
+$npdf->SetXY(122,$content_height+100);
 $npdf->write(6.5,"..................................................");
-$npdf->SetXY(125,253);
+$npdf->SetXY(125,$content_height+100);
 $npdf->write(6.5,"$department_name");
-// $npdf->SetXY(115,270);
-// $npdf->write(6.5,"2");
+
 
 if(isset($_GET['save']) && $_GET['save']=='true'){
   $npdf->Output("./save_generate_pdf/book_$id.pdf",'F');

@@ -79,29 +79,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <form action='<?php echo "http://localhost/seniorproject/admin/edit_scholarship_journal.php/?id=$id"?>' method="post" enctype="multipart/form-data">
            <div class='row'>
              <div class="form-group col-md-6">
-               <label for="author"><strong>ชื่อผู้ขอรับการสนับสนุน</strong></label>
-               <select class="form-control" name="author">
-                 <?php
-                    foreach ($teacher_name as $name) {
-                    if($author==$name){
-                      echo "<option value='$name' selected>$name</option>";
-                    }
-                    else{
-                      echo "<option value='$name'>$name</option>";
-                    }
-                  }
-                ?>
-              </select>
-            </div>
+               <label for="author"><strong>ชื่อผู้เขียน</strong></label>
+               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้เขียน" name="author" id="author_tag" value="<?php echo $author; ?>">
+             </div>
             <div class="form-group col-md-6">
               <label for="department"><strong>สังกัด</strong></label>
               <input type="text" class="form-control" placeholder="กรุณาระบุสังกัด" name="department" value="<?php echo $department; ?>">
             </div>
           </div>
-            <div class="form-group">
-              <label for="author"><strong>ชื่อผู้เขียน</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผู้เขียน" name="author" id="author_tag" value="<?php echo $author; ?>">
-            </div>
             <div class="form-group">
               <label for="titleEN"><strong>ชื่อผลงานวิจัย(english)</strong></label>
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อผลงานวิจัย(english)" name="titleEN" value="<?php echo $titleEN; ?>"
@@ -115,15 +100,19 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               <input type="text" class="form-control" placeholder="กรุณากรอกชื่อวารสารที่ตีพิมพ" name="journal_name" value="<?php echo $journal_name; ?>">
             </div>
           <div class='row'>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
               <label for="volume"><strong>ปีที่</strong></label>
               <input type="text" class="form-control" placeholder="Enter volume" name="volume" value="<?php echo $volume; ?>">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
               <label for="number"><strong>ฉบับที่</strong></label>
               <input type="text" class="form-control" placeholder="Enter number" name="number" value="<?php echo $number; ?>">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
+              <label for="page"><strong>หน้า</strong></label>
+              <input type="text" class="form-control" placeholder="กรุณาระบุหน้า" name="page" value="<?php echo $page; ?>">
+            </div>
+            <div class="form-group col-md-3">
               <label for="date"><strong>วัน/เดือน/ปี ที่ตีพิมพ์</strong></label>
               <input type="text" class="form-control" placeholder="กรุณากรอกวัน/เดือน/ปี" name="date" value="<?php echo $date; ?>">
             </div>

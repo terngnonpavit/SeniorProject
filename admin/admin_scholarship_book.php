@@ -29,7 +29,7 @@
       $no++;
       if($check_scholarship=='true'){
         echo "
-        <div class='col-md-12' style='margin-bottom: 20px'>
+        <div class='col-md-12' style='margin-bottom: 20px;'>
         <div class='card'>
           <div class='card-header'>
             <a class='text-success' href='http://localhost/seniorproject/detail.php/?id=$id&type=$type'><h4> $no.  $titleEN </h4></a>
@@ -41,9 +41,7 @@
 
         if($file_path != '') {
           echo "
-          <a class='text-success' href='$file_path' target='_blank'>
-            <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
+          <a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>
           ";
         }
 
@@ -73,9 +71,7 @@
 
         if ($file_path != '') {
           echo "
-          <a class='text-success' href='$file_path' target='_blank'>
-            <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
+          <a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>
           ";
         }
 

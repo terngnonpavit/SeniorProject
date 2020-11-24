@@ -117,7 +117,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 ";
 
                 if($file_path != '') {
-                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                  echo "<a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
                 }
 
                 echo "</div>
@@ -140,7 +140,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 ";
 
                 if($file_path != '') {
-                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                  echo "<a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
                 }
 
                 echo "</div>
@@ -163,7 +163,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                 ";
 
                 if($file_path != '') {
-                  echo "<a class='btn btn-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
+                  echo "<a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>";
                 }
 
                 echo  "</div>

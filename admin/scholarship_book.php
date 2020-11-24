@@ -18,6 +18,8 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <!-- icon -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost/seniorproject/fm.tagator.jquery.css">
+    <script src="http://localhost/seniorproject/fm.tagator.jquery.js"></script>
 
   </head>
   <body>
@@ -42,6 +44,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
       $row = $result->fetch_assoc();
       $titleTH=$row['titleTH'];
       $titleEN=$row['titleEN'];
+      $author=$row['author'];
       $writer_name=$row['writer_name'];
       $page_amount=$row['page_amount'];
       $publisher=$row['publisher'];
@@ -73,6 +76,10 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           <div class="form-group">
             <label for="titleEN"><strong>ชื่อตำรา(english)</strong></label>
             <input type="text" class="form-control" placeholder="กรุณากรอกชื่อตำรา(english)" name="titleEN" value="<?php echo $titleEN; ?>">
+          </div>
+          <div class="form-group">
+            <label for="author"><strong>ผู้เขียน</strong></label>
+            <input type="text" class="form-control" placeholder="ระบุผู้เขียน" name="author" id="author_tag"  value="<?php echo $author; ?>">
           </div>
           <div class='row'>
             <div class="form-group col-md-6">
@@ -180,7 +187,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
           </div>
 
           <div class="field_wrapper">
-            <div>
+            <div style="border:1px solid #cdcdcd; padding:10px; margin-bottom:20px;background-color:#f5f5f5">
               <div class='row'>
                 <div class="form-group col-md-6">
                   <label for="chapter_no_3"><strong>บทที่</strong></label>
@@ -197,59 +204,9 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
               </div>
               <a href="javascript:void(0);" class="add_button btn btn-success" title="Add field">เพิ่ม</a>
               <br>
-              <hr>
             </div>
           </div>
-          <!-- <br>
-          <hr> -->
-          <!-- <div class='row'>
-          <div class="form-group col-md-6">
-              <label for="chapter_no_1"><strong>บทที่(1)</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_1">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="chapter_name_1"><strong>ชื่อบท(1)</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_1">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="content_1"><strong>เนื้อหา(1)</strong></label>
-            <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_1"></textarea>
-          </div>
-          <br>
-          <hr> -->
-          <!-- <div class='row'>
-            <div class="form-group col-md-6">
-              <label for="chapter_no_2"><strong>บทที่(2)</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_2">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="chapter_name_2"><strong>ชื่อบท(2)</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_2">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="content_2"><strong>เนื้อหา(2)</strong></label>
-            <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_2"></textarea>
-          </div>
-          <br>
-          <hr> -->
-          <!-- <div class='row'>
-            <div class="form-group col-md-6">
-              <label for="chapter_no_3"><strong>บทที่(3)</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no_3">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="chapter_name_3"><strong>ชื่อบท(3)</strong></label>
-              <input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name_3">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="content_3"><strong>เนื้อหา(3)</strong></label>
-            <textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content_3"></textarea>
-          </div>
-          <br>
-          <hr> -->
+
           <div class="form-group">
             <label for="teaching_history"><strong>ประวัติการสอน(โดยสังเขป)</strong></label>
             <textarea type="text" class="form-control" placeholder="กรุณาระบุประวัติการสอน(โดยสังเขป)" rows="5" name="teaching_history"></textarea>
@@ -289,18 +246,31 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
     </div>
 
     <script type="text/javascript">
+     $('#author_tag').tagator({
+        // autocomplete: ['first', 'second', 'third', 'jQuery', 'Script', 'Net'],
+        autocomplete: [<?php foreach ($teacher_name as $name) {
+          echo "'$name',";
+        }?>],
+        useDimmer: false,
+        prefix: 'tagator_',
+        height: 'auto',
+        showAllOptionsOnFocus: true,
+      });
+    </script>
+
+    <script type="text/javascript">
       $(document).ready(function(){
           var maxField = 10; //Input fields increment limitation
           var addButton = $('.add_button'); //Add button selector
           var wrapper = $('.field_wrapper'); //Input field wrapper
-          var fieldHTML0 = '<div>';
+          var fieldHTML0 = '<div style="border:1px solid #cdcdcd; padding:10px; margin-bottom:20px;background-color:#f5f5f5">';
           var fieldHTML1 = '<div class="row">';
           var fieldHTML2 = '<div class="form-group col-md-6"><label for="chapter_no_3"><strong>บทที่</strong></label><input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no[]"></div>';
           var fieldHTML3 = '<div class="form-group col-md-6"><label for="chapter_name_3"><strong>ชื่อบท</strong></label><input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name[]"></div>';
           var fieldHTML4 = '</div>';
           var fieldHTML5 = '<div class="form-group"><label for="content_3"><strong>เนื้อหา</strong></label><textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content[]"></textarea></div>';
           var fieldHTML6 = '<a href="javascript:void(0);" class="remove_button btn btn-danger">ลบ</a>';
-          var fieldHTML7 = '</div><br><hr>';
+          var fieldHTML7 = '</div><br>';
           var x = 1; //Initial field counter is 1
 
           //Once add button is clicked

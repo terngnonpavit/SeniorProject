@@ -40,9 +40,7 @@
 
         if($file_path != '') {
           echo "
-          <a class='text-success' href='$file_path' target='_blank'>
-            <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-          </a>
+          <a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>
           ";
         }
 
@@ -72,9 +70,7 @@
 
       if ($file_path != '') {
         echo "
-        <a class='text-success' href='$file_path' target='_blank'>
-          <i class='fa fa-file-pdf-o' style='font-size:36px;color:red'></i>
-        </a>
+        <a class='btn btn-outline-danger' href='$file_path'><i class='fa fa-file-pdf-o'></i> PDF</a>
         ";
       }
 

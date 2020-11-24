@@ -228,7 +228,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                       $current_chapter_name = $chapter_name_arr[$i];
                       $current_content = $content_arr[$i];
                       echo "
-                      <div>
+                      <div style='border:1px solid #cdcdcd; padding:10px; margin-bottom:20px;background-color:#f5f5f5'>
                         <div class='row'>
                           <div class='form-group col-md-6'>
                             <label for='chapter_no_3'><strong>บทที่</strong></label>
@@ -247,11 +247,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                       if ($i == 0) {
                         echo "<a href='javascript:void(0);' class='add_button btn btn-success' title='Add field'>เพิ่ม</a>";
                       }
-                      echo "<br><hr></div>";
+                      else{
+                        echo '<a href="javascript:void(0);" class="remove_button btn btn-danger">ลบ</a>';
+                      }
+                      echo "<br></div>";
                     }
                   } else {
                     echo "
-                    <div>
+                    <div style='border:1px solid #cdcdcd; padding:10px; margin-bottom:20px;background-color:#f5f5f5'>
                       <div class='row'>
                         <div class='form-group col-md-6'>
                           <label for='chapter_no_3'><strong>บทที่</strong></label>
@@ -268,7 +271,6 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
                       </div>
                       <a href='javascript:void(0);' class='add_button btn btn-success' title='Add field'>เพิ่ม</a>
                       <br>
-                      <hr>
                     </div>
                     ";
                   }
@@ -333,14 +335,14 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
             var maxField = 10; //Input fields increment limitation
             var addButton = $('.add_button'); //Add button selector
             var wrapper = $('.field_wrapper'); //Input field wrapper
-            var fieldHTML0 = '<div>';
+            var fieldHTML0 = '<div style="border:1px solid #cdcdcd; padding:10px; margin-bottom:20px;background-color:#f5f5f5">';
             var fieldHTML1 = '<div class="row">';
             var fieldHTML2 = '<div class="form-group col-md-6"><label for="chapter_no_3"><strong>บทที่</strong></label><input type="text" class="form-control" placeholder="กรุณาระบุบทที่" name="chapter_no[]"></div>';
             var fieldHTML3 = '<div class="form-group col-md-6"><label for="chapter_name_3"><strong>ชื่อบท</strong></label><input type="text" class="form-control" placeholder="กรุณาระบุชื่อบท" name="chapter_name[]"></div>';
             var fieldHTML4 = '</div>';
             var fieldHTML5 = '<div class="form-group"><label for="content_3"><strong>เนื้อหา</strong></label><textarea type="text" class="form-control" placeholder="กรุณาระบุเนื้อหา" rows="5" name="content[]"></textarea></div>';
             var fieldHTML6 = '<a href="javascript:void(0);" class="remove_button btn btn-danger">ลบ</a>';
-            var fieldHTML7 = '</div><br><hr>';
+            var fieldHTML7 = '</div><br>';
             var x = 1; //Initial field counter is 1
 
             //Once add button is clicked
