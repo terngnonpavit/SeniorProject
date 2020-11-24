@@ -79,6 +79,7 @@ if(!isset($_SESSION["login_status"]) || $_SESSION["login_status"] == False ){
         while($row = $result->fetch_assoc())  {
           array_push($teacher_name,$row['title'].$row['name']);
         }
+        array_push($teacher_name,'-');
       }
 
       $chapter_no_arr = explode(",,,", $chapter_no);
